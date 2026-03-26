@@ -3,22 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Фабрика Окон | Бердянск</title>
-  <meta name="description" content="Фабрика Окон в Бердянске. Пластиковые окна, изготовление, установка, замер, остекление балконов и лоджий." />
+  <title>Фабрика Окон | Окна, двери, балконы, роллеты, жалюзи в Бердянске</title>
+  <meta name="description" content="Фабрика Окон в Бердянске. Окна ПВХ, двери ПВХ, балконы, лоджии, роллеты, жалюзи. Замер, изготовление и установка." />
+  <meta name="theme-color" content="#e41f26" />
+
   <style>
     :root {
-      --bg: #0b1220;
-      --bg-soft: #111a2e;
-      --card: rgba(255, 255, 255, 0.08);
-      --card-border: rgba(255, 255, 255, 0.12);
-      --text: #eaf2ff;
-      --muted: #b8c4db;
-      --accent: #4da3ff;
-      --accent-2: #7dd3fc;
+      --red: #e41f26;
+      --yellow: #f5c400;
+      --blue: #1f2f8a;
+      --dark: #10131a;
+      --soft-dark: #171b24;
+      --light: #f6f7fb;
       --white: #ffffff;
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-      --radius: 22px;
-      --max: 1180px;
+      --text: #1b2230;
+      --muted: #687287;
+      --border: #e7eaf1;
+      --shadow: 0 18px 50px rgba(16, 19, 26, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max-width: 1180px;
+      --transition: 0.28s ease;
     }
 
     * {
@@ -34,9 +40,9 @@
       font-family: Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(77, 163, 255, 0.18), transparent 28%),
-        radial-gradient(circle at top right, rgba(125, 211, 252, 0.16), transparent 24%),
-        linear-gradient(180deg, #08101c 0%, #0b1220 100%);
+        radial-gradient(circle at top left, rgba(245, 196, 0, 0.14), transparent 26%),
+        radial-gradient(circle at top right, rgba(228, 31, 38, 0.08), transparent 24%),
+        linear-gradient(180deg, #fffdf7 0%, #f6f7fb 42%, #ffffff 100%);
       line-height: 1.6;
     }
 
@@ -51,302 +57,351 @@
     }
 
     .container {
-      width: min(100% - 32px, var(--max));
+      width: min(100% - 32px, var(--max-width));
       margin: 0 auto;
     }
 
-    .topbar {
+    .header {
       position: sticky;
       top: 0;
       z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(14px);
-      background: rgba(8, 16, 28, 0.72);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(20, 24, 32, 0.06);
     }
 
-    .topbar-inner {
-      min-height: 74px;
+    .header-inner {
+      min-height: 78px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
     }
 
-    .logo {
+    .brand {
       display: flex;
       align-items: center;
       gap: 14px;
-      font-weight: 700;
-      font-size: 20px;
-      letter-spacing: 0.2px;
+      min-width: 0;
     }
 
-    .logo-badge {
-      width: 44px;
-      height: 44px;
+    .brand img {
+      width: 74px;
+      height: 74px;
+      object-fit: contain;
       border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      display: grid;
-      place-items: center;
-      color: #04111f;
-      font-size: 22px;
-      font-weight: 700;
-      box-shadow: var(--shadow);
+      background: white;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--blue);
+    }
+
+    .brand-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 3px;
     }
 
     .nav {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
     .nav a {
-      color: var(--muted);
       font-size: 15px;
-      transition: 0.2s ease;
+      color: var(--text);
+      transition: var(--transition);
     }
 
     .nav a:hover {
-      color: var(--white);
+      color: var(--red);
     }
 
-    .nav-cta {
+    .nav-phone {
       padding: 12px 18px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #04111f !important;
+      background: linear-gradient(135deg, var(--red), #f0494f);
+      color: white !important;
       font-weight: 700;
+      box-shadow: 0 12px 26px rgba(228, 31, 38, 0.22);
     }
 
     .hero {
-      padding: 72px 0 46px;
+      padding: 54px 0 44px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 26px;
       align-items: stretch;
     }
 
-    .hero-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-      border: 1px solid var(--card-border);
-      border-radius: 30px;
+    .hero-left,
+    .hero-right,
+    .card,
+    .service-card,
+    .benefit-card,
+    .contact-card,
+    .about-card,
+    .catalog-card {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(31, 47, 138, 0.08);
       box-shadow: var(--shadow);
-      overflow: hidden;
+      border-radius: var(--radius-xl);
     }
 
     .hero-left {
-      padding: 54px;
+      padding: 42px;
       position: relative;
+      overflow: hidden;
     }
 
-    .hero-tag {
+    .hero-left::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 196, 0, 0.18), transparent 68%);
+      top: -80px;
+      right: -70px;
+    }
+
+    .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       padding: 10px 16px;
       border-radius: 999px;
-      background: rgba(77, 163, 255, 0.12);
-      color: var(--accent-2);
-      border: 1px solid rgba(125, 211, 252, 0.2);
+      background: rgba(245, 196, 0, 0.16);
+      color: var(--blue);
       font-size: 14px;
-      margin-bottom: 22px;
+      font-weight: 700;
+      margin-bottom: 18px;
     }
 
     h1 {
-      margin: 0 0 18px;
+      margin: 0 0 16px;
       font-size: 54px;
-      line-height: 1.05;
+      line-height: 1.03;
       letter-spacing: -1px;
+      color: var(--blue);
     }
 
     .hero-left p {
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       color: var(--muted);
       font-size: 18px;
-      max-width: 700px;
+      max-width: 720px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-top: 28px;
+      margin-top: 26px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
       min-height: 52px;
       padding: 0 22px;
       border-radius: 16px;
       font-weight: 700;
-      transition: 0.2s ease;
+      transition: var(--transition);
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #05101d;
-      box-shadow: 0 10px 30px rgba(77, 163, 255, 0.25);
+      background: linear-gradient(135deg, var(--red), #f34f56);
+      color: white;
+      box-shadow: 0 14px 28px rgba(228, 31, 38, 0.18);
     }
 
     .btn-primary:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.04);
+      transform: translateY(-2px);
+      filter: brightness(1.03);
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,0.06);
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(135deg, var(--blue), #3046b3);
+      color: white;
+      box-shadow: 0 14px 28px rgba(31, 47, 138, 0.16);
     }
 
     .btn-secondary:hover {
-      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+      filter: brightness(1.03);
     }
 
-    .hero-points {
+    .hero-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
-      margin-top: 34px;
+      margin-top: 28px;
     }
 
-    .point {
-      padding: 18px;
+    .stat {
+      background: linear-gradient(180deg, #fffef7, #ffffff);
+      border: 1px solid var(--border);
       border-radius: 18px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
+      padding: 18px;
+      transition: var(--transition);
     }
 
-    .point strong {
+    .stat:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 30px rgba(31, 47, 138, 0.08);
+    }
+
+    .stat strong {
       display: block;
       font-size: 20px;
+      color: var(--blue);
       margin-bottom: 4px;
-      color: var(--white);
     }
 
-    .point span {
-      color: var(--muted);
+    .stat span {
       font-size: 14px;
+      color: var(--muted);
     }
 
     .hero-right {
       padding: 22px;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-rows: 1fr auto auto;
       gap: 18px;
     }
 
-    .window-visual {
-      flex: 1;
+    .showcase {
       min-height: 420px;
       border-radius: 24px;
+      overflow: hidden;
       position: relative;
+      background:
+        linear-gradient(145deg, rgba(31,47,138,0.95), rgba(39,56,155,0.92));
+    }
+
+    .showcase::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(245,196,0,0.24), transparent 26%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.08), transparent 28%);
+    }
+
+    .window-scene {
+      position: absolute;
+      inset: 24px;
+      border-radius: 24px;
       overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(77,163,255,0.24), rgba(255,255,255,0.02)),
-        linear-gradient(135deg, #16233b, #0b1324);
-      border: 1px solid rgba(255,255,255,0.1);
+        linear-gradient(180deg, #cbe9ff 0%, #8fd0ff 52%, #d8efff 100%);
+      border: 10px solid white;
+      box-shadow: inset 0 0 0 2px rgba(16, 19, 26, 0.08);
     }
 
-    .window-frame {
-      position: absolute;
-      inset: 38px;
-      border-radius: 22px;
-      border: 10px solid rgba(255,255,255,0.95);
-      box-shadow:
-        inset 0 0 0 2px rgba(11, 18, 32, 0.08),
-        0 16px 40px rgba(0,0,0,0.24);
-      background:
-        linear-gradient(180deg, rgba(125, 211, 252, 0.28), rgba(255,255,255,0.12)),
-        linear-gradient(180deg, #d9f0ff, #8fcfff);
-    }
-
-    .window-frame::before,
-    .window-frame::after {
+    .window-scene::before,
+    .window-scene::after {
       content: "";
       position: absolute;
       background: rgba(255,255,255,0.96);
     }
 
-    .window-frame::before {
+    .window-scene::before {
+      width: 10px;
       top: 0;
       bottom: 0;
       left: 50%;
-      width: 10px;
       transform: translateX(-50%);
     }
 
-    .window-frame::after {
+    .window-scene::after {
+      height: 10px;
       left: 0;
       right: 0;
       top: 50%;
-      height: 10px;
       transform: translateY(-50%);
     }
 
     .sun {
       position: absolute;
-      top: 52px;
-      right: 56px;
-      width: 72px;
-      height: 72px;
+      top: 38px;
+      right: 44px;
+      width: 78px;
+      height: 78px;
       border-radius: 50%;
-      background: radial-gradient(circle, #fff7c2, #ffd76a);
-      box-shadow: 0 0 60px rgba(255, 215, 106, 0.5);
+      background: radial-gradient(circle, #fff7c0, #ffcc33);
+      box-shadow: 0 0 60px rgba(255, 204, 51, 0.44);
     }
 
-    .city-line {
+    .house-line {
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
       height: 120px;
       background:
-        linear-gradient(180deg, transparent, rgba(7, 13, 24, 0.1)),
-        linear-gradient(180deg, rgba(8,16,28,0.2), rgba(8,16,28,0.48));
+        linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.08) 10%, rgba(26, 51, 87, 0.08) 100%),
+        linear-gradient(180deg, rgba(31,47,138,0.02), rgba(31,47,138,0.16));
     }
 
-    .mini-card {
-      padding: 20px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
+    .mini-info {
       display: flex;
-      align-items: flex-start;
       gap: 14px;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #ffffff, #fffdf7);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .mini-info:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 26px rgba(31,47,138,0.08);
     }
 
     .mini-icon {
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       border-radius: 14px;
       display: grid;
       place-items: center;
-      background: rgba(77,163,255,0.14);
+      background: rgba(245, 196, 0, 0.18);
+      color: var(--blue);
       font-size: 22px;
       flex-shrink: 0;
     }
 
-    .mini-card strong {
+    .mini-info strong {
       display: block;
+      color: var(--blue);
       margin-bottom: 4px;
       font-size: 17px;
     }
 
-    .mini-card p {
+    .mini-info p {
       margin: 0;
       color: var(--muted);
       font-size: 14px;
     }
 
     section {
-      padding: 42px 0;
+      padding: 36px 0;
     }
 
     .section-head {
@@ -354,13 +409,14 @@
       align-items: end;
       justify-content: space-between;
       gap: 18px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .section-head h2 {
       margin: 0;
       font-size: 36px;
-      letter-spacing: -0.5px;
+      line-height: 1.1;
+      color: var(--blue);
     }
 
     .section-head p {
@@ -369,168 +425,213 @@
       color: var(--muted);
     }
 
-    .services-grid,
-    .advantages-grid,
-    .contact-grid {
-      display: grid;
-      gap: 20px;
-    }
-
     .services-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .advantages-grid {
+      display: grid;
       grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
     }
 
-    .contact-grid {
-      grid-template-columns: 1fr 1fr;
-      align-items: stretch;
-    }
-
-    .card-box {
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.04));
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
+    .service-card {
       padding: 26px;
-      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      right: -30px;
+      bottom: -30px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 196, 0, 0.16), transparent 70%);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 34px rgba(31, 47, 138, 0.1);
     }
 
     .service-icon {
       width: 58px;
       height: 58px;
-      border-radius: 18px;
+      border-radius: 16px;
       display: grid;
       place-items: center;
+      background: linear-gradient(135deg, rgba(245,196,0,0.18), rgba(228,31,38,0.08));
+      color: var(--blue);
       font-size: 28px;
-      margin-bottom: 18px;
-      background: rgba(77,163,255,0.14);
-      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 16px;
     }
 
-    .card-box h3 {
+    .service-card h3 {
       margin: 0 0 10px;
       font-size: 22px;
+      color: var(--blue);
     }
 
-    .card-box p {
+    .service-card p {
       margin: 0;
       color: var(--muted);
     }
 
-    .about-wrap {
+    .about-grid {
       display: grid;
-      grid-template-columns: 1fr 0.95fr;
-      gap: 22px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+    }
+
+    .about-card,
+    .catalog-card {
+      padding: 28px;
+    }
+
+    .about-card h3,
+    .catalog-card h3 {
+      margin: 0 0 14px;
+      font-size: 26px;
+      color: var(--blue);
+    }
+
+    .about-card p,
+    .catalog-card p {
+      margin: 0 0 12px;
+      color: var(--muted);
     }
 
     .about-list {
       display: grid;
       gap: 14px;
-      margin-top: 20px;
+      margin-top: 18px;
     }
 
     .about-item {
       display: flex;
       align-items: flex-start;
       gap: 12px;
-      color: var(--muted);
     }
 
     .about-dot {
-      width: 24px;
-      height: 24px;
-      border-radius: 999px;
-      background: rgba(77,163,255,0.16);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
       display: grid;
       place-items: center;
-      color: var(--accent-2);
-      font-size: 14px;
+      background: rgba(228, 31, 38, 0.1);
+      color: var(--red);
+      font-weight: 700;
       flex-shrink: 0;
       margin-top: 2px;
     }
 
-    .feature-stack {
-      display: grid;
-      gap: 16px;
-    }
-
-    .feature-box {
-      padding: 22px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .feature-box strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 18px;
-    }
-
-    .feature-box span {
+    .about-item span {
       color: var(--muted);
-      font-size: 15px;
     }
 
-    .adv-box {
-      position: relative;
-      overflow: hidden;
+    .catalog-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
     }
 
-    .adv-box::after {
-      content: "";
-      position: absolute;
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      right: -28px;
-      bottom: -28px;
-      background: radial-gradient(circle, rgba(77,163,255,0.16), transparent 70%);
-    }
-
-    .adv-num {
-      display: inline-flex;
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      align-items: center;
-      justify-content: center;
-      background: rgba(77,163,255,0.14);
-      color: var(--accent-2);
+    .tag {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #fffef9, #ffffff);
+      border: 1px solid var(--border);
+      color: var(--blue);
       font-weight: 700;
+      font-size: 14px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .benefit-card {
+      padding: 24px;
+      transition: var(--transition);
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 34px rgba(31, 47, 138, 0.1);
+    }
+
+    .benefit-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(31, 47, 138, 0.08);
+      color: var(--blue);
+      font-weight: 800;
       margin-bottom: 14px;
     }
 
-    .contact-panel {
+    .benefit-card h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      color: var(--blue);
+    }
+
+    .benefit-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .contacts-grid {
       display: grid;
-      gap: 16px;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .contact-card {
+      padding: 28px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
     }
 
     .contact-item {
       display: flex;
       gap: 14px;
       align-items: flex-start;
-      padding: 18px;
+      padding: 16px;
       border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, #fffef9, #ffffff);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .contact-item:hover {
+      transform: translateX(4px);
     }
 
     .contact-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
       display: grid;
       place-items: center;
+      background: rgba(245, 196, 0, 0.18);
+      color: var(--blue);
       font-size: 22px;
-      background: rgba(77,163,255,0.14);
       flex-shrink: 0;
     }
 
     .contact-item strong {
       display: block;
+      color: var(--blue);
       margin-bottom: 4px;
       font-size: 17px;
     }
@@ -542,107 +643,85 @@
     }
 
     .contact-item a:hover {
-      color: var(--white);
+      color: var(--red);
     }
 
-    .contact-cta {
+    .contact-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 8px;
+      gap: 12px;
+      margin-top: 18px;
     }
 
-    .map-box {
+    .map-card {
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(31, 47, 138, 0.08);
+      background: #fff;
       min-height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
     }
 
-    .map-visual {
-      min-height: 320px;
-      border-radius: 22px;
-      background:
-        linear-gradient(135deg, rgba(77,163,255,0.16), rgba(125,211,252,0.08)),
-        linear-gradient(180deg, #142136, #0d1626);
-      border: 1px solid rgba(255,255,255,0.08);
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 18px;
-    }
-
-    .map-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 42px 42px;
-      opacity: 0.5;
-    }
-
-    .map-pin {
-      position: absolute;
-      left: 50%;
-      top: 48%;
-      transform: translate(-50%, -50%);
-      width: 66px;
-      height: 66px;
-      border-radius: 50% 50% 50% 0;
-      transform: translate(-50%, -50%) rotate(-45deg);
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 15px 35px rgba(77,163,255,0.25);
-    }
-
-    .map-pin::after {
-      content: "";
-      position: absolute;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: white;
-      top: 20px;
-      left: 20px;
-    }
-
-    .map-note {
-      color: var(--muted);
-      margin: 0;
-      font-size: 15px;
+    .map-card iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 480px;
+      border: 0;
+      display: block;
     }
 
     .footer {
       padding: 30px 0 50px;
-      color: var(--muted);
     }
 
     .footer-inner {
       display: flex;
+      align-items: center;
       justify-content: space-between;
       gap: 16px;
-      align-items: center;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(20, 24, 32, 0.08);
       padding-top: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .floating-call {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 999;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--red), #ff575f);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 28px;
+      box-shadow: 0 18px 35px rgba(228, 31, 38, 0.26);
+      transition: var(--transition);
+    }
+
+    .floating-call:hover {
+      transform: scale(1.06);
     }
 
     @media (max-width: 1080px) {
       h1 {
-        font-size: 46px;
+        font-size: 44px;
       }
 
       .hero-grid,
-      .about-wrap,
-      .contact-grid,
+      .about-grid,
+      .contacts-grid,
       .services-grid,
-      .advantages-grid {
+      .benefits-grid {
         grid-template-columns: 1fr 1fr;
       }
 
-      .hero-right .window-visual {
-        min-height: 320px;
-      }
-
-      .hero-points {
+      .hero-stats {
         grid-template-columns: 1fr;
       }
     }
@@ -653,25 +732,38 @@
       }
 
       .hero {
-        padding-top: 36px;
+        padding-top: 34px;
       }
 
       .hero-grid,
-      .about-wrap,
-      .contact-grid,
+      .about-grid,
+      .contacts-grid,
       .services-grid,
-      .advantages-grid {
+      .benefits-grid {
         grid-template-columns: 1fr;
       }
 
       .hero-left,
       .hero-right,
-      .card-box {
+      .service-card,
+      .benefit-card,
+      .contact-card,
+      .about-card,
+      .catalog-card {
         padding: 22px;
       }
 
+      .brand img {
+        width: 56px;
+        height: 56px;
+      }
+
+      .brand-title {
+        font-size: 20px;
+      }
+
       h1 {
-        font-size: 36px;
+        font-size: 34px;
       }
 
       .section-head {
@@ -683,26 +775,16 @@
         font-size: 28px;
       }
 
-      .topbar-inner {
-        min-height: 66px;
-      }
-
-      .logo {
-        font-size: 18px;
-      }
-
-      .logo-badge {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-      }
-
       .hero-left p {
         font-size: 16px;
       }
 
       .btn {
         width: 100%;
+      }
+
+      .map-card iframe {
+        min-height: 360px;
       }
 
       .footer-inner {
@@ -714,19 +796,22 @@
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a href="#home" class="logo">
-        <span class="logo-badge">▣</span>
-        <span>Фабрика Окон</span>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#home" class="brand">
+        <img src="logo.jpg" alt="Фабрика Окон" />
+        <div class="brand-text">
+          <div class="brand-title">Фабрика Окон</div>
+          <div class="brand-subtitle">Окна, двери, балконы, роллеты, жалюзи</div>
+        </div>
       </a>
 
       <nav class="nav">
         <a href="#services">Услуги</a>
         <a href="#about">О компании</a>
-        <a href="#advantages">Преимущества</a>
+        <a href="#benefits">Преимущества</a>
         <a href="#contacts">Контакты</a>
-        <a class="nav-cta" href="tel:+79900273314">Позвонить</a>
+        <a href="tel:+79900273314" class="nav-phone">+7 990 027-33-14</a>
       </nav>
     </div>
   </header>
@@ -734,289 +819,52 @@
   <main id="home">
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-card hero-left">
-          <div class="hero-tag">Пластиковые окна • Бердянск</div>
+        <div class="hero-left">
+          <div class="hero-badge">Надёжные решения для дома и бизнеса</div>
 
-          <h1>Современные окна для дома, квартиры и бизнеса</h1>
+          <h1>Современные ПВХ конструкции под ваши задачи</h1>
 
           <p>
-            Изготовление и установка пластиковых окон из профиля Top Line.
-            Помогаем подобрать оптимальное решение, выполняем замер и аккуратный монтаж.
+            Компания «Фабрика Окон» в Бердянске занимается изготовлением и установкой
+            окон и дверей из ПВХ, а также остеклением балконов и лоджий.
           </p>
 
           <p>
-            Работаем в Бердянске. Делаем надёжно, аккуратно и по разумной цене.
+            У нас можно заказать роллеты, жалюзи, замер, консультацию и монтаж.
+            Подбираем практичные и аккуратные решения под квартиру, дом или объект бизнеса.
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="tel:+79900273314">Позвонить сейчас</a>
+            <a class="btn btn-primary" href="tel:+79900273314">Позвонить</a>
             <a class="btn btn-secondary" href="https://t.me/WindowFact0ry" target="_blank">Написать в Telegram</a>
           </div>
 
-          <div class="hero-points">
-            <div class="point">
-              <strong>Top Line</strong>
-              <span>качественный профиль</span>
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>Окна и двери ПВХ</strong>
+              <span>изготовление и установка</span>
             </div>
-            <div class="point">
-              <strong>Замер</strong>
-              <span>консультация и подбор</span>
+            <div class="stat">
+              <strong>Балконы и лоджии</strong>
+              <span>остекление под заказ</span>
             </div>
-            <div class="point">
-              <strong>Монтаж</strong>
-              <span>аккуратная установка</span>
+            <div class="stat">
+              <strong>Роллеты и жалюзи</strong>
+              <span>дополнительные решения</span>
             </div>
           </div>
         </div>
 
-        <div class="hero-card hero-right">
-          <div class="window-visual">
-            <div class="sun"></div>
-            <div class="window-frame"></div>
-            <div class="city-line"></div>
+        <div class="hero-right">
+          <div class="showcase">
+            <div class="window-scene">
+              <div class="sun"></div>
+              <div class="house-line"></div>
+            </div>
           </div>
 
-          <div class="mini-card">
-            <div class="mini-icon">🛠</div>
+          <div class="mini-info">
+            <div class="mini-icon">🪟</div>
             <div>
-              <strong>Изготовление и установка</strong>
-              <p>Полный цикл работ: от консультации и замера до готового результата.</p>
-            </div>
-          </div>
-
-          <div class="mini-card">
-            <div class="mini-icon">🏠</div>
-            <div>
-              <strong>Для квартир, домов и балконов</strong>
-              <p>Подбираем решения под конкретный объект и задачи клиента.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="services">
-      <div class="container">
-        <div class="section-head">
-          <h2>Наши услуги</h2>
-          <p>
-            Основные направления работы компании: производство, установка и остекление.
-          </p>
-        </div>
-
-        <div class="services-grid">
-          <article class="card-box">
-            <div class="service-icon">🪟</div>
-            <h3>Пластиковые окна</h3>
-            <p>
-              Изготовление пластиковых окон из профиля Top Line под размеры и особенности вашего объекта.
-            </p>
-          </article>
-
-          <article class="card-box">
-            <div class="service-icon">🔧</div>
-            <h3>Установка окон</h3>
-            <p>
-              Профессиональный монтаж с аккуратной установкой, проверкой и подготовкой к эксплуатации.
-            </p>
-          </article>
-
-          <article class="card-box">
-            <div class="service-icon">🏙</div>
-            <h3>Остекление балконов</h3>
-            <p>
-              Остекление балконов и лоджий с подбором практичного и эстетичного решения.
-            </p>
-          </article>
-
-          <article class="card-box">
-            <div class="service-icon">📏</div>
-            <h3>Замер и консультация</h3>
-            <p>
-              Поможем определиться с вариантом, размерами и форматом остекления под ваш бюджет.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <div class="section-head">
-          <h2>О компании</h2>
-          <p>
-            Мы делаем ставку на качество, аккуратность и понятный сервис без лишних обещаний.
-          </p>
-        </div>
-
-        <div class="about-wrap">
-          <div class="card-box">
-            <h3>Фабрика Окон</h3>
-            <p style="color: var(--muted); margin-top: 0;">
-              Компания занимается изготовлением и установкой пластиковых окон в Бердянске.
-              Работаем с профилем Top Line, подбираем решения для квартир, частных домов,
-              офисов, балконов и лоджий.
-            </p>
-
-            <div class="about-list">
-              <div class="about-item">
-                <div class="about-dot">✓</div>
-                <div>Изготовление окон по индивидуальным размерам.</div>
-              </div>
-              <div class="about-item">
-                <div class="about-dot">✓</div>
-                <div>Установка с вниманием к аккуратности и практичности.</div>
-              </div>
-              <div class="about-item">
-                <div class="about-dot">✓</div>
-                <div>Помощь в подборе оптимального решения под задачу клиента.</div>
-              </div>
-              <div class="about-item">
-                <div class="about-dot">✓</div>
-                <div>Работаем в понятном формате: консультация, замер, изготовление, монтаж.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="feature-stack">
-            <div class="feature-box">
-              <strong>Профиль Top Line</strong>
-              <span>Современное решение для пластиковых окон с аккуратным внешним видом и практичностью.</span>
-            </div>
-
-            <div class="feature-box">
-              <strong>Индивидуальный подход</strong>
-              <span>Каждый заказ рассматривается отдельно, с учётом размеров, условий и пожеланий клиента.</span>
-            </div>
-
-            <div class="feature-box">
-              <strong>Понятная коммуникация</strong>
-              <span>Вы можете быстро связаться по телефону, почте или через Telegram.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="advantages">
-      <div class="container">
-        <div class="section-head">
-          <h2>Почему выбирают нас</h2>
-          <p>
-            Несколько причин, по которым клиенты обращаются в «Фабрику Окон».
-          </p>
-        </div>
-
-        <div class="advantages-grid">
-          <article class="card-box adv-box">
-            <div class="adv-num">01</div>
-            <h3>Современный внешний вид</h3>
-            <p>Аккуратные решения, которые хорошо смотрятся в квартире, доме и офисе.</p>
-          </article>
-
-          <article class="card-box adv-box">
-            <div class="adv-num">02</div>
-            <h3>Комплексный подход</h3>
-            <p>Изготовление, установка, замер и консультация в одном месте.</p>
-          </article>
-
-          <article class="card-box adv-box">
-            <div class="adv-num">03</div>
-            <h3>Под задачи клиента</h3>
-            <p>Подбираем вариант под размеры помещения, тип объекта и бюджет.</p>
-          </article>
-
-          <article class="card-box adv-box">
-            <div class="adv-num">04</div>
-            <h3>Остекление балконов</h3>
-            <p>Отдельное направление для тех, кто хочет обновить балкон или лоджию.</p>
-          </article>
-
-          <article class="card-box adv-box">
-            <div class="adv-num">05</div>
-            <h3>Быстрая связь</h3>
-            <p>Можно легко связаться по телефону, почте или в Telegram.</p>
-          </article>
-
-          <article class="card-box adv-box">
-            <div class="adv-num">06</div>
-            <h3>Локально в Бердянске</h3>
-            <p>Удобно для клиентов, которым важно работать с местной компанией.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacts">
-      <div class="container">
-        <div class="section-head">
-          <h2>Контакты</h2>
-          <p>
-            Свяжитесь с нами удобным способом, чтобы уточнить детали, задать вопрос или обсудить заказ.
-          </p>
-        </div>
-
-        <div class="contact-grid">
-          <div class="card-box contact-panel">
-            <div class="contact-item">
-              <div class="contact-icon">📍</div>
-              <div>
-                <strong>Адрес</strong>
-                <span>Бердянск, ул. Свободы, 71</span>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <div class="contact-icon">📞</div>
-              <div>
-                <strong>Телефон</strong>
-                <a href="tel:+79900273314">+7 990 027-33-14</a>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <div class="contact-icon">✉️</div>
-              <div>
-                <strong>Email</strong>
-                <a href="mailto:fbobrd@gmail.com">fbobrd@gmail.com</a>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <div class="contact-icon">💬</div>
-              <div>
-                <strong>Telegram</strong>
-                <a href="https://t.me/WindowFact0ry" target="_blank">t.me/WindowFact0ry</a>
-              </div>
-            </div>
-
-            <div class="contact-cta">
-              <a class="btn btn-primary" href="tel:+79900273314">Позвонить</a>
-              <a class="btn btn-secondary" href="https://t.me/WindowFact0ry" target="_blank">Telegram</a>
-            </div>
-          </div>
-
-          <div class="card-box map-box">
-            <div class="map-visual">
-              <div class="map-grid"></div>
-              <div class="map-pin"></div>
-            </div>
-            <p class="map-note">
-              «Фабрика Окон» — Бердянск, ул. Свободы, 71. Для связи используйте телефон,
-              email или Telegram.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>© Фабрика Окон, Бердянск</div>
-      <div>Пластиковые окна • Установка • Остекление</div>
-    </div>
-  </footer>
-
-</body>
-</html>
+              <strong>Изготовление и монтаж</strong>
+              <p>Полный цикл работ: от консультации и замера до готового результата
