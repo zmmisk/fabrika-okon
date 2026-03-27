@@ -1,1580 +1,950 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Фабрика Окон — Окна, двери, балконы, роллеты, жалюзи в Бердянске</title>
-  <meta name="description" content="Фабрика Окон в Бердянске. Окна ПВХ, двери ПВХ, балконы, лоджии, роллеты, жалюзи. Замер, изготовление и установка." />
-  <meta name="theme-color" content="#214fc6" />
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="manifest" href="site.webmanifest">
+  <title>PromoView — рекламные товары с видеообзорами</title>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
   <style>
-    :root{
-      --bg:#0b1736;
-      --bg-2:#10214b;
-      --text:#eef4ff;
-      --title:#ffffff;
-      --muted:#bcc9e8;
-      --line:rgba(255,255,255,.12);
-
-      --card:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.07));
-      --card-soft:linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.05));
-
-      --blue:#4f86ff;
-      --blue-dark:#2c5be4;
-      --red:#ff5261;
-      --red-dark:#d92b3d;
-      --yellow:#ffd447;
-
-      --shadow:0 20px 60px rgba(0,0,0,.28);
-      --radius:28px;
-      --max:1320px;
-
-      --grad-red:linear-gradient(135deg,#ff727b 0%, #ff5261 52%, #d92b3d 100%);
-      --grad-blue:linear-gradient(135deg,#6aa1ff 0%, #4f86ff 55%, #2c5be4 100%);
-
-      --surface-1:rgba(255,255,255,.05);
-      --surface-2:rgba(255,255,255,.08);
-      --surface-3:rgba(255,255,255,.09);
-      --surface-border:rgba(255,255,255,.10);
-      --surface-border-strong:rgba(255,255,255,.14);
-      --text-strong:#ffffff;
-      --text-soft:#e7efff;
-      --input-bg:rgba(255,255,255,.07);
-      --input-placeholder:#a8b9da;
-      --overlay-strong:rgba(4,8,18,.92);
-      --overlay-card-start:rgba(22,35,68,.96);
-      --overlay-card-end:rgba(10,18,34,.96);
-      --header-bg:linear-gradient(to bottom, rgba(11,23,54,.82), rgba(11,23,54,0));
-      --hero-overlay-start:rgba(8,16,36,.76);
-      --hero-overlay-mid:rgba(8,16,36,.56);
-      --hero-overlay-end:rgba(8,16,36,.30);
-      --body-overlay-top:rgba(8,16,36,.78);
-      --body-overlay-bottom:rgba(8,16,36,.92);
-      --hero-mini-bg:rgba(9,16,31,.54);
-      --icon-dark:#172038;
-      --theme-toggle-bg:rgba(255,255,255,.08);
-      --theme-toggle-border:rgba(255,255,255,.14);
-      --theme-toggle-color:#ffffff;
-      --status-success:#8bf0b4;
-      --status-error:#ffb4bc;
-      --status-info:#e5edff;
+    :root {
+      --bg: #0b1020;
+      --bg-2: #111831;
+      --surface: rgba(255, 255, 255, 0.08);
+      --surface-strong: rgba(255, 255, 255, 0.12);
+      --text: #eef2ff;
+      --muted: #a8b0d3;
+      --border: rgba(255,255,255,0.12);
+      --accent: #7c5cff;
+      --accent-2: #00d4ff;
+      --danger: #ff5d7a;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --shadow: 0 10px 40px rgba(0,0,0,0.28);
+      --card-blur: blur(16px);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --max-width: 1320px;
     }
 
-    body[data-theme="light"]{
-      --bg:#edf3ff;
-      --bg-2:#dce7ff;
-      --text:#203256;
-      --title:#10203f;
-      --muted:#566b92;
-      --line:rgba(16,32,63,.10);
-
-      --card:linear-gradient(180deg, rgba(255,255,255,.96), rgba(240,246,255,.92));
-      --card-soft:linear-gradient(180deg, rgba(255,255,255,.92), rgba(232,240,255,.88));
-
-      --surface-1:rgba(255,255,255,.72);
-      --surface-2:rgba(255,255,255,.82);
-      --surface-3:rgba(255,255,255,.9);
-      --surface-border:rgba(16,32,63,.10);
-      --surface-border-strong:rgba(16,32,63,.14);
-      --text-strong:#10203f;
-      --text-soft:#30456d;
-      --input-bg:rgba(255,255,255,.88);
-      --input-placeholder:#6f82a8;
-      --overlay-strong:rgba(230,238,255,.96);
-      --overlay-card-start:rgba(255,255,255,.98);
-      --overlay-card-end:rgba(236,243,255,.98);
-      --header-bg:linear-gradient(to bottom, rgba(237,243,255,.92), rgba(237,243,255,0));
-      --hero-overlay-start:rgba(237,243,255,.90);
-      --hero-overlay-mid:rgba(237,243,255,.72);
-      --hero-overlay-end:rgba(237,243,255,.40);
-      --body-overlay-top:rgba(245,248,255,.90);
-      --body-overlay-bottom:rgba(233,240,255,.96);
-      --hero-mini-bg:rgba(255,255,255,.82);
-      --icon-dark:#10203f;
-      --theme-toggle-bg:rgba(255,255,255,.92);
-      --theme-toggle-border:rgba(16,32,63,.12);
-      --theme-toggle-color:#10203f;
-      --status-success:#1f8f56;
-      --status-error:#c53b4d;
-      --status-info:#30456d;
+    html[data-theme="light"] {
+      --bg: #eef2ff;
+      --bg-2: #dfe7ff;
+      --surface: rgba(255, 255, 255, 0.65);
+      --surface-strong: rgba(255, 255, 255, 0.85);
+      --text: #111827;
+      --muted: #4b5563;
+      --border: rgba(17,24,39,0.08);
+      --accent: #5b4bff;
+      --accent-2: #0ea5e9;
+      --danger: #e11d48;
+      --success: #059669;
+      --warning: #d97706;
+      --shadow: 0 10px 35px rgba(52, 72, 120, 0.12);
     }
 
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    html{
-      scroll-behavior:smooth;
+    html {
+      scroll-behavior: smooth;
     }
 
-    body{
-      font-family:"Inter",sans-serif;
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(106,161,255,.22), transparent 30%),
-        radial-gradient(circle at right center, rgba(255,82,97,.10), transparent 28%),
-        linear-gradient(var(--body-overlay-top), var(--body-overlay-bottom)),
-        url("fon.jpg") center/cover fixed no-repeat;
-      color:var(--text);
-      line-height:1.55;
-      overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-
-    h1,h2,h3,h4,h5,h6{
-      color:var(--title);
-    }
-
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
-
-    img{
-      display:block;
-      max-width:100%;
-    }
-
-    button,input,textarea{
-      font:inherit;
-    }
-
-    body,
-    .topline,
-    .header,
-    .card,
-    .point,
-    .hero-mini,
-    .btn-secondary,
-    .nav a,
-    .mobile-menu-panel,
-    .mobile-links a,
-    .field input,
-    .field textarea,
-    .contact-item,
-    .footer-box,
-    .about-item,
-    .measure-line,
-    .theme-toggle{
-      transition:
-        background-color .35s ease,
-        background .35s ease,
-        color .35s ease,
-        border-color .35s ease,
-        box-shadow .35s ease;
-    }
-
-    .container{
-      width:min(calc(100% - 32px), var(--max));
-      margin:0 auto;
-    }
-
-    .section{
-      padding:110px 0;
-      position:relative;
-    }
-
-    .section::before{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:0;
-      height:1px;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
-    }
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      backdrop-filter:blur(16px);
-      box-shadow:var(--shadow);
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 16px;
-      border:1px solid var(--surface-border-strong);
-      background:var(--input-bg);
-      color:var(--text-soft);
-      border-radius:999px;
-      font-size:13px;
-      font-weight:700;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-      backdrop-filter:blur(12px);
-      box-shadow:0 10px 24px rgba(0,0,0,.12);
-    }
-
-    .eyebrow::before{
-      content:"";
-      width:9px;
-      height:9px;
-      border-radius:50%;
-      background:linear-gradient(135deg,var(--yellow),var(--red));
-      box-shadow:0 0 18px rgba(255,212,71,.6);
-    }
-
-    .section-head{
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:24px;
-      align-items:end;
-      margin-bottom:40px;
-    }
-
-    .section-head h2{
-      font-size:clamp(34px, 5vw, 62px);
-      line-height:1.02;
-      letter-spacing:-.04em;
-      font-weight:900;
-      margin-top:18px;
-      text-shadow:0 4px 20px rgba(0,0,0,.18);
-    }
-
-    .section-head p{
-      color:var(--muted);
-      font-size:18px;
-      max-width:620px;
-      justify-self:end;
-    }
-
-    .btn{
-      min-height:58px;
-      padding:0 28px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      border-radius:18px;
-      border:none;
-      cursor:pointer;
-      font-weight:800;
-      transition:.28s ease;
-      white-space:nowrap;
-      color:var(--text-strong);
-    }
-
-    .btn:hover{
-      transform:translateY(-3px);
-    }
-
-    .btn-primary{
-      background:var(--grad-red);
-      color:var(--text-strong);
-      box-shadow:0 20px 35px rgba(255,82,97,.28);
-    }
-
-    .btn-blue{
-      background:var(--grad-blue);
-      color:var(--text-strong);
-      box-shadow:0 20px 35px rgba(79,134,255,.25);
-    }
-
-    .btn-secondary{
-      background:var(--surface-3);
-      border:1px solid var(--surface-border-strong);
-      color:var(--text-strong);
-    }
-
-    .topline{
-      position:relative;
-      z-index:100;
-      background:var(--surface-1);
-      border-bottom:1px solid rgba(255,255,255,.10);
-      backdrop-filter:blur(12px);
-    }
-
-    .topline-wrap{
-      min-height:44px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-      font-size:14px;
-      color:#e3ecff;
-    }
-
-    .topline-left,
-    .topline-right{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-
-    .header{
-      position:sticky;
-      top:0;
-      z-index:999;
-      padding:10px 0 0;
-      background:var(--header-bg);
-      backdrop-filter:blur(10px);
-    }
-
-    .header-shell{
-      min-height:25px;
-      padding:2px 0;
-      display:grid;
-      grid-template-columns:auto 1fr auto;
-      align-items:center;
-      gap:28px;
-    }
-
-  .brand{
-  display:flex;
-  align-items:center;
-  min-width:0;
-  flex-shrink:0;
-}
-
-.brand img{
-  width:300px;
-  height:200px;
-  object-fit:contain;
-  display:block;
-  filter:
-    drop-shadow(0 0 2px rgba(255,255,255,.35))
-    drop-shadow(0 10px 24px rgba(0,0,0,.30));
-}
-
-    .nav-wrap{
-      display:flex;
-      justify-content:center;
-      min-width:0;
-      overflow:hidden;
-    }
-
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      flex-wrap:nowrap;
-      white-space:nowrap;
-    }
-
-    .nav a{
-      padding:12px 14px;
-      border-radius:14px;
-      color:var(--text-soft);
-      font-weight:600;
-      font-size:15px;
-      transition:.25s ease;
-    }
-
-    .nav a:hover{
-      background:var(--surface-3);
-      color:var(--text-strong);
-    }
-
-    .header-actions{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      flex-shrink:0;
-    }
-
-    .header-phone{
-      min-height:54px;
-      padding:0 22px;
-      border-radius:16px;
-      font-weight:800;
-      background:var(--grad-red);
-      box-shadow:0 14px 30px rgba(255,82,97,.24);
-    }
-
-
-    .theme-toggle{
-      min-height:52px;
-      padding:0 16px;
-      border-radius:16px;
-      border:1px solid var(--theme-toggle-border);
-      background:var(--theme-toggle-bg);
-      color:var(--theme-toggle-color);
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      cursor:pointer;
-      font-weight:800;
-      backdrop-filter:blur(12px);
-      box-shadow:0 10px 24px rgba(0,0,0,.10);
-    }
-
-    .theme-toggle:hover{
-      transform:translateY(-2px);
-    }
-
-    .theme-toggle-icon{
-      font-size:18px;
-      line-height:1;
-    }
-
-    .theme-toggle-text{
-      font-size:14px;
-      white-space:nowrap;
-    }
-
-    .field-error{
-      min-height:18px;
-      font-size:13px;
-      color:var(--status-error);
-    }
-
-    .form-status.success{
-      color:var(--status-success);
-    }
-
-    .form-status.error{
-      color:var(--status-error);
-    }
-
-    .form-status.info{
-      color:var(--status-info);
-    }
-
-    .hp-field{
-      position:absolute !important;
-      left:-9999px !important;
-      opacity:0 !important;
-      pointer-events:none !important;
-      width:1px !important;
-      height:1px !important;
-      overflow:hidden !important;
-    }
-
-    .btn[disabled],
-    .theme-toggle[disabled]{
-      opacity:.7;
-      cursor:not-allowed;
-      transform:none;
-    }
-
-    .burger{
-      display:none;
-      width:52px;
-      height:52px;
-      border-radius:16px;
-      border:1px solid var(--surface-border-strong);
-      background:var(--surface-2);
-      color:var(--text-strong);
-      cursor:pointer;
-      font-size:24px;
-    }
-
-    .mobile-menu{
-      position:fixed;
-      inset:0;
-      background:var(--overlay-strong);
-      backdrop-filter:blur(18px);
-      z-index:1200;
-      display:none;
-      padding:24px;
-    }
-
-    .mobile-menu.active{
-      display:block;
-    }
-
-    .mobile-menu-panel{
-      width:min(100%,460px);
-      margin-left:auto;
-      height:100%;
-      background:linear-gradient(180deg, var(--overlay-card-start), var(--overlay-card-end));
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:28px;
-      padding:24px;
-      display:flex;
-      flex-direction:column;
-      gap:24px;
-      box-shadow:var(--shadow);
-    }
-
-    .mobile-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-
-    .mobile-top img{
-      width:90px;
-      height:90px;
-      object-fit:contain;
-    }
-
-    .mobile-close{
-      width:48px;
-      height:48px;
-      border-radius:14px;
-      border:none;
-      background:var(--surface-2);
-      color:var(--text-strong);
-      font-size:24px;
-      cursor:pointer;
-    }
-
-    .mobile-links{
-      display:grid;
-      gap:10px;
-    }
-
-    .mobile-links a{
-      padding:16px 18px;
-      border-radius:16px;
-      background:var(--surface-1);
-      border:1px solid var(--surface-border);
-      font-weight:700;
-      color:var(--text-strong);
-    }
-
-    .mobile-actions{
-      display:grid;
-      gap:12px;
-      margin-top:auto;
-    }
-
-    .hero{
-      position:relative;
-      padding:36px 0 110px;
-      overflow:hidden;
-    }
-
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(90deg, var(--hero-overlay-start) 0%, var(--hero-overlay-mid) 38%, var(--hero-overlay-end) 100%),
-        url("hero-bg.jpg") center/cover no-repeat;
-      opacity:1;
-      pointer-events:none;
-    }
-
-    .hero-wrap{
-      position:relative;
-      z-index:2;
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:28px;
-      align-items:stretch;
-    }
-
-    .hero-main{
-      padding:34px 0 0;
+        radial-gradient(circle at 10% 20%, rgba(124,92,255,0.22), transparent 28%),
+        radial-gradient(circle at 90% 10%, rgba(0,212,255,0.18), transparent 25%),
+        radial-gradient(circle at 80% 80%, rgba(124,92,255,0.18), transparent 24%),
+        linear-gradient(145deg, var(--bg), var(--bg-2));
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    .hero-main h1{
-      font-size:clamp(46px,6vw,86px);
-      line-height:.94;
-      font-weight:900;
-      letter-spacing:-.05em;
-      max-width:900px;
-      margin:22px 0 24px;
-      color:var(--text-strong);
-      text-shadow:0 6px 28px rgba(0,0,0,.22);
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .hero-lead{
-      max-width:760px;
-      color:var(--status-info);
-      font-size:clamp(18px, 2vw, 21px);
+    button, input, textarea, select {
+      font: inherit;
     }
 
-    .hero-lead + .hero-lead{
-      margin-top:14px;
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
     }
 
-    .hero-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      margin-top:34px;
+    .glow {
+      position: fixed;
+      inset: auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    .hero-points{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-      margin-top:36px;
+    .glow-1 {
+      top: 90px;
+      left: -70px;
+      background: var(--accent);
     }
 
-    .point{
-      padding:22px;
-      border-radius:24px;
-      background:var(--card-soft);
-      border:1px solid var(--surface-border);
-      backdrop-filter:blur(10px);
-      box-shadow:0 10px 24px rgba(0,0,0,.18);
+    .glow-2 {
+      right: -60px;
+      bottom: 120px;
+      background: var(--accent-2);
     }
 
-    .point strong{
-      display:block;
-      font-size:28px;
-      font-weight:900;
-      margin-bottom:8px;
-      color:var(--text-strong);
+    .glass {
+      background: var(--surface);
+      backdrop-filter: var(--card-blur);
+      -webkit-backdrop-filter: var(--card-blur);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
     }
 
-    .point span{
-      display:block;
-      color:var(--muted);
-      font-size:14px;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 16px 0;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.18), rgba(0,0,0,0.04));
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .hero-side{
-      display:grid;
-      gap:16px;
-      align-content:start;
+    html[data-theme="light"] .topbar {
+      background: linear-gradient(to bottom, rgba(255,255,255,0.75), rgba(255,255,255,0.35));
+      border-bottom: 1px solid rgba(17,24,39,0.06);
     }
 
-    .hero-photo{
-      min-height:560px;
-      border-radius:34px;
-      overflow:hidden;
-      position:relative;
-      border:1px solid var(--surface-border);
-      box-shadow:var(--shadow);
-      background:
-        linear-gradient(180deg, rgba(8,16,29,.10), rgba(7,12,22,.22)),
-        url("hero-photo.jpg") center/cover no-repeat;
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
     }
 
-    .hero-glass{
-      position:absolute;
-      left:24px;
-      right:24px;
-      bottom:24px;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
     }
 
-    .hero-mini{
-      padding:18px;
-      border-radius:22px;
-      background:var(--hero-mini-bg);
-      border:1px solid var(--surface-border);
-      backdrop-filter:blur(14px);
+    .brand-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 30px rgba(124,92,255,0.35);
+      color: white;
+      font-size: 1.15rem;
+      flex-shrink: 0;
     }
 
-    .hero-mini strong{
-      display:block;
-      margin-bottom:6px;
-      font-size:18px;
-      color:var(--text-strong);
+    .brand-text {
+      min-width: 0;
     }
 
-    .hero-mini p{
-      color:var(--muted);
-      font-size:14px;
+    .brand-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.2px;
     }
 
-    .trust{
-      padding:0 0 24px;
-      position:relative;
-      z-index:2;
-      margin-top:-36px;
+    .brand-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .trust-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:18px;
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
-    .trust-card{
-      padding:24px;
-      min-height:150px;
+    .btn {
+      border: 0;
+      cursor: pointer;
+      border-radius: 14px;
+      padding: 12px 16px;
+      transition: 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
     }
 
-    .trust-mark{
-      width:56px;
-      height:56px;
-      border-radius:18px;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg, rgba(79,134,255,.24), rgba(255,212,71,.16));
-      border:1px solid var(--surface-border);
-      font-size:24px;
-      box-shadow:0 10px 24px rgba(0,0,0,.12);
+    .btn:active {
+      transform: scale(0.98);
     }
 
-    .trust-card h3{
-      font-size:20px;
-      margin:14px 0 10px;
-      color:var(--text-strong);
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      box-shadow: 0 12px 28px rgba(92, 95, 255, 0.28);
     }
 
-    .trust-card p{
-      color:var(--muted);
-      font-size:15px;
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.04);
     }
 
-    .services-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:20px;
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
     }
 
-    .service{
-      padding:30px;
-      transition:.28s ease;
+    .btn-secondary:hover {
+      background: var(--surface-strong);
+      transform: translateY(-2px);
     }
 
-    .service:hover{
-      transform:translateY(-6px);
+    .btn-danger {
+      background: rgba(255, 93, 122, 0.14);
+      color: #fff;
+      border: 1px solid rgba(255,93,122,0.2);
     }
 
-    .service-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:22px;
+    html[data-theme="light"] .btn-danger {
+      color: var(--danger);
+      background: rgba(225, 29, 72, 0.08);
+      border-color: rgba(225, 29, 72, 0.14);
     }
 
-    .service-icon{
-      width:62px;
-      height:62px;
-      border-radius:20px;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg, rgba(255,212,71,.24), rgba(79,134,255,.18));
-      border:1px solid var(--surface-border);
-      font-size:28px;
-      box-shadow:0 8px 24px rgba(0,0,0,.14);
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 36px 0 24px;
     }
 
-    .service-num{
-      font-size:14px;
-      font-weight:800;
-      color:#d8e4ff;
-      opacity:.82;
+    .hero-card {
+      border-radius: 30px;
+      padding: 28px;
+      overflow: hidden;
+      position: relative;
     }
 
-    .service h3{
-      font-size:26px;
-      line-height:1.05;
-      margin-bottom:12px;
-      color:var(--text-strong);
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
     }
 
-    .service p{
-      color:var(--muted);
-      font-size:15px;
-      margin-bottom:20px;
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
     }
 
-    .service ul{
-      list-style:none;
-      display:grid;
-      gap:10px;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      width: fit-content;
+      color: var(--text);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.92rem;
     }
 
-    .service li{
-      display:flex;
-      align-items:flex-start;
-      gap:10px;
-      color:#edf3ff;
-      font-size:14px;
+    html[data-theme="light"] .hero-badge {
+      background: rgba(255,255,255,0.7);
+      border-color: rgba(17,24,39,0.06);
     }
 
-    .service li::before{
-      content:"✓";
-      width:22px;
-      height:22px;
-      display:grid;
-      place-items:center;
-      flex-shrink:0;
-      border-radius:50%;
-      background:linear-gradient(135deg, var(--yellow), #ffdf74);
-      color:var(--icon-dark);
-      font-weight:900;
-      font-size:12px;
-      margin-top:1px;
+    .hero h1 {
+      font-size: clamp(2rem, 3vw, 4rem);
+      line-height: 1.05;
+      margin-bottom: 14px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
     }
 
-    .about-wrap{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:22px;
-      align-items:stretch;
+    .hero p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 760px;
+      line-height: 1.7;
+      margin-bottom: 22px;
     }
 
-    .about-main{
-      padding:34px;
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
     }
 
-    .about-main h3{
-      font-size:28px;
-      margin-bottom:20px;
-      color:var(--text-strong);
+    .stat {
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
-    .about-main p{
-      color:var(--muted);
-      font-size:17px;
-      margin-bottom:18px;
+    html[data-theme="light"] .stat {
+      background: rgba(255,255,255,0.7);
+      border-color: rgba(17,24,39,0.06);
     }
 
-    .about-list{
-      margin-top:26px;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
+    .stat-value {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 4px;
     }
 
-    .about-item{
-      padding:18px;
-      border-radius:20px;
-      background:var(--card-soft);
-      border:1px solid var(--surface-border);
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.92rem;
     }
 
-    .about-tick{
-      width:28px;
-      height:28px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg, var(--yellow), #ffe483);
-      color:var(--icon-dark);
-      font-weight:900;
-      flex-shrink:0;
-      margin-top:2px;
+    .hero-side {
+      display: grid;
+      gap: 14px;
     }
 
-    .about-side{
-      display:grid;
-      gap:18px;
+    .hero-panel {
+      border-radius: 22px;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
-    .about-photo{
-      min-height:360px;
-      border-radius:30px;
-      overflow:hidden;
-      position:relative;
-      background:
-        linear-gradient(180deg, rgba(8,16,29,.12), rgba(8,16,29,.24)),
-        url("about-photo.jpg") center/cover no-repeat;
-      border:1px solid var(--surface-border);
-      box-shadow:var(--shadow);
+    html[data-theme="light"] .hero-panel {
+      background: rgba(255,255,255,0.72);
+      border-color: rgba(17,24,39,0.06);
     }
 
-    .about-info{
-      padding:26px;
-      display:grid;
-      gap:16px;
+    .hero-panel-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      margin-bottom: 10px;
     }
 
-    .about-line{
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
+    .hero-panel p {
+      margin: 0;
+      font-size: 0.96rem;
     }
 
-    .about-line .i{
-      width:48px;
-      height:48px;
-      border-radius:16px;
-      background:linear-gradient(135deg, rgba(255,212,71,.18), rgba(79,134,255,.16));
-      border:1px solid var(--surface-border);
-      display:grid;
-      place-items:center;
-      flex-shrink:0;
-      font-size:22px;
-      box-shadow:0 8px 24px rgba(0,0,0,.14);
+    .controls {
+      position: relative;
+      z-index: 1;
+      padding: 10px 0 8px;
     }
 
-    .about-line strong{
-      display:block;
-      margin-bottom:5px;
-      font-size:17px;
-      color:var(--text-strong);
+    .controls-card {
+      border-radius: 22px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr auto;
+      gap: 14px;
+      align-items: center;
     }
 
-    .about-line p{
-      color:var(--muted);
-      font-size:15px;
+    .field,
+    .textarea,
+    .select {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      padding: 14px 14px;
+      outline: none;
+      transition: 0.2s ease;
     }
 
-    .process-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:18px;
+    html[data-theme="light"] .field,
+    html[data-theme="light"] .textarea,
+    html[data-theme="light"] .select {
+      background: rgba(255,255,255,0.75);
     }
 
-    .step{
-      padding:28px;
+    .field:focus,
+    .textarea:focus,
+    .select:focus {
+      border-color: rgba(124,92,255,0.45);
+      box-shadow: 0 0 0 4px rgba(124,92,255,0.12);
     }
 
-    .step-num{
-      width:54px;
-      height:54px;
-      border-radius:16px;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg,#5b92ff,#2c5be4);
-      color:var(--text-strong);
-      font-weight:900;
-      font-size:18px;
-      box-shadow:0 14px 30px rgba(79,134,255,.25);
-      margin-bottom:18px;
+    .field::placeholder,
+    .textarea::placeholder {
+      color: var(--muted);
     }
 
-    .step h3{
-      font-size:22px;
-      margin-bottom:10px;
-      color:var(--text-strong);
+    .products-section {
+      position: relative;
+      z-index: 1;
+      padding: 18px 0 60px;
     }
 
-    .step p{
-      color:var(--muted);
-      font-size:15px;
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
     }
 
-    .measure-grid{
-      display:grid;
-      grid-template-columns:.95fr 1.05fr;
-      gap:20px;
-      align-items:stretch;
+    .section-head h2 {
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
     }
 
-    .measure-info,
-    .measure-form-wrap{
-      padding:30px;
+    .section-head p {
+      color: var(--muted);
     }
 
-    .measure-info h3{
-      font-size:30px;
-      margin:18px 0 14px;
-      line-height:1.06;
-      color:var(--text-strong);
+    .results-count {
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
-    .measure-info p{
-      color:var(--muted);
-      font-size:16px;
-      margin-bottom:22px;
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
     }
 
-    .measure-list{
-      display:grid;
-      gap:14px;
+    .product-card {
+      border-radius: 24px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
     }
 
-    .measure-line{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      padding:16px;
-      border-radius:18px;
-      background:var(--card-soft);
-      border:1px solid var(--surface-border);
+    .product-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(124,92,255,0.28);
+      box-shadow: 0 18px 44px rgba(0,0,0,0.24);
     }
 
-    .measure-line .i{
-      width:42px;
-      height:42px;
-      border-radius:14px;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg, rgba(255,212,71,.18), rgba(79,134,255,.14));
-      flex-shrink:0;
-      box-shadow:0 8px 20px rgba(0,0,0,.12);
+    .product-video {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
 
-    .measure-line strong{
-      color:var(--text-strong);
+    .product-video iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
     }
 
-    .measure-line p{
-      margin:0;
-      color:var(--muted);
-      font-size:15px;
+    .product-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
     }
 
-    .measure-form{
-      display:grid;
-      gap:16px;
-      margin-top:12px;
+    .product-top {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 10px;
     }
 
-    .field{
-      display:grid;
-      gap:8px;
+    .product-title {
+      font-size: 1.14rem;
+      font-weight: 800;
+      line-height: 1.35;
     }
 
-    .field label{
-      font-size:14px;
-      font-weight:700;
-      color:var(--status-info);
+    .product-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      align-self: flex-start;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+      white-space: nowrap;
     }
 
-    .field input,
-    .field textarea{
-      width:100%;
-      border:none;
-      outline:none;
-      color:var(--text-strong);
-      background:var(--input-bg);
-      border:1px solid var(--surface-border);
-      border-radius:18px;
-      padding:16px 18px;
-      resize:none;
-      backdrop-filter:blur(10px);
+    html[data-theme="light"] .product-category {
+      background: rgba(255,255,255,0.7);
+      border-color: rgba(17,24,39,0.06);
     }
 
-    .field input::placeholder,
-    .field textarea::placeholder{
-      color:var(--input-placeholder);
+    .product-desc {
+      color: var(--muted);
+      line-height: 1.65;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 6.2em;
     }
 
-    .form-status{
-      min-height:24px;
-      font-size:14px;
-      color:var(--status-info);
+    .product-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: auto;
     }
 
-    .advantages-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
+    .click-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
-    .adv{
-      padding:30px;
-      min-height:240px;
-      transition:.28s ease;
+    html[data-theme="light"] .click-badge {
+      background: rgba(255,255,255,0.75);
+      border-color: rgba(17,24,39,0.06);
     }
 
-    .adv:hover{
-      transform:translateY(-6px);
+    .product-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .adv-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:18px;
+    .product-link {
+      flex: 1;
+      min-width: 180px;
     }
 
-    .adv-badge{
-      width:52px;
-      height:52px;
-      border-radius:16px;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg, rgba(79,134,255,.20), rgba(255,82,97,.14));
-      border:1px solid var(--surface-border);
-      font-size:22px;
-      box-shadow:0 8px 24px rgba(0,0,0,.14);
+    .admin-card {
+      margin-top: 28px;
+      border-radius: 24px;
+      padding: 20px;
+      display: none;
     }
 
-    .adv-num{
-      font-size:13px;
-      font-weight:800;
-      color:#dbe7ff;
-      opacity:.76;
+    .admin-card.active {
+      display: block;
+      animation: fadeUp 0.35s ease;
     }
 
-    .adv h3{
-      font-size:24px;
-      margin-bottom:12px;
-      color:var(--text-strong);
+    .admin-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
     }
 
-    .adv p{
-      color:var(--muted);
-      font-size:15px;
+    .admin-head h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
     }
 
-    .contact-grid{
-      display:grid;
-      grid-template-columns:.9fr 1.1fr;
-      gap:20px;
-      align-items:stretch;
+    .admin-head p {
+      color: var(--muted);
+      margin-top: 6px;
     }
 
-    .contact-card,
-    .map-card{
-      padding:30px;
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
     }
 
-    .contact-list{
-      display:grid;
-      gap:14px;
-      margin-top:18px;
+    .admin-grid .full {
+      grid-column: 1 / -1;
     }
 
-    .contact-item{
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-      padding:18px;
-      border-radius:20px;
-      background:var(--card-soft);
-      border:1px solid var(--surface-border);
+    .textarea {
+      min-height: 120px;
+      resize: vertical;
     }
 
-    .contact-item .icon{
-      width:52px;
-      height:52px;
-      border-radius:16px;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg, rgba(255,212,71,.20), rgba(79,134,255,.16));
-      border:1px solid var(--surface-border);
-      font-size:23px;
-      flex-shrink:0;
-      box-shadow:0 8px 24px rgba(0,0,0,.14);
+    .admin-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
     }
 
-    .contact-item strong{
-      display:block;
-      font-size:16px;
-      margin-bottom:6px;
-      color:var(--text-strong);
+    .admin-list {
+      margin-top: 22px;
+      display: grid;
+      gap: 12px;
     }
 
-    .contact-item span,
-    .contact-item a{
-      color:var(--muted);
-      word-break:break-word;
+    .admin-item {
+      border-radius: 18px;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
-    .contact-item a:hover{
-      color:var(--text-strong);
+    html[data-theme="light"] .admin-item {
+      background: rgba(255,255,255,0.72);
+      border-color: rgba(17,24,39,0.06);
     }
 
-    .contact-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-top:22px;
+    .admin-item h4 {
+      font-size: 1rem;
+      margin-bottom: 4px;
     }
 
-    .map-frame{
-      overflow:hidden;
-      border-radius:26px;
-      border:1px solid var(--surface-border);
-      min-height:100%;
-      height:100%;
-      box-shadow:0 10px 30px rgba(0,0,0,.2);
-      background:var(--surface-1);
+    .admin-item p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
     }
 
-    .map-frame iframe{
-      width:100%;
-      height:100%;
-      min-height:520px;
-      border:0;
-      display:block;
+    .admin-item-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
-    .footer{
-      padding:30px 0 36px;
+    .footer {
+      position: relative;
+      z-index: 1;
+      padding: 8px 0 28px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
     }
 
-    .footer-shell{
-      padding:34px;
-      border-radius:34px;
-      background:
-        radial-gradient(circle at top right, rgba(255,212,71,.12), transparent 22%),
-        radial-gradient(circle at left bottom, rgba(79,134,255,.14), transparent 20%),
-        linear-gradient(135deg, rgba(16,33,75,.98), rgba(8,15,30,.98));
-      border:1px solid var(--surface-border);
-      box-shadow:var(--shadow);
+    .empty-state {
+      border-radius: 24px;
+      padding: 26px;
+      text-align: center;
+      color: var(--muted);
     }
 
-    .footer-top{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:20px;
-      align-items:center;
-      margin-bottom:26px;
+    .empty-state i {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      color: var(--accent-2);
     }
 
-    .footer-brand{
-      display:flex;
-      align-items:center;
-      gap:16px;
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(4, 8, 20, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
-    .footer-brand img{
-      width:90px;
-      height:90px;
-      object-fit:contain;
+    .modal.active {
+      display: flex;
+      animation: fadeIn 0.25s ease;
     }
 
-    .footer-brand strong{
-      display:block;
-      font-size:28px;
-      line-height:1;
-      color:var(--text-strong);
+    .modal-card {
+      width: min(460px, 100%);
+      border-radius: 24px;
+      padding: 22px;
     }
 
-    .footer-brand span{
-      display:block;
-      margin-top:6px;
-      color:var(--muted);
+    .modal-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
     }
 
-    .footer-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
+    .modal-head h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 6px;
     }
 
-    .footer-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:16px;
-      margin-bottom:24px;
+    .modal-head p {
+      color: var(--muted);
+      line-height: 1.6;
     }
 
-    .footer-box{
-      padding:22px;
-      border-radius:22px;
-      background:var(--surface-1);
-      border:1px solid var(--surface-border);
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      cursor: pointer;
+      transition: 0.2s ease;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
     }
 
-    .footer-box strong{
-      display:block;
-      margin-bottom:10px;
-      font-size:17px;
-      color:var(--text-strong);
+    .icon-btn:hover {
+      transform: rotate(90deg);
+      background: rgba(255,255,255,0.08);
     }
 
-    .footer-box p,
-    .footer-box a{
-      color:var(--muted);
-      font-size:15px;
+    .hint {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
     }
 
-    .footer-box a:hover{
-      color:var(--text-strong);
+    .status {
+      margin-top: 12px;
+      font-size: 0.95rem;
+      min-height: 24px;
     }
 
-    .footer-bottom{
-      padding-top:18px;
-      border-top:1px solid rgba(255,255,255,.10);
-      display:flex;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-      color:#a7b7d9;
-      font-size:14px;
+    .status.error {
+      color: #ff9aae;
     }
 
-    .sticky-call{
-      position:fixed;
-      left:14px;
-      right:14px;
-      bottom:14px;
-      z-index:900;
-      display:none;
+    .status.success {
+      color: #7ff0c0;
     }
 
-    .sticky-call a{
-      width:100%;
-      min-height:58px;
-      border-radius:18px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:900;
-      background:var(--grad-red);
-      color:var(--text-strong);
-      box-shadow:0 18px 34px rgba(255,82,97,.32);
+    html[data-theme="light"] .status.error {
+      color: var(--danger);
     }
 
-    .reveal{
-      opacity:0;
-      transform:translateY(26px);
-      transition:opacity .65s ease, transform .65s ease;
+    html[data-theme="light"] .status.success {
+      color: var(--success);
     }
 
-    .reveal.show{
-      opacity:1;
-      transform:translateY(0);
+    .hidden {
+      display: none !important;
     }
 
-    @media (max-width:1280px){
-      .header-shell{
-        grid-template-columns:auto auto auto;
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
       }
-
-      .nav a{
-        font-size:14px;
-        padding:10px 12px;
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    @media (max-width:1180px){
-      .hero-wrap,
-      .section-head,
-      .about-wrap,
-      .contact-grid,
-      .measure-grid,
-      .footer-top{
-        grid-template-columns:1fr;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 1100px) {
+      .hero-content {
+        grid-template-columns: 1fr;
       }
 
-      .process-grid{
-        grid-template-columns:repeat(2,1fr);
+      .controls-card {
+        grid-template-columns: 1fr;
       }
 
-      .trust-grid,
-      .advantages-grid,
-      .services-grid,
-      .footer-grid{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .section-head p{
-        justify-self:start;
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    @media (max-width:980px){
-      .nav-wrap,
-      .header-phone{
-        display:none;
+    @media (max-width: 720px) {
+      .container {
+        width: min(calc(100% - 20px), var(--max-width));
       }
 
-      .theme-toggle-text{
-        display:none;
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
-      .theme-toggle{
-        min-width:52px;
-        padding:0 14px;
+      .topbar-actions {
+        width: 100%;
+        justify-content: stretch;
       }
 
-      .burger{
-        display:grid;
-        place-items:center;
+      .topbar-actions .btn {
+        flex: 1;
       }
 
-      .header-shell{
-        grid-template-columns:auto 1fr auto;
-      }
-    }
-
-    @media (max-width:900px){
-      .hero-main h1{
-        font-size:clamp(40px,12vw,64px);
+      .hero-card {
+        padding: 20px;
       }
 
-      .hero-points,
-      .trust-grid,
-      .advantages-grid,
-      .services-grid,
-      .process-grid,
-      .footer-grid,
-      .about-list{
-        grid-template-columns:1fr;
+      .hero-stats {
+        grid-template-columns: 1fr;
       }
 
-      .hero-glass{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width:640px){
-      .container{
-        width:min(calc(100% - 20px), var(--max));
+      .products-grid {
+        grid-template-columns: 1fr;
       }
 
-      .section{
-        padding:84px 0;
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
       }
 
-      .topline{
-        display:none;
+      .admin-grid {
+        grid-template-columns: 1fr;
       }
 
-      .header-shell,
-      .trust-card,
-      .service,
-      .about-main,
-      .about-info,
-      .step,
-      .adv,
-      .measure-info,
-      .measure-form-wrap,
-      .contact-card,
-      .map-card,
-      .footer-shell{
-        padding:22px;
-      }
-
-      .brand img{
-        width:92px;
-        height:92px;
-      }
-
-      .hero-photo{
-        min-height:360px;
-      }
-
-      .map-frame iframe{
-        min-height:360px;
-      }
-
-      .hero-actions,
-      .contact-actions,
-      .footer-actions{
-        flex-direction:column;
-      }
-
-      .btn{
-        width:100%;
-      }
-
-      .sticky-call{
-        display:block;
+      .admin-item {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
 
-  <div class="topline">
-    <div class="container topline-wrap">
-      <div class="topline-left">
-        <span>Бердянск • Окна, двери, балконы, роллеты, жалюзи</span>
-        <span>Более 20 лет опыта</span>
-      </div>
-      <div class="topline-right">
-        <a href="mailto:fbobrd@gmail.com">fbobrd@gmail.com</a>
-        <a href="https://t.me/WindowFact0ry" target="_blank" rel="noopener">Telegram</a>
-      </div>
-    </div>
-  </div>
-
-  <header class="header">
-    <div class="container">
-      <div class="header-shell">
-        <a href="#home" class="brand">
-          <img src="logo.png" alt="Фабрика Окон">
-        </a>
-
-        <div class="nav-wrap">
-          <nav class="nav">
-            <a href="#services">Услуги</a>
-            <a href="#about">О компании</a>
-            <a href="#process">Как работаем</a>
-            <a href="#measure">Замер</a>
-            <a href="#advantages">Преимущества</a>
-            <a href="#contacts">Контакты</a>
-          </nav>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-logo" id="brandLogo" title="PromoView">
+          <i class="fa-solid fa-bag-shopping"></i>
         </div>
-
-        <div class="header-actions">
-          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить тему">
-            <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
-            <span class="theme-toggle-text">Ночь</span>
-          </button>
-          <a class="btn header-phone" href="tel:+79900160318">+7 990 016-03-18</a>
-          <button class="burger" id="burgerBtn" aria-label="Открыть меню">☰</button>
+        <div class="brand-text">
+          <div class="brand-title">PromoView</div>
+          <div class="brand-subtitle">Подборка рекламных товаров с видеообзорами и партнёрскими ссылками</div>
         </div>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="btn btn-secondary" id="themeToggle">
+          <i class="fa-solid fa-moon"></i>
+          <span>Сменить тему</span>
+        </button>
+        <button class="btn btn-primary" id="adminLoginBtn">
+          <i class="fa-solid fa-lock"></i>
+          <span>Войти как админ</span>
+        </button>
+        <button class="btn btn-secondary hidden" id="showAdminPanelBtn">
+          <i class="fa-solid fa-gear"></i>
+          <span>Управление товарами</span>
+        </button>
+        <button class="btn btn-secondary hidden" id="logoutAdminBtn">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Выйти</span>
+        </button>
       </div>
     </div>
   </header>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-panel">
-      <div class="mobile-top">
-        <img src="logo.png" alt="Фабрика Окон">
-        <button class="mobile-close" id="closeMenu" aria-label="Закрыть меню">×</button>
-      </div>
-
-      <div class="mobile-links">
-        <a href="#services" class="mobile-link">Услуги</a>
-        <a href="#about" class="mobile-link">О компании</a>
-        <a href="#process" class="mobile-link">Как работаем</a>
-        <a href="#measure" class="mobile-link">Замер</a>
-        <a href="#advantages" class="mobile-link">Преимущества</a>
-        <a href="#contacts" class="mobile-link">Контакты</a>
-      </div>
-
-      <div class="mobile-actions">
-        <a class="btn btn-primary" href="tel:+79900160318">Позвонить</a>
-        <a class="btn btn-blue" href="#measure">Оставить заявку</a>
-      </div>
-    </div>
-  </div>
-
-  <main id="home">
+  <main>
     <section class="hero">
-      <div class="container hero-wrap">
-        <div class="hero-main reveal">
-          <span class="eyebrow">Бердянск • ПВХ конструкции и солнцезащита</span>
-
-          <h1>Окна, двери, балконы, роллеты и жалюзи под ваш заказ</h1>
-
-          <p class="hero-lead">
-            «Фабрика Окон» — практичные и аккуратные решения для квартир, домов, офисов и коммерческих помещений. Изготавливаем, подбираем и устанавливаем конструкции под конкретные задачи клиента.
-          </p>
-
-          <p class="hero-lead">
-            Окна ПВХ, двери, остекление балконов и лоджий, роллеты и жалюзи — с замером, консультацией и монтажом.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#measure">Оставить заявку на замер</a>
-            <a class="btn btn-blue" href="tel:+79900160318">Позвонить</a>
-            <a class="btn btn-secondary" href="#contacts">Контакты</a>
-          </div>
-
-          <div class="hero-points">
-            <div class="point">
-              <strong>20+ лет</strong>
-              <span>опыта на рынке ПВХ-конструкций и солнцезащитных решений</span>
-            </div>
-            <div class="point">
-              <strong>Полный цикл</strong>
-              <span>консультация, замер, изготовление, доставка и установка</span>
-            </div>
-            <div class="point">
-              <strong>Для дома и бизнеса</strong>
-              <span>работаем с квартирами, частными домами, магазинами и офисами</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-side reveal">
-          <div class="hero-photo">
-            <div class="hero-glass">
-              <div class="hero-mini">
-                <strong>Окна и двери ПВХ</strong>
-                <p>Изготовление и установка под размеры объекта, с подбором решения под ваши задачи.</p>
+      <div class="container">
+        <div class="hero-card glass">
+          <div class="hero-content">
+            <div>
+              <div class="hero-badge">
+                <i class="fa-solid fa-sparkles"></i>
+                Современный витринный лендинг для трафика и продаж
               </div>
-              <div class="hero-mini">
-                <strong>Балконы, лоджии, роллеты, жалюзи</strong>
-                <p>Практичные решения для жилых и коммерческих помещений с аккуратным монтажом.</p>
+              <h1>Показывайте товары красиво. Переводите посетителей по партнёрским ссылкам.</h1>
+              <p>
+                На этой странице посетители просто смотрят подборку товаров, знакомятся с короткими видеообзорами
+                и переходят к покупке по вашей ссылке. Управление карточками полностью доступно через встроенную
+                админ-панель без редактирования HTML.
+              </p>
+
+              <div class="hero-stats">
+                <div class="stat">
+                  <div class="stat-value" id="statProducts">0</div>
+                  <div class="stat-label">Товаров на витрине</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value" id="statCategories">0</div>
+                  <div class="stat-label">Категорий</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value" id="statClicks">0</div>
+                  <div class="stat-label">Всего переходов</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-side">
+              <div class="hero-panel">
+                <div class="hero-panel-title">
+                  <i class="fa-solid fa-video"></i>
+                  <span>Встроенные видеообзоры</span>
+                </div>
+                <p>Поддерживается YouTube ID или полная ссылка. Видео автоматически встраивается в карточку товара.</p>
+              </div>
+
+              <div class="hero-panel">
+                <div class="hero-panel-title">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <span>Удобное редактирование</span>
+                </div>
+                <p>Добавляйте, редактируйте и удаляйте товары в скрытой админ-панели с хранением данных в localStorage.</p>
+              </div>
+
+              <div class="hero-panel">
+                <div class="hero-panel-title">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  <span>Переходы и статистика</span>
+                </div>
+                <p>Для каждого товара ведётся счётчик переходов по партнёрской ссылке прямо в браузере.</p>
               </div>
             </div>
           </div>
@@ -1582,467 +952,85 @@
       </div>
     </section>
 
-    <section class="trust">
+    <section class="controls">
       <div class="container">
-        <div class="trust-grid">
-          <article class="trust-card card reveal">
-            <div class="trust-mark">🛠️</div>
-            <h3>Замер и установка</h3>
-            <p>Выезд на объект, консультация, изготовление, доставка и аккуратный профессиональный монтаж.</p>
-          </article>
-
-          <article class="trust-card card reveal">
-            <div class="trust-mark">🏠</div>
-            <h3>Для любых объектов</h3>
-            <p>Решения для квартир, частных домов, офисов, магазинов и других помещений.</p>
-          </article>
-
-          <article class="trust-card card reveal">
-            <div class="trust-mark">⚙️</div>
-            <h3>Под задачи клиента</h3>
-            <p>Подбираем понятный и подходящий вариант с учётом размеров, помещения и пожеланий.</p>
-          </article>
-
-          <article class="trust-card card reveal">
-            <div class="trust-mark">💬</div>
-            <h3>Удобная связь</h3>
-            <p>Можно быстро позвонить или оставить заявку на замер через форму.</p>
-          </article>
+        <div class="controls-card glass">
+          <input type="text" id="searchInput" class="field" placeholder="Поиск по названию товара..." />
+          <select id="categoryFilter" class="select">
+            <option value="all">Все категории</option>
+          </select>
+          <button class="btn btn-secondary" id="resetFiltersBtn">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>Сбросить</span>
+          </button>
         </div>
       </div>
     </section>
 
-    <section class="section" id="services">
+    <section class="products-section">
       <div class="container">
-        <div class="section-head reveal">
+        <div class="section-head">
           <div>
-            <span class="eyebrow">Наши услуги</span>
-            <h2>Основные направления работы</h2>
+            <h2>Товары</h2>
+            <p>Нажмите на кнопку в карточке, чтобы перейти к товару по партнёрской ссылке.</p>
           </div>
-          <p>
-            Изготавливаем и устанавливаем конструкции для жилых и коммерческих объектов. Помогаем подобрать решение по задаче, размерам и бюджету.
-          </p>
+          <div class="results-count" id="resultsCount">Найдено: 0</div>
         </div>
 
-        <div class="services-grid">
-          <article class="service card reveal">
-            <div class="service-top">
-              <div class="service-icon">🪟</div>
-              <div class="service-num">01</div>
-            </div>
-            <h3>Окна ПВХ</h3>
-            <p>Изготовление пластиковых окон под индивидуальные размеры с подбором конфигурации под объект.</p>
-            <ul>
-              <li>Подбор под размеры объекта</li>
-              <li>Практичные решения для квартиры и дома</li>
-              <li>Изготовление и установка</li>
-            </ul>
-          </article>
+        <div class="products-grid" id="productsGrid"></div>
 
-          <article class="service card reveal">
-            <div class="service-top">
-              <div class="service-icon">🚪</div>
-              <div class="service-num">02</div>
-            </div>
-            <h3>Двери ПВХ</h3>
-            <p>Надёжные и аккуратные решения для квартиры, дома, офиса, магазина и других помещений.</p>
-            <ul>
-              <li>Для жилых и коммерческих объектов</li>
-              <li>Подбор под конкретные задачи</li>
-              <li>Профессиональный монтаж</li>
-            </ul>
-          </article>
-
-          <article class="service card reveal">
-            <div class="service-top">
-              <div class="service-icon">🏢</div>
-              <div class="service-num">03</div>
-            </div>
-            <h3>Балконы и лоджии</h3>
-            <p>Остекление балконов и лоджий с подбором оптимального формата и комплектации.</p>
-            <ul>
-              <li>Подбор формата остекления</li>
-              <li>Практичные решения для комфорта</li>
-              <li>Аккуратная установка</li>
-            </ul>
-          </article>
-
-          <article class="service card reveal">
-            <div class="service-top">
-              <div class="service-icon">🔒</div>
-              <div class="service-num">04</div>
-            </div>
-            <h3>Роллеты</h3>
-            <p>Роллетные системы для защиты, приватности и дополнительного удобства в повседневной эксплуатации.</p>
-            <ul>
-              <li>Для защиты и комфорта</li>
-              <li>Для жилых и коммерческих помещений</li>
-              <li>Подбор под объект</li>
-            </ul>
-          </article>
-
-          <article class="service card reveal">
-            <div class="service-top">
-              <div class="service-icon">☀️</div>
-              <div class="service-num">05</div>
-            </div>
-            <h3>Жалюзи</h3>
-            <p>Решения для жилых и коммерческих помещений с выбором по типу, материалу и стилю.</p>
-            <ul>
-              <li>Разные варианты для интерьера</li>
-              <li>Подбор по функциональности</li>
-              <li>Удобство в использовании</li>
-            </ul>
-          </article>
-
-          <article class="service card reveal">
-            <div class="service-top">
-              <div class="service-icon">📏</div>
-              <div class="service-num">06</div>
-            </div>
-            <h3>Замер и установка</h3>
-            <p>Выезд на объект, консультация, изготовление, доставка и аккуратный профессиональный монтаж.</p>
-            <ul>
-              <li>Полный цикл без лишней сложности</li>
-              <li>Понятный порядок работ</li>
-              <li>Под ключ для клиента</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="eyebrow">О компании</span>
-            <h2>Надёжные решения для вашего объекта</h2>
-          </div>
-          <p>
-            «Фабрика Окон» работает в Бердянске и помогает клиентам подобрать практичные решения для комфорта, защиты и аккуратного внешнего вида помещений.
-          </p>
-        </div>
-
-        <div class="about-wrap">
-          <div class="about-main card reveal">
-            <h3>Фабрика Окон</h3>
-
-            <p>
-              Более 20 лет мы занимаемся изготовлением и установкой окон и дверей ПВХ, остеклением балконов и лоджий, а также роллетами и жалюзи. За это время реализовали множество заказов для частных клиентов и бизнеса.
-            </p>
-
-            <p>
-              Мы работаем с разными форматами объектов: от замены одного окна в квартире до комплексного решения для дома, офиса или магазина.
-            </p>
-
-            <p>
-              Наша задача — предложить понятный, аккуратный и подходящий вариант с учётом размеров, особенностей помещения и пожеланий клиента.
-            </p>
-
-            <div class="about-list">
-              <div class="about-item">
-                <div class="about-tick">✓</div>
-                <div>Окна и двери ПВХ</div>
-              </div>
-              <div class="about-item">
-                <div class="about-tick">✓</div>
-                <div>Балконы и лоджии</div>
-              </div>
-              <div class="about-item">
-                <div class="about-tick">✓</div>
-                <div>Роллеты и жалюзи</div>
-              </div>
-              <div class="about-item">
-                <div class="about-tick">✓</div>
-                <div>Замер, изготовление и установка</div>
-              </div>
+        <div class="admin-card glass" id="adminPanel">
+          <div class="admin-head">
+            <div>
+              <h3><i class="fa-solid fa-gear"></i> Админ-панель</h3>
+              <p>Здесь можно добавлять, редактировать и удалять товары. Данные сохраняются в localStorage.</p>
             </div>
           </div>
 
-          <div class="about-side">
-            <div class="about-photo reveal"></div>
+          <form id="productForm">
+            <div class="admin-grid">
+              <input type="hidden" id="productId" />
 
-            <div class="about-info card reveal">
-              <div class="about-line">
-                <div class="i">📍</div>
-                <div>
-                  <strong>Где мы работаем</strong>
-                  <p>Бердянск и близлежащие районы.</p>
-                </div>
+              <div>
+                <label for="productTitle" class="hint">Название товара</label>
+                <input type="text" id="productTitle" class="field" placeholder="Например: Умные часы Pro X" required />
               </div>
 
-              <div class="about-line">
-                <div class="i">🏢</div>
-                <div>
-                  <strong>Для кого наши услуги</strong>
-                  <p>Для квартир, частных домов, офисов, магазинов и других объектов.</p>
-                </div>
+              <div>
+                <label for="productCategory" class="hint">Категория</label>
+                <input type="text" id="productCategory" class="field" placeholder="Например: Гаджеты" required />
               </div>
 
-              <div class="about-line">
-                <div class="i">⚙️</div>
-                <div>
-                  <strong>Как проходит работа</strong>
-                  <p>Консультация → замер → изготовление → установка.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="process">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="eyebrow">Как работаем</span>
-            <h2>Понятный процесс без лишней сложности</h2>
-          </div>
-          <p>
-            Мы строим работу так, чтобы клиенту было удобно на каждом этапе: от первого обращения до финального монтажа на объекте.
-          </p>
-        </div>
-
-        <div class="process-grid">
-          <article class="step card reveal">
-            <div class="step-num">01</div>
-            <h3>Консультация</h3>
-            <p>Обсуждаем задачу, формат объекта, пожелания и подбираем решение под конкретный запрос.</p>
-          </article>
-
-          <article class="step card reveal">
-            <div class="step-num">02</div>
-            <h3>Замер</h3>
-            <p>Выезжаем на объект, фиксируем размеры и уточняем особенности помещения для дальнейшей работы.</p>
-          </article>
-
-          <article class="step card reveal">
-            <div class="step-num">03</div>
-            <h3>Изготовление</h3>
-            <p>Готовим конструкции под размеры объекта и согласованный формат комплектации.</p>
-          </article>
-
-          <article class="step card reveal">
-            <div class="step-num">04</div>
-            <h3>Установка</h3>
-            <p>Доставка и аккуратный профессиональный монтаж с понятным и практичным результатом.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="measure">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="eyebrow">Заявка на замер</span>
-            <h2>Оставьте имя и телефон — мы свяжемся с вами</h2>
-          </div>
-          <p>
-            Заполните форму, и заявка будет отправлена вам на почту.
-          </p>
-        </div>
-
-        <div class="measure-grid">
-          <div class="measure-info card reveal">
-            <span class="eyebrow">Быстрая заявка</span>
-            <h3>Удобная форма для клиента</h3>
-            <p>
-              Клиент оставляет имя, телефон и комментарий. Вы получаете заявку на email.
-            </p>
-
-            <div class="measure-list">
-              <div class="measure-line">
-                <div class="i">📩</div>
-                <div>
-                  <strong>Имя</strong>
-                  <p>Чтобы сразу понимать, кому перезванивать.</p>
-                </div>
+              <div class="full">
+                <label for="productDescription" class="hint">Описание</label>
+                <textarea id="productDescription" class="textarea" placeholder="Краткое описание товара..." required></textarea>
               </div>
 
-              <div class="measure-line">
-                <div class="i">📞</div>
-                <div>
-                  <strong>Телефон</strong>
-                  <p>Основной контакт для связи.</p>
-                </div>
+              <div>
+                <label for="productVideo" class="hint">YouTube ID или полная ссылка</label>
+                <input type="text" id="productVideo" class="field" placeholder="Например: dQw4w9WgXcQ или https://youtu.be/..." required />
               </div>
 
-              <div class="measure-line">
-                <div class="i">📝</div>
-                <div>
-                  <strong>Комментарий</strong>
-                  <p>Что именно интересует: окна, балкон, жалюзи, роллеты.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="measure-form-wrap card reveal">
-            <form class="measure-form" id="measureForm" method="POST" action="send.php">
-
-              <div class="field">
-                <label for="name">Ваше имя</label>
-                <input id="name" name="name" type="text" placeholder="Например: Александр" required>
-              </div>
-
-              <div class="field">
-                <label for="phone">Номер телефона</label>
-                <input id="phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" inputmode="tel" autocomplete="tel-national" required>
-                <div class="field-error" id="phoneError" aria-live="polite"></div>
-              </div>
-
-              <div class="field hp-field" aria-hidden="true">
-                <label for="website">Ваш сайт</label>
-                <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
-              </div>
-
-              <div class="field">
-                <label for="message">Комментарий</label>
-                <textarea id="message" name="message" rows="6" placeholder="Например: нужен замер окон в квартиру, 3 окна и балкон"></textarea>
-              </div>
-
-              <button class="btn btn-primary" id="measureSubmitBtn" type="submit">Отправить заявку</button>
-              <div class="form-status" id="formStatus"></div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="advantages">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="eyebrow">Преимущества</span>
-            <h2>Почему выбирают нас</h2>
-          </div>
-          <p>
-            Предлагаем понятный сервис, полный цикл работ и решения под конкретную задачу — без лишней сложности.
-          </p>
-        </div>
-
-        <div class="advantages-grid">
-          <article class="adv card reveal">
-            <div class="adv-top">
-              <div class="adv-badge">⏳</div>
-              <div class="adv-num">01</div>
-            </div>
-            <h3>Более 20 лет опыта</h3>
-            <p>Проверенные решения и практический подход к заказам разного уровня сложности.</p>
-          </article>
-
-          <article class="adv card reveal">
-            <div class="adv-top">
-              <div class="adv-badge">🧩</div>
-              <div class="adv-num">02</div>
-            </div>
-            <h3>Широкий выбор продукции</h3>
-            <p>Окна, двери, балконы, лоджии, роллеты и жалюзи — в одном месте.</p>
-          </article>
-
-          <article class="adv card reveal">
-            <div class="adv-top">
-              <div class="adv-badge">⚙️</div>
-              <div class="adv-num">03</div>
-            </div>
-            <h3>Полный цикл работ</h3>
-            <p>Консультация, замер, изготовление и установка без лишних посредников.</p>
-          </article>
-
-          <article class="adv card reveal">
-            <div class="adv-top">
-              <div class="adv-badge">🏠</div>
-              <div class="adv-num">04</div>
-            </div>
-            <h3>Для дома и бизнеса</h3>
-            <p>Работаем с квартирами, частными домами, офисами и коммерческими объектами.</p>
-          </article>
-
-          <article class="adv card reveal">
-            <div class="adv-top">
-              <div class="adv-badge">🎯</div>
-              <div class="adv-num">05</div>
-            </div>
-            <h3>Индивидуальный подход</h3>
-            <p>Подбираем решение по размерам объекта, пожеланиям клиента и функциональным задачам.</p>
-          </article>
-
-          <article class="adv card reveal">
-            <div class="adv-top">
-              <div class="adv-badge">📞</div>
-              <div class="adv-num">06</div>
-            </div>
-            <h3>Удобная связь</h3>
-            <p>Можно быстро связаться по телефону или через форму заявки на замер.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contacts">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="eyebrow">Контакты</span>
-            <h2>Свяжитесь с нами удобным способом</h2>
-          </div>
-          <p>
-            Позвоните, оставьте заявку или откройте адрес на карте.
-          </p>
-        </div>
-
-        <div class="contact-grid">
-          <div class="contact-card card reveal">
-            <div class="contact-list">
-              <div class="contact-item">
-                <div class="icon">📍</div>
-                <div>
-                  <strong>Адрес</strong>
-                  <span>Бердянск, ул. Свободы, 71</span>
-                </div>
-              </div>
-
-              <div class="contact-item">
-                <div class="icon">📞</div>
-                <div>
-                  <strong>Телефон</strong>
-                  <a href="tel:+79900160318">+7 990 016-03-18</a>
-                </div>
-              </div>
-
-              <div class="contact-item">
-                <div class="icon">✉️</div>
-                <div>
-                  <strong>Email</strong>
-                  <a href="mailto:fbobrd@gmail.com">fbobrd@gmail.com</a>
-                </div>
-              </div>
-
-              <div class="contact-item">
-                <div class="icon">💬</div>
-                <div>
-                  <strong>Telegram</strong>
-                  <a href="https://t.me/WindowFact0ry" target="_blank" rel="noopener">t.me/WindowFact0ry</a>
-                </div>
+              <div>
+                <label for="productAffiliate" class="hint">Партнёрская ссылка</label>
+                <input type="url" id="productAffiliate" class="field" placeholder="https://example.com/product" required />
               </div>
             </div>
 
-            <div class="contact-actions">
-              <a class="btn btn-primary" href="tel:+79900160318">Позвонить</a>
-              <a class="btn btn-blue" href="#measure">Оставить заявку</a>
-            </div>
-          </div>
+            <div class="admin-actions">
+              <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span id="saveBtnText">Добавить товар</span>
+              </button>
 
-          <div class="map-frame">
-            <iframe 
-              src="https://yandex.ru/map-widget/v1/?ll=36.788733%2C46.759149&z=17&pt=36.788733,46.759149,pm2rdm"
-              loading="lazy"
-              style="border:0;">
-            </iframe>
-          </div>
+              <button type="button" class="btn btn-secondary" id="resetFormBtn">
+                <i class="fa-solid fa-eraser"></i>
+                <span>Очистить форму</span>
+              </button>
+            </div>
+          </form>
+
+          <div class="admin-list" id="adminProductsList"></div>
         </div>
       </div>
     </section>
@@ -2050,361 +1038,663 @@
 
   <footer class="footer">
     <div class="container">
-      <div class="footer-shell reveal">
-        <div class="footer-top">
-          <div class="footer-brand">
-            <img src="logo.png" alt="Фабрика Окон">
-            <div>
-              <strong>Фабрика Окон</strong>
-              <span>Окна, двери, балконы, роллеты, жалюзи</span>
-            </div>
-          </div>
-
-          <div class="footer-actions">
-            <a class="btn btn-primary" href="tel:+79900160318">Позвонить</a>
-            <a class="btn btn-secondary" href="#measure">Оставить заявку</a>
-          </div>
-        </div>
-
-        <div class="footer-grid">
-          <div class="footer-box">
-            <strong>Адрес</strong>
-            <p>Бердянск, ул. Свободы, 71</p>
-          </div>
-
-          <div class="footer-box">
-            <strong>Телефон</strong>
-            <p><a href="tel:+79900160318">+7 990 016-03-18</a></p>
-          </div>
-
-          <div class="footer-box">
-            <strong>Email</strong>
-            <p><a href="mailto:fbobrd@gmail.com">fbobrd@gmail.com</a></p>
-          </div>
-
-          <div class="footer-box">
-            <strong>Услуги</strong>
-            <p>Окна ПВХ, двери ПВХ, балконы, лоджии, роллеты, жалюзи</p>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <div>© Фабрика Окон, Бердянск</div>
-          <div>Более 20 лет на рынке ПВХ-конструкций</div>
-        </div>
-      </div>
+      © <span id="currentYear"></span> PromoView — лендинг для рекламных товаров, видеообзоров и партнёрских переходов.
     </div>
   </footer>
 
-  <div class="sticky-call">
-    <a href="#measure">Оставить заявку на замер</a>
+  <!-- Модальное окно входа -->
+  <div class="modal" id="adminModal">
+    <div class="modal-card glass">
+      <div class="modal-head">
+        <div>
+          <h3>Вход в админ-панель</h3>
+          <p>Введите пароль, чтобы открыть инструменты управления товарами.</p>
+        </div>
+        <button class="icon-btn" id="closeModalBtn" aria-label="Закрыть">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <input type="password" id="adminPasswordInput" class="field" placeholder="Введите пароль" />
+      <div class="hint">Текущий демонстрационный пароль: <strong>admin123</strong></div>
+
+      <div class="admin-actions" style="margin-top: 16px;">
+        <button class="btn btn-primary" id="submitPasswordBtn">
+          <i class="fa-solid fa-unlock"></i>
+          <span>Открыть доступ</span>
+        </button>
+      </div>
+
+      <div class="status" id="loginStatus"></div>
+    </div>
   </div>
 
   <script>
-    const burgerBtn = document.getElementById('burgerBtn');
-    const closeMenu = document.getElementById('closeMenu');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    const themeToggle = document.getElementById('themeToggle');
-    const THEME_STORAGE_KEY = 'site-theme';
+    /******************************************************************
+     * PromoView — одностраничный лендинг с админ-панелью
+     * Всё хранится в localStorage:
+     * - товары
+     * - тема
+     * - статус админа
+     * - счётчики кликов
+     ******************************************************************/
 
-    function applyTheme(theme) {
-      const nextTheme = theme === 'light' ? 'light' : 'dark';
-      document.body.setAttribute('data-theme', nextTheme);
+    const ADMIN_PASSWORD = "admin123";
+    const STORAGE_KEYS = {
+      products: "promo_products_v1",
+      theme: "promo_theme_v1",
+      admin: "promo_admin_logged_v1"
+    };
 
-      if (themeToggle) {
-        const icon = themeToggle.querySelector('.theme-toggle-icon');
-        const text = themeToggle.querySelector('.theme-toggle-text');
-
-        if (icon) {
-          icon.textContent = nextTheme === 'light' ? '☀️' : '🌙';
-        }
-
-        if (text) {
-          text.textContent = nextTheme === 'light' ? 'День' : 'Ночь';
-        }
-
-        themeToggle.setAttribute(
-          'aria-label',
-          nextTheme === 'light' ? 'Включить тёмную тему' : 'Включить светлую тему'
-        );
+    // Демо-товары загружаются, если localStorage пустой
+    const demoProducts = [
+      {
+        id: generateId(),
+        title: "Смарт-часы Ultra Fit",
+        description: "Элегантные умные часы с AMOLED-дисплеем, мониторингом активности, пульса и сна. Отлично подходят для спорта и повседневного использования.",
+        video: "9bZkp7q19f0",
+        affiliate: "https://example.com/product/smart-watch",
+        category: "Гаджеты",
+        clicks: 0
+      },
+      {
+        id: generateId(),
+        title: "Беспроводные наушники AirBeat",
+        description: "Лёгкие TWS-наушники с шумоподавлением, качественным микрофоном и длительным временем автономной работы. Идеальны для музыки и звонков.",
+        video: "dQw4w9WgXcQ",
+        affiliate: "https://example.com/product/earbuds",
+        category: "Аудио",
+        clicks: 0
+      },
+      {
+        id: generateId(),
+        title: "Мини-пылесос для авто TurboClean",
+        description: "Компактный ручной пылесос для машины и дома. Высокая мощность всасывания, удобная зарядка по USB и набор насадок в комплекте.",
+        video: "3JZ_D3ELwOQ",
+        affiliate: "https://example.com/product/car-vacuum",
+        category: "Авто",
+        clicks: 0
+      },
+      {
+        id: generateId(),
+        title: "LED-подсветка AmbiLight Strip",
+        description: "Гибкая RGB LED-лента для комнаты, рабочего места или телевизора. Управление через приложение, множество эффектов и стильная атмосфера.",
+        video: "L_jWHffIx5E",
+        affiliate: "https://example.com/product/led-strip",
+        category: "Дом",
+        clicks: 0
       }
+    ];
+
+    let products = [];
+    let isAdminLoggedIn = false;
+    let editingProductId = null;
+
+    // Элементы DOM
+    const htmlEl = document.documentElement;
+    const themeToggle = document.getElementById("themeToggle");
+    const adminLoginBtn = document.getElementById("adminLoginBtn");
+    const showAdminPanelBtn = document.getElementById("showAdminPanelBtn");
+    const logoutAdminBtn = document.getElementById("logoutAdminBtn");
+    const adminPanel = document.getElementById("adminPanel");
+    const adminModal = document.getElementById("adminModal");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    const submitPasswordBtn = document.getElementById("submitPasswordBtn");
+    const adminPasswordInput = document.getElementById("adminPasswordInput");
+    const loginStatus = document.getElementById("loginStatus");
+    const productsGrid = document.getElementById("productsGrid");
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const resetFiltersBtn = document.getElementById("resetFiltersBtn");
+    const resultsCount = document.getElementById("resultsCount");
+    const adminProductsList = document.getElementById("adminProductsList");
+    const productForm = document.getElementById("productForm");
+    const productIdInput = document.getElementById("productId");
+    const productTitleInput = document.getElementById("productTitle");
+    const productCategoryInput = document.getElementById("productCategory");
+    const productDescriptionInput = document.getElementById("productDescription");
+    const productVideoInput = document.getElementById("productVideo");
+    const productAffiliateInput = document.getElementById("productAffiliate");
+    const resetFormBtn = document.getElementById("resetFormBtn");
+    const saveBtnText = document.getElementById("saveBtnText");
+    const statProducts = document.getElementById("statProducts");
+    const statCategories = document.getElementById("statCategories");
+    const statClicks = document.getElementById("statClicks");
+    const currentYear = document.getElementById("currentYear");
+
+    /***********************
+     * ИНИЦИАЛИЗАЦИЯ
+     ***********************/
+    init();
+
+    function init() {
+      currentYear.textContent = new Date().getFullYear();
+
+      loadTheme();
+      loadProducts();
+      loadAdminState();
+
+      renderCategoryFilter();
+      renderProducts();
+      renderAdminList();
+      updateStats();
+      updateAdminUI();
+
+      bindEvents();
     }
 
-    (function initTheme() {
-      const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-      const preferredTheme = savedTheme || 'dark';
-      applyTheme(preferredTheme);
-    })();
+    function bindEvents() {
+      themeToggle.addEventListener("click", toggleTheme);
 
-    if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        const currentTheme = document.body.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
-        localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
-        applyTheme(nextTheme);
+      adminLoginBtn.addEventListener("click", openAdminModal);
+      closeModalBtn.addEventListener("click", closeAdminModal);
+      submitPasswordBtn.addEventListener("click", handleAdminLogin);
+
+      adminPasswordInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          handleAdminLogin();
+        }
+      });
+
+      showAdminPanelBtn.addEventListener("click", () => {
+        adminPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      logoutAdminBtn.addEventListener("click", logoutAdmin);
+
+      searchInput.addEventListener("input", renderProducts);
+      categoryFilter.addEventListener("change", renderProducts);
+
+      resetFiltersBtn.addEventListener("click", () => {
+        searchInput.value = "";
+        categoryFilter.value = "all";
+        renderProducts();
+      });
+
+      productForm.addEventListener("submit", handleProductSubmit);
+      resetFormBtn.addEventListener("click", resetForm);
+
+      adminModal.addEventListener("click", (e) => {
+        if (e.target === adminModal) {
+          closeAdminModal();
+        }
+      });
+
+      // Небольшой скрытый бонус: 5 кликов по логотипу откроют модалку входа
+      let logoClicks = 0;
+      const brandLogo = document.getElementById("brandLogo");
+      brandLogo.addEventListener("click", () => {
+        logoClicks++;
+        if (logoClicks >= 5) {
+          openAdminModal();
+          logoClicks = 0;
+        }
+        setTimeout(() => { logoClicks = 0; }, 1500);
       });
     }
 
-    if (burgerBtn) {
-      burgerBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
+    /***********************
+     * THEME
+     ***********************/
+    function loadTheme() {
+      const savedTheme = localStorage.getItem(STORAGE_KEYS.theme) || "dark";
+      htmlEl.setAttribute("data-theme", savedTheme);
+      updateThemeButton(savedTheme);
     }
 
-    if (closeMenu) {
-      closeMenu.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      });
+    function toggleTheme() {
+      const current = htmlEl.getAttribute("data-theme");
+      const next = current === "dark" ? "light" : "dark";
+      htmlEl.setAttribute("data-theme", next);
+      localStorage.setItem(STORAGE_KEYS.theme, next);
+      updateThemeButton(next);
     }
 
-    if (mobileMenu) {
-      mobileMenu.addEventListener('click', (e) => {
-        if (e.target === mobileMenu) {
-          mobileMenu.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-      });
+    function updateThemeButton(theme) {
+      themeToggle.innerHTML = theme === "dark"
+        ? '<i class="fa-solid fa-sun"></i><span>Светлая тема</span>'
+        : '<i class="fa-solid fa-moon"></i><span>Тёмная тема</span>';
     }
 
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-
-    const reveals = document.querySelectorAll('.reveal');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, {
-      threshold: 0.12
-    });
-
-    reveals.forEach(el => observer.observe(el));
-
-    const form = document.getElementById('measureForm');
-    const status = document.getElementById('formStatus');
-    const phoneInput = document.getElementById('phone');
-    const phoneError = document.getElementById('phoneError');
-    const submitBtn = document.getElementById('measureSubmitBtn');
-    const honeypotInput = document.getElementById('website');
-
-    const SUBMIT_COOLDOWN_MS = 30000;
-    const FORM_COOLDOWN_KEY = 'measure-form-last-submit';
-    const defaultSubmitText = submitBtn ? submitBtn.textContent : 'Отправить заявку';
-    let cooldownInterval = null;
-    let isSubmitting = false;
-
-    function setStatus(message, type = 'info') {
-      if (!status) return;
-      status.textContent = message;
-      status.className = 'form-status ' + type;
-    }
-
-    function setPhoneError(message = '') {
-      if (phoneError) {
-        phoneError.textContent = message;
-      }
-
-      if (phoneInput) {
-        phoneInput.setAttribute('aria-invalid', message ? 'true' : 'false');
-      }
-    }
-
-    function getRemainingCooldown() {
-      const lastSubmit = Number(localStorage.getItem(FORM_COOLDOWN_KEY) || 0);
-      const passed = Date.now() - lastSubmit;
-      return Math.max(0, SUBMIT_COOLDOWN_MS - passed);
-    }
-
-    function setSubmitDisabled(disabled) {
-      if (submitBtn) {
-        submitBtn.disabled = disabled;
-      }
-    }
-
-    function formatCooldownText(ms) {
-      const seconds = Math.ceil(ms / 1000);
-      return 'Повторная отправка через ' + seconds + ' сек.';
-    }
-
-    function startCooldown(durationMs) {
-      if (!submitBtn) return;
-
-      clearInterval(cooldownInterval);
-      const endsAt = Date.now() + durationMs;
-      setSubmitDisabled(true);
-      setStatus(formatCooldownText(durationMs), 'info');
-
-      const tick = () => {
-        const remaining = Math.max(0, endsAt - Date.now());
-
-        if (remaining <= 0) {
-          clearInterval(cooldownInterval);
-          submitBtn.textContent = defaultSubmitText;
-          setSubmitDisabled(false);
-          if (status && status.classList.contains('info') && status.textContent.indexOf('Повторная отправка') === 0) {
-            setStatus('');
-          }
-          return;
-        }
-
-        submitBtn.textContent = 'Подождите ' + Math.ceil(remaining / 1000) + ' сек.';
-        setStatus(formatCooldownText(remaining), 'info');
-      };
-
-      tick();
-      cooldownInterval = setInterval(tick, 1000);
-    }
-
-    function normalizeRussianPhone(value) {
-      const digits = String(value || '').replace(/\D/g, '');
-
-      if (!digits) {
-        return { valid: false, message: 'Введите номер телефона.' };
-      }
-
-      let nationalNumber = '';
-
-      if (digits.length === 11 && (digits[0] === '7' || digits[0] === '8')) {
-        nationalNumber = digits.slice(1);
-      } else if (digits.length === 10) {
-        nationalNumber = digits;
-      } else {
-        return {
-          valid: false,
-          message: 'Введите российский номер в формате +7XXXXXXXXXX или 8XXXXXXXXXX.'
-        };
-      }
-
-      if (!/^9\d{9}$/.test(nationalNumber)) {
-        return {
-          valid: false,
-          message: 'Укажите корректный российский мобильный номер.'
-        };
-      }
-
-      const normalized = '+7' + nationalNumber;
-      const formatted = '+7 (' + nationalNumber.slice(0, 3) + ') ' +
-        nationalNumber.slice(3, 6) + '-' +
-        nationalNumber.slice(6, 8) + '-' +
-        nationalNumber.slice(8, 10);
-
-      return {
-        valid: true,
-        normalized,
-        formatted
-      };
-    }
-
-    if (phoneInput) {
-      phoneInput.addEventListener('blur', () => {
-        const result = normalizeRussianPhone(phoneInput.value);
-
-        if (!phoneInput.value.trim()) {
-          setPhoneError('');
-          return;
-        }
-
-        if (!result.valid) {
-          setPhoneError(result.message);
-          return;
-        }
-
-        phoneInput.value = result.formatted;
-        setPhoneError('');
-      });
-
-      phoneInput.addEventListener('input', () => {
-        if (phoneError && phoneError.textContent) {
-          setPhoneError('');
-        }
-      });
-    }
-
-    const initialCooldown = getRemainingCooldown();
-    if (initialCooldown > 0) {
-      startCooldown(initialCooldown);
-    }
-
-    if (form) {
-      form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-
-        if (isSubmitting) {
-          setStatus('Форма уже отправляется. Пожалуйста, подождите.', 'info');
-          return;
-        }
-
-        const cooldownLeft = getRemainingCooldown();
-        if (cooldownLeft > 0) {
-          startCooldown(cooldownLeft);
-          return;
-        }
-
-        if (honeypotInput && honeypotInput.value.trim() !== '') {
-          setStatus('Не удалось отправить форму.', 'error');
-          return;
-        }
-
-        const phoneResult = normalizeRussianPhone(phoneInput ? phoneInput.value : '');
-        if (!phoneResult.valid) {
-          setPhoneError(phoneResult.message);
-          setStatus('Проверьте правильность номера телефона.', 'error');
-          if (phoneInput) {
-            phoneInput.focus();
-          }
-          return;
-        }
-
-        if (phoneInput) {
-          phoneInput.value = phoneResult.formatted;
-        }
-
-        setPhoneError('');
-        setStatus('Отправка...', 'info');
-
-        const formData = new FormData(form);
-        formData.set('phone', phoneResult.normalized);
-
+    /***********************
+     * PRODUCTS STORAGE
+     ***********************/
+    function loadProducts() {
+      const stored = localStorage.getItem(STORAGE_KEYS.products);
+      if (stored) {
         try {
-          isSubmitting = true;
-          setSubmitDisabled(true);
-
-          const response = await fetch(form.getAttribute('action') || 'send.php', {
-            method: form.getAttribute('method') || 'POST',
-            body: formData
-          });
-
-          const result = await response.text();
-
-          if (response.ok && result.trim() === 'OK') {
-            setStatus('Заявка отправлена.', 'success');
-            localStorage.setItem(FORM_COOLDOWN_KEY, String(Date.now()));
-            form.reset();
-            setPhoneError('');
-            startCooldown(SUBMIT_COOLDOWN_MS);
-          } else {
-            setStatus('Ошибка отправки.', 'error');
-            setSubmitDisabled(false);
-            submitBtn.textContent = defaultSubmitText;
-          }
-        } catch (error) {
-          setStatus('Не удалось отправить форму.', 'error');
-          setSubmitDisabled(false);
-          submitBtn.textContent = defaultSubmitText;
-        } finally {
-          isSubmitting = false;
+          products = JSON.parse(stored);
+        } catch (e) {
+          products = [...demoProducts];
+          saveProducts();
         }
+      } else {
+        products = [...demoProducts];
+        saveProducts();
+      }
+    }
+
+    function saveProducts() {
+      localStorage.setItem(STORAGE_KEYS.products, JSON.stringify(products));
+    }
+
+    /***********************
+     * ADMIN STATE
+     ***********************/
+    function loadAdminState() {
+      isAdminLoggedIn = localStorage.getItem(STORAGE_KEYS.admin) === "true";
+    }
+
+    function saveAdminState() {
+      localStorage.setItem(STORAGE_KEYS.admin, String(isAdminLoggedIn));
+    }
+
+    function updateAdminUI() {
+      if (isAdminLoggedIn) {
+        adminLoginBtn.classList.add("hidden");
+        showAdminPanelBtn.classList.remove("hidden");
+        logoutAdminBtn.classList.remove("hidden");
+        adminPanel.classList.add("active");
+      } else {
+        adminLoginBtn.classList.remove("hidden");
+        showAdminPanelBtn.classList.add("hidden");
+        logoutAdminBtn.classList.add("hidden");
+        adminPanel.classList.remove("active");
+      }
+    }
+
+    function openAdminModal() {
+      adminModal.classList.add("active");
+      adminPasswordInput.value = "";
+      loginStatus.textContent = "";
+      loginStatus.className = "status";
+      setTimeout(() => adminPasswordInput.focus(), 80);
+    }
+
+    function closeAdminModal() {
+      adminModal.classList.remove("active");
+    }
+
+    function handleAdminLogin() {
+      const password = adminPasswordInput.value.trim();
+
+      if (password === ADMIN_PASSWORD) {
+        isAdminLoggedIn = true;
+        saveAdminState();
+        updateAdminUI();
+        loginStatus.textContent = "Доступ открыт.";
+        loginStatus.className = "status success";
+
+        setTimeout(() => {
+          closeAdminModal();
+          adminPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 400);
+      } else {
+        loginStatus.textContent = "Неверный пароль.";
+        loginStatus.className = "status error";
+      }
+    }
+
+    function logoutAdmin() {
+      isAdminLoggedIn = false;
+      saveAdminState();
+      updateAdminUI();
+      resetForm();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    /***********************
+     * RENDER PRODUCTS
+     ***********************/
+    function renderProducts() {
+      const filtered = getFilteredProducts();
+
+      resultsCount.textContent = `Найдено: ${filtered.length}`;
+
+      if (!filtered.length) {
+        productsGrid.innerHTML = `
+          <div class="empty-state glass" style="grid-column: 1 / -1;">
+            <i class="fa-solid fa-box-open"></i>
+            <h3 style="margin-bottom: 10px; color: var(--text);">Товары не найдены</h3>
+            <p>Попробуйте изменить поисковый запрос или выбрать другую категорию.</p>
+          </div>
+        `;
+        updateStats();
+        return;
+      }
+
+      productsGrid.innerHTML = filtered.map(product => {
+        const videoId = extractYouTubeId(product.video);
+        const safeTitle = escapeHtml(product.title);
+        const safeCategory = escapeHtml(product.category);
+        const safeDescription = escapeHtml(product.description);
+        const clicks = Number(product.clicks || 0);
+
+        return `
+          <article class="product-card glass">
+            <div class="product-video">
+              ${
+                videoId
+                  ? `<iframe
+                      src="https://www.youtube.com/embed/${videoId}"
+                      title="${safeTitle}"
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen>
+                    </iframe>`
+                  : `<div style="height:100%;display:grid;place-items:center;color:var(--muted);padding:20px;text-align:center;">
+                      <div>
+                        <i class="fa-brands fa-youtube" style="font-size:2rem;margin-bottom:10px;color:#ff4d67;"></i>
+                        <div>Некорректная ссылка на видео</div>
+                      </div>
+                    </div>`
+              }
+            </div>
+
+            <div class="product-body">
+              <div class="product-top">
+                <div class="product-title">${safeTitle}</div>
+                <div class="product-category">
+                  <i class="fa-solid fa-tag"></i>
+                  <span>${safeCategory}</span>
+                </div>
+              </div>
+
+              <div class="product-desc">${safeDescription}</div>
+
+              <div class="product-meta">
+                <div class="click-badge">
+                  <i class="fa-solid fa-arrow-pointer"></i>
+                  <span>Переходов: ${clicks}</span>
+                </div>
+              </div>
+
+              <div class="product-actions">
+                <a
+                  href="${escapeAttribute(product.affiliate)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-primary product-link"
+                  onclick="handleAffiliateClick('${product.id}')"
+                >
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  <span>Купить / Перейти к товару</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      updateStats();
+    }
+
+    function getFilteredProducts() {
+      const query = searchInput.value.trim().toLowerCase();
+      const category = categoryFilter.value;
+
+      return products.filter(product => {
+        const matchesQuery = product.title.toLowerCase().includes(query);
+        const matchesCategory = category === "all" || product.category === category;
+        return matchesQuery && matchesCategory;
       });
+    }
+
+    function renderCategoryFilter() {
+      const categories = [...new Set(products.map(p => p.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, "ru"));
+
+      const currentValue = categoryFilter.value || "all";
+      categoryFilter.innerHTML = `
+        <option value="all">Все категории</option>
+        ${categories.map(cat => `<option value="${escapeAttribute(cat)}">${escapeHtml(cat)}</option>`).join("")}
+      `;
+
+      if ([...categoryFilter.options].some(opt => opt.value === currentValue)) {
+        categoryFilter.value = currentValue;
+      } else {
+        categoryFilter.value = "all";
+      }
+    }
+
+    /***********************
+     * ADMIN LIST
+     ***********************/
+    function renderAdminList() {
+      if (!isAdminLoggedIn) {
+        adminProductsList.innerHTML = "";
+        return;
+      }
+
+      if (!products.length) {
+        adminProductsList.innerHTML = `
+          <div class="empty-state">
+            <i class="fa-solid fa-folder-open"></i>
+            <p>Список товаров пуст. Добавьте первый товар через форму выше.</p>
+          </div>
+        `;
+        return;
+      }
+
+      adminProductsList.innerHTML = products.map(product => `
+        <div class="admin-item">
+          <div>
+            <h4>${escapeHtml(product.title)}</h4>
+            <p>
+              <strong>Категория:</strong> ${escapeHtml(product.category)}<br>
+              <strong>Переходов:</strong> ${Number(product.clicks || 0)}<br>
+              <strong>Видео:</strong> ${escapeHtml(product.video)}
+            </p>
+          </div>
+
+          <div class="admin-item-actions">
+            <button class="btn btn-secondary" onclick="editProduct('${product.id}')">
+              <i class="fa-solid fa-pen"></i>
+              <span>Редактировать</span>
+            </button>
+            <button class="btn btn-danger" onclick="deleteProduct('${product.id}')">
+              <i class="fa-solid fa-trash"></i>
+              <span>Удалить</span>
+            </button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    /***********************
+     * FORM HANDLERS
+     ***********************/
+    function handleProductSubmit(e) {
+      e.preventDefault();
+
+      if (!isAdminLoggedIn) return;
+
+      const title = productTitleInput.value.trim();
+      const category = productCategoryInput.value.trim();
+      const description = productDescriptionInput.value.trim();
+      const video = productVideoInput.value.trim();
+      const affiliate = productAffiliateInput.value.trim();
+
+      if (!title || !category || !description || !video || !affiliate) {
+        alert("Пожалуйста, заполните все поля.");
+        return;
+      }
+
+      const extractedVideoId = extractYouTubeId(video);
+      if (!extractedVideoId) {
+        alert("Не удалось распознать YouTube ID или ссылку.");
+        return;
+      }
+
+      if (editingProductId) {
+        const index = products.findIndex(p => p.id === editingProductId);
+        if (index !== -1) {
+          const previousClicks = Number(products[index].clicks || 0);
+          products[index] = {
+            ...products[index],
+            title,
+            category,
+            description,
+            video,
+            affiliate,
+            clicks: previousClicks
+          };
+        }
+      } else {
+        products.unshift({
+          id: generateId(),
+          title,
+          category,
+          description,
+          video,
+          affiliate,
+          clicks: 0
+        });
+      }
+
+      saveProducts();
+      renderCategoryFilter();
+      renderProducts();
+      renderAdminList();
+      updateStats();
+      resetForm();
+    }
+
+    function resetForm() {
+      editingProductId = null;
+      productIdInput.value = "";
+      productTitleInput.value = "";
+      productCategoryInput.value = "";
+      productDescriptionInput.value = "";
+      productVideoInput.value = "";
+      productAffiliateInput.value = "";
+      saveBtnText.textContent = "Добавить товар";
+    }
+
+    function editProduct(id) {
+      if (!isAdminLoggedIn) return;
+
+      const product = products.find(p => p.id === id);
+      if (!product) return;
+
+      editingProductId = id;
+      productIdInput.value = product.id;
+      productTitleInput.value = product.title;
+      productCategoryInput.value = product.category;
+      productDescriptionInput.value = product.description;
+      productVideoInput.value = product.video;
+      productAffiliateInput.value = product.affiliate;
+      saveBtnText.textContent = "Сохранить изменения";
+
+      adminPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function deleteProduct(id) {
+      if (!isAdminLoggedIn) return;
+
+      const product = products.find(p => p.id === id);
+      if (!product) return;
+
+      const confirmed = confirm(`Удалить товар "${product.title}"?`);
+      if (!confirmed) return;
+
+      products = products.filter(p => p.id !== id);
+      saveProducts();
+
+      if (editingProductId === id) {
+        resetForm();
+      }
+
+      renderCategoryFilter();
+      renderProducts();
+      renderAdminList();
+      updateStats();
+    }
+
+    /***********************
+     * CLICK COUNTER
+     ***********************/
+    function handleAffiliateClick(id) {
+      const index = products.findIndex(p => p.id === id);
+      if (index === -1) return;
+
+      products[index].clicks = Number(products[index].clicks || 0) + 1;
+      saveProducts();
+      renderProducts();
+      if (isAdminLoggedIn) renderAdminList();
+      updateStats();
+    }
+
+    // Делаем функцию глобальной для inline onclick
+    window.handleAffiliateClick = handleAffiliateClick;
+    window.editProduct = editProduct;
+    window.deleteProduct = deleteProduct;
+
+    /***********************
+     * STATS
+     ***********************/
+    function updateStats() {
+      const totalProducts = products.length;
+      const totalCategories = new Set(products.map(p => p.category)).size;
+      const totalClicks = products.reduce((sum, p) => sum + Number(p.clicks || 0), 0);
+
+      statProducts.textContent = totalProducts;
+      statCategories.textContent = totalCategories;
+      statClicks.textContent = totalClicks;
+    }
+
+    /***********************
+     * HELPERS
+     ***********************/
+    function generateId() {
+      return "p_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+    }
+
+    // Поддержка:
+    // - YouTube ID
+    // - https://youtu.be/VIDEO_ID
+    // - https://www.youtube.com/watch?v=VIDEO_ID
+    // - https://www.youtube.com/embed/VIDEO_ID
+    // - https://youtube.com/shorts/VIDEO_ID
+    function extractYouTubeId(input) {
+      if (!input) return "";
+
+      const trimmed = input.trim();
+
+      // Если это уже ID (11 символов)
+      const idPattern = /^[a-zA-Z0-9_-]{11}$/;
+      if (idPattern.test(trimmed)) return trimmed;
+
+      // Пытаемся извлечь из URL
+      const patterns = [
+        /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/,
+        /youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/,
+        /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/,
+        /[?&]v=([a-zA-Z0-9_-]{11})/
+      ];
+
+      for (const pattern of patterns) {
+        const match = trimmed.match(pattern);
+        if (match && match[1]) return match[1];
+      }
+
+      return "";
+    }
+
+    function escapeHtml(value = "") {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function escapeAttribute(value = "") {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
     }
   </script>
 </body>
