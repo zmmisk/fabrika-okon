@@ -243,20 +243,27 @@
       gap:28px;
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      min-width:0;
-      flex-shrink:0;
-    }
+   .brand{
+  display:flex;
+  align-items:center;
+  min-width:0;
+  flex-shrink:0;
+  padding:10px 16px;
+  border-radius:18px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);
+}
 
-    .brand img{
-      width:300px;
-      height:200px;
-      object-fit:contain;
-      display:block;
-      filter:drop-shadow(0 10px 24px rgba(0,0,0,.28));
-    }
+.brand img{
+  width:300px;
+  height:200px;
+  object-fit:contain;
+  display:block;
+  filter:
+    drop-shadow(0 0 2px rgba(255,255,255,.35))
+    drop-shadow(0 10px 24px rgba(0,0,0,.30));
+}
 
     .nav-wrap{
       display:flex;
