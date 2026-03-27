@@ -1621,41 +1621,57 @@
       backdrop-filter:blur(18px);
     }
 
+    .pld-logo-wrap{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin-bottom:18px;
+    }
+
+    .pld-logo{
+      width:min(100%, 230px);
+      max-height:118px;
+      object-fit:contain;
+      display:block;
+      filter:
+        drop-shadow(0 0 2px rgba(255,255,255,.35))
+        drop-shadow(0 16px 34px rgba(0,0,0,.22));
+      animation:pld-logo-float 2.4s ease-in-out infinite;
+    }
+
     .pld-mark{
-      width:84px;
-      height:84px;
-      margin:0 auto 20px;
-      border-radius:26px;
+      width:98px;
+      height:98px;
+      margin:0 auto 22px;
+      border-radius:50%;
       display:grid;
       place-items:center;
       position:relative;
-      background:linear-gradient(135deg, rgba(79,134,255,.22), rgba(255,82,97,.18));
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), rgba(255,255,255,.04));
       border:1px solid rgba(255,255,255,.12);
       overflow:hidden;
       box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 18px 44px rgba(0,0,0,.18);
     }
 
-    .pld-mark::before,
-    .pld-mark::after{
-      content:"";
+    .pld-ring{
       position:absolute;
       border-radius:50%;
-      inset:10px;
       border:2px solid transparent;
-      animation:pld-spin 1.45s linear infinite;
+      animation:pld-spin 1.6s linear infinite;
     }
 
-    .pld-mark::before{
+    .pld-ring-a{
+      inset:10px;
       border-top-color:var(--blue, #4f86ff);
-      border-right-color:rgba(255,255,255,.32);
+      border-right-color:rgba(255,255,255,.30);
     }
 
-    .pld-mark::after{
-      inset:20px;
+    .pld-ring-b{
+      inset:24px;
       border-bottom-color:var(--red, #ff5261);
       border-left-color:rgba(255,212,71,.55);
       animation-direction:reverse;
-      animation-duration:1.1s;
+      animation-duration:1.15s;
     }
 
     .pld-core{
@@ -1715,8 +1731,14 @@
       box-shadow:0 24px 80px rgba(19,41,79,.12);
     }
 
+    html[data-theme="light"] .pld-logo{
+      filter:
+        drop-shadow(0 0 2px rgba(16,33,75,.12))
+        drop-shadow(0 16px 34px rgba(19,41,79,.10));
+    }
+
     html[data-theme="light"] .pld-mark{
-      background:linear-gradient(135deg, rgba(79,134,255,.14), rgba(255,82,97,.12));
+      background:radial-gradient(circle at 30% 30%, rgba(79,134,255,.12), rgba(255,255,255,.82));
       border:1px solid rgba(16,33,75,.10);
       box-shadow:inset 0 1px 0 rgba(255,255,255,.8), 0 18px 44px rgba(19,41,79,.10);
     }
@@ -1732,6 +1754,11 @@
     html[data-theme="light"] .pld-progress{
       background:rgba(16,33,75,.06);
       border:1px solid rgba(16,33,75,.08);
+    }
+
+    @keyframes pld-logo-float{
+      0%,100%{ transform:translateY(0); }
+      50%{ transform:translateY(-5px); }
     }
 
     @keyframes pld-spin{
@@ -1751,8 +1778,8 @@
 
     @media (prefers-reduced-motion:reduce){
       #pld-preloader,
-      .pld-mark::before,
-      .pld-mark::after,
+      .pld-logo,
+      .pld-ring,
       .pld-core,
       .pld-progress span{
         animation:none !important;
@@ -1765,12 +1792,17 @@
 <body>
   <div id="pld-preloader" aria-hidden="true">
     <div class="pld-shell" role="status" aria-live="polite" aria-label="Страница загружается">
-      <div class="pld-mark">
+      <div class="pld-logo-wrap">
+        <img class="pld-logo" src="logo.png" alt="Фабрика Окон">
+      </div>
+      <div class="pld-mark" aria-hidden="true">
+        <div class="pld-ring pld-ring-a"></div>
+        <div class="pld-ring pld-ring-b"></div>
         <div class="pld-core"></div>
       </div>
-      <div class="pld-title">Загрузка страницы</div>
-      <div class="pld-text">Подготавливаем контент и завершаем загрузку всех элементов.</div>
-      <div class="pld-progress"><span></span></div>
+      <div class="pld-title">Фабрика Окон</div>
+      <div class="pld-text">Подготавливаем страницу, изображения и шрифты. Пожалуйста, подождите ещё несколько секунд.</div>
+      <div class="pld-progress" aria-hidden="true"><span></span></div>
     </div>
   </div>
 
@@ -2529,6 +2561,10 @@
       const preloader = document.getElementById('pld-preloader');
       if (!preloader) return;
 
+      const MIN_PRELOADER_TIME = 3000;
+      const startTime = Date.now();
+      let pageLoaded = document.readyState === 'complete';
+      let fontsLoaded = !('fonts' in document);
       let hidden = false;
 
       function hidePreloader(){
@@ -2547,11 +2583,29 @@
         window.setTimeout(cleanup, 900);
       }
 
-      if (document.readyState === 'complete') {
-        window.setTimeout(hidePreloader, 120);
+      function tryHidePreloader(){
+        if (!pageLoaded || !fontsLoaded) return;
+
+        const elapsed = Date.now() - startTime;
+        const remaining = Math.max(0, MIN_PRELOADER_TIME - elapsed);
+        window.setTimeout(hidePreloader, remaining);
+      }
+
+      if ('fonts' in document && document.fonts && typeof document.fonts.ready === 'object') {
+        document.fonts.ready
+          .catch(function(){ return null; })
+          .then(function(){
+            fontsLoaded = true;
+            tryHidePreloader();
+          });
+      }
+
+      if (pageLoaded) {
+        tryHidePreloader();
       } else {
         window.addEventListener('load', function(){
-          window.setTimeout(hidePreloader, 140);
+          pageLoaded = true;
+          tryHidePreloader();
         }, { once:true });
       }
     })();
