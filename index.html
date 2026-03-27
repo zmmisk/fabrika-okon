@@ -1692,10 +1692,15 @@
     }
 
     .pld-text{
-      color:rgba(238,244,255,.74);
+      color:rgba(238,244,255,.82);
       font-size:14px;
-      line-height:1.5;
+      line-height:1.6;
       margin-bottom:18px;
+      min-height:3.2em;
+      opacity:0;
+      transform:translateY(8px);
+      will-change:transform, opacity;
+      animation:pld-text-reveal .7s ease .45s forwards, pld-text-breathe 3.2s ease-in-out 1.15s infinite;
     }
 
     .pld-progress{
@@ -1748,7 +1753,7 @@
     }
 
     html[data-theme="light"] .pld-text{
-      color:#647a9a;
+      color:#5f7698;
     }
 
     html[data-theme="light"] .pld-progress{
@@ -1776,12 +1781,44 @@
       100%{ transform:translateX(165%); }
     }
 
+    @keyframes pld-text-reveal{
+      0%{ opacity:0; transform:translateY(8px); }
+      100%{ opacity:1; transform:translateY(0); }
+    }
+
+    @keyframes pld-text-breathe{
+      0%,100%{ transform:translateY(0); filter:none; }
+      50%{ transform:translateY(-2px); filter:drop-shadow(0 0 10px rgba(255,255,255,.06)); }
+    }
+
+    @keyframes pld-caret{
+      0%,49%{ opacity:.9; }
+      50%,100%{ opacity:.15; }
+    }
+
+    .pld-text::after{
+      content:"";
+      display:inline-block;
+      width:1px;
+      height:1em;
+      margin-left:6px;
+      vertical-align:-.12em;
+      background:currentColor;
+      animation:pld-caret 1s steps(1, end) infinite;
+    }
+
+    .pld-text.pld-typed::after{
+      opacity:.5;
+    }
+
     @media (prefers-reduced-motion:reduce){
       #pld-preloader,
       .pld-logo,
       .pld-ring,
       .pld-core,
-      .pld-progress span{
+      .pld-progress span,
+      .pld-text,
+      .pld-text::after{
         animation:none !important;
         transition:none !important;
       }
@@ -1801,7 +1838,7 @@
         <div class="pld-core"></div>
       </div>
       <div class="pld-title">Фабрика Окон</div>
-      <div class="pld-text">Подготавливаем страницу, изображения и шрифты. Пожалуйста, подождите ещё несколько секунд.</div>
+      <div class="pld-text" data-full-text="Добро пожаловать! Приятного путешествия по сайту."></div>
       <div class="pld-progress" aria-hidden="true"><span></span></div>
     </div>
   </div>
@@ -2563,9 +2600,33 @@
 
       const MIN_PRELOADER_TIME = 3000;
       const startTime = Date.now();
+      const preloaderText = preloader.querySelector('.pld-text[data-full-text]');
       let pageLoaded = document.readyState === 'complete';
       let fontsLoaded = !('fonts' in document);
       let hidden = false;
+
+      if (preloaderText) {
+        const fullText = preloaderText.getAttribute('data-full-text') || '';
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReducedMotion) {
+          preloaderText.textContent = fullText;
+          preloaderText.classList.add('pld-typed');
+        } else {
+          preloaderText.textContent = '';
+          window.setTimeout(function(){
+            let index = 0;
+            const typingTimer = window.setInterval(function(){
+              index += 1;
+              preloaderText.textContent = fullText.slice(0, index);
+              if (index >= fullText.length) {
+                window.clearInterval(typingTimer);
+                preloaderText.classList.add('pld-typed');
+              }
+            }, 34);
+          }, 520);
+        }
+      }
 
       function hidePreloader(){
         if (hidden) return;
