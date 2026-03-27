@@ -1236,19 +1236,33 @@
     }
 
     @media (max-width:640px){
+      html, body{
+        overflow-x:hidden;
+      }
+
       .container{
         width:min(calc(100% - 20px), var(--max));
       }
 
       .section{
-        padding:84px 0;
+        padding:68px 0;
       }
 
       .topline{
         display:none;
       }
 
-      .header-shell,
+      .header{
+        padding:8px 0 0;
+        background:linear-gradient(to bottom, rgba(11,23,54,.96), rgba(11,23,54,.72));
+      }
+
+      .header-shell{
+        min-height:72px;
+        padding:8px 0;
+        gap:12px;
+      }
+
       .trust-card,
       .service,
       .about-main,
@@ -1260,34 +1274,239 @@
       .contact-card,
       .map-card,
       .footer-shell{
-        padding:22px;
+        padding:20px;
       }
 
       .brand img{
-        width:92px;
-        height:92px;
+        width:116px;
+        height:64px;
+        object-fit:contain;
       }
 
-      .hero-photo{
-        min-height:360px;
+      .burger{
+        width:46px;
+        height:46px;
+        border-radius:14px;
+        font-size:22px;
       }
 
-      .map-frame iframe{
-        min-height:360px;
+      .mobile-menu{
+        padding:12px;
+      }
+
+      .mobile-menu-panel{
+        width:100%;
+        max-width:none;
+        padding:18px;
+        border-radius:22px;
+        gap:18px;
+      }
+
+      .mobile-top img{
+        width:108px;
+        height:68px;
+      }
+
+      .mobile-links a{
+        padding:14px 16px;
+        border-radius:14px;
+      }
+
+      .hero{
+        padding:18px 0 72px;
+      }
+
+      .hero-wrap{
+        gap:18px;
+      }
+
+      .hero-main{
+        padding-top:6px;
+      }
+
+      .eyebrow{
+        width:100%;
+        justify-content:center;
+        padding:9px 14px;
+        font-size:11px;
+        text-align:center;
+      }
+
+      .hero-main h1{
+        font-size:clamp(30px, 9vw, 38px);
+        line-height:1.02;
+        margin:16px 0 16px;
+      }
+
+      .hero-lead{
+        font-size:15px;
+        line-height:1.6;
       }
 
       .hero-actions,
       .contact-actions,
       .footer-actions{
         flex-direction:column;
+        gap:10px;
       }
 
       .btn{
         width:100%;
+        min-height:54px;
+        border-radius:16px;
+        padding:0 20px;
+      }
+
+      .hero-points{
+        gap:12px;
+        margin-top:24px;
+      }
+
+      .point{
+        padding:18px;
+        border-radius:20px;
+      }
+
+      .point strong{
+        font-size:22px;
+        margin-bottom:6px;
+      }
+
+      .point span{
+        font-size:13px;
+      }
+
+      .hero-photo{
+        min-height:300px;
+        border-radius:24px;
+        background-position:center;
+      }
+
+      .hero-glass{
+        left:14px;
+        right:14px;
+        bottom:14px;
+        gap:10px;
+      }
+
+      .hero-mini{
+        padding:14px;
+        border-radius:16px;
+      }
+
+      .hero-mini strong{
+        font-size:15px;
+      }
+
+      .hero-mini p{
+        font-size:13px;
+        line-height:1.45;
+      }
+
+      .section-head{
+        gap:14px;
+        margin-bottom:24px;
+      }
+
+      .section-head h2{
+        font-size:clamp(28px, 8vw, 34px);
+        line-height:1.04;
+        margin-top:14px;
+      }
+
+      .section-head p,
+      .about-main p,
+      .measure-info p,
+      .adv p,
+      .service p,
+      .step p,
+      .contact-item span,
+      .contact-item a,
+      .footer-box p,
+      .footer-box a{
+        font-size:15px;
+      }
+
+      .service h3,
+      .adv h3,
+      .step h3,
+      .about-main h3,
+      .measure-info h3{
+        font-size:24px;
+      }
+
+      .service-icon,
+      .trust-mark,
+      .adv-badge,
+      .contact-item .icon,
+      .about-line .i,
+      .step-num{
+        width:46px;
+        height:46px;
+        border-radius:14px;
+        font-size:20px;
+      }
+
+      .about-photo{
+        min-height:260px;
+        border-radius:24px;
+      }
+
+      .about-list,
+      .measure-list,
+      .contact-list{
+        gap:12px;
+      }
+
+      .about-item,
+      .measure-line,
+      .contact-item,
+      .footer-box{
+        border-radius:16px;
+      }
+
+      .field input,
+      .field textarea{
+        padding:15px 16px;
+        border-radius:16px;
+      }
+
+      .map-frame{
+        border-radius:22px;
+      }
+
+      .map-frame iframe{
+        min-height:320px;
+      }
+
+      .footer-brand{
+        align-items:flex-start;
+      }
+
+      .footer-brand img{
+        width:72px;
+        height:72px;
+      }
+
+      .footer-brand strong{
+        font-size:24px;
+      }
+
+      .footer-bottom{
+        font-size:13px;
       }
 
       .sticky-call{
         display:block;
+        left:10px;
+        right:10px;
+        bottom:10px;
+      }
+
+      .sticky-call a{
+        min-height:56px;
+        border-radius:16px;
+        font-size:15px;
       }
     }
   </style>
@@ -2007,3 +2226,4 @@
   </script>
 </body>
 </html>
+
