@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
   <title>Фабрика Окон — Окна, двери, балконы, роллеты, жалюзи в Бердянске</title>
   <meta name="description" content="Фабрика Окон в Бердянске. Окна ПВХ, двери ПВХ, балконы, лоджии, роллеты, жалюзи. Замер, изготовление и установка." />
   <meta name="theme-color" content="#214fc6" />
@@ -14,6 +14,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <style>
     :root{
@@ -400,6 +406,8 @@
       content:"";
       position:absolute;
       inset:0;
+      transform:translateY(var(--hero-bg-y, 0px)) scale(var(--hero-scale, 1));
+      will-change:transform;
       background:
         linear-gradient(90deg, rgba(8,16,36,.76) 0%, rgba(8,16,36,.56) 38%, rgba(8,16,36,.30) 100%),
         url("hero-bg.jpg") center/cover no-repeat;
@@ -411,6 +419,9 @@
       position:relative;
       z-index:2;
       display:grid;
+      transform:translateY(var(--hero-content-y, 0px)) scale(var(--hero-content-scale, 1));
+      opacity:var(--hero-content-opacity, 1);
+      will-change:transform, opacity;
       grid-template-columns:1.05fr .95fr;
       gap:28px;
       align-items:stretch;
@@ -1236,33 +1247,19 @@
     }
 
     @media (max-width:640px){
-      html, body{
-        overflow-x:hidden;
-      }
-
       .container{
         width:min(calc(100% - 20px), var(--max));
       }
 
       .section{
-        padding:68px 0;
+        padding:84px 0;
       }
 
       .topline{
         display:none;
       }
 
-      .header{
-        padding:8px 0 0;
-        background:linear-gradient(to bottom, rgba(11,23,54,.96), rgba(11,23,54,.72));
-      }
-
-      .header-shell{
-        min-height:72px;
-        padding:8px 0;
-        gap:12px;
-      }
-
+      .header-shell,
       .trust-card,
       .service,
       .about-main,
@@ -1274,217 +1271,881 @@
       .contact-card,
       .map-card,
       .footer-shell{
-        padding:20px;
+        padding:22px;
       }
 
       .brand img{
-        width:116px;
-        height:64px;
-        object-fit:contain;
+        width:92px;
+        height:92px;
       }
 
-      .burger{
-        width:46px;
-        height:46px;
-        border-radius:14px;
-        font-size:22px;
+      .hero-photo{
+        min-height:360px;
       }
 
-      .mobile-menu{
-        padding:12px;
-      }
-
-      .mobile-menu-panel{
-        width:100%;
-        max-width:none;
-        padding:18px;
-        border-radius:22px;
-        gap:18px;
-      }
-
-      .mobile-top img{
-        width:108px;
-        height:68px;
-      }
-
-      .mobile-links a{
-        padding:14px 16px;
-        border-radius:14px;
-      }
-
-      .hero{
-        padding:18px 0 72px;
-      }
-
-      .hero-wrap{
-        gap:18px;
-      }
-
-      .hero-main{
-        padding-top:6px;
-      }
-
-      .eyebrow{
-        width:100%;
-        justify-content:center;
-        padding:9px 14px;
-        font-size:11px;
-        text-align:center;
-      }
-
-      .hero-main h1{
-        font-size:clamp(30px, 9vw, 38px);
-        line-height:1.02;
-        margin:16px 0 16px;
-      }
-
-      .hero-lead{
-        font-size:15px;
-        line-height:1.6;
+      .map-frame iframe{
+        min-height:360px;
       }
 
       .hero-actions,
       .contact-actions,
       .footer-actions{
         flex-direction:column;
-        gap:10px;
       }
 
       .btn{
         width:100%;
-        min-height:54px;
-        border-radius:16px;
-        padding:0 20px;
       }
 
-      .hero-points{
-        gap:12px;
-        margin-top:24px;
+      .sticky-call{
+        display:block;
+      }
+    }
+
+    .mobile-only-gallery,
+    .mobile-success-modal,
+    .mobile-lightbox{
+      display:none;
+    }
+
+    .ripple-host{
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .ripple{
+      position:absolute;
+      border-radius:50%;
+      transform:translate(-50%, -50%) scale(0);
+      background:rgba(255,255,255,.28);
+      pointer-events:none;
+      animation:ripple-wave .7s ease-out forwards;
+      z-index:2;
+    }
+
+    @keyframes ripple-wave{
+      to{
+        transform:translate(-50%, -50%) scale(1);
+        opacity:0;
+      }
+    }
+
+    @keyframes shakeX{
+      0%,100%{ transform:translateX(0); }
+      20%{ transform:translateX(-6px); }
+      40%{ transform:translateX(6px); }
+      60%{ transform:translateX(-4px); }
+      80%{ transform:translateX(4px); }
+    }
+
+    @media (max-width: 768px){
+      :root{
+        --radius:26px;
+        --shadow:0 28px 50px rgba(0,0,0,.28);
+        --mobile-ease:cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        --mobile-gap:18px;
+        --mobile-pad:20px;
+        --mobile-glass:rgba(11,23,54,.58);
+        --mobile-card:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.07));
       }
 
-      .point{
-        padding:18px;
-        border-radius:20px;
+      html,
+      body{
+        overflow-x:hidden;
       }
 
-      .point strong{
-        font-size:22px;
-        margin-bottom:6px;
+      body{
+        line-height:1.7;
+        background:
+          radial-gradient(circle at top left, rgba(106,161,255,.24), transparent 36%),
+          radial-gradient(circle at 100% 20%, rgba(255,82,97,.16), transparent 30%),
+          linear-gradient(rgba(8,16,36,.84), rgba(8,16,36,.94)),
+          url("fon.jpg") center/cover fixed no-repeat;
       }
 
-      .point span{
-        font-size:13px;
+      body.mobile-menu-open,
+      body.modal-open{
+        overflow:hidden !important;
+        touch-action:none;
       }
 
-      .hero-photo{
-        min-height:300px;
-        border-radius:24px;
-        background-position:center;
+      body::-webkit-scrollbar{
+        width:8px;
       }
 
-      .hero-glass{
-        left:14px;
-        right:14px;
-        bottom:14px;
-        gap:10px;
+      body::-webkit-scrollbar-thumb{
+        background:linear-gradient(180deg, rgba(255,212,71,.8), rgba(79,134,255,.85));
+        border-radius:999px;
       }
 
-      .hero-mini{
-        padding:14px;
-        border-radius:16px;
+      body::-webkit-scrollbar-track{
+        background:rgba(255,255,255,.06);
       }
 
-      .hero-mini strong{
-        font-size:15px;
+      .container{
+        width:min(calc(100% - 24px), var(--max));
       }
 
-      .hero-mini p{
-        font-size:13px;
-        line-height:1.45;
+      .section{
+        padding:84px 0;
+      }
+
+      .section::before{
+        opacity:.55;
       }
 
       .section-head{
-        gap:14px;
-        margin-bottom:24px;
+        gap:18px;
+        margin-bottom:28px;
       }
 
       .section-head h2{
-        font-size:clamp(28px, 8vw, 34px);
-        line-height:1.04;
+        font-size:clamp(32px, 9vw, 44px);
+        line-height:1;
+        letter-spacing:-.045em;
         margin-top:14px;
       }
 
-      .section-head p,
-      .about-main p,
-      .measure-info p,
-      .adv p,
-      .service p,
-      .step p,
-      .contact-item span,
+      .section-head p{
+        font-size:16px;
+        max-width:none;
+      }
+
+      .eyebrow{
+        min-height:44px;
+        padding:10px 14px;
+        font-size:12px;
+      }
+
+      .btn,
+      .nav a,
+      .mobile-links a,
       .contact-item a,
-      .footer-box p,
-      .footer-box a{
-        font-size:15px;
+      .footer-box a,
+      .sticky-call a{
+        min-height:48px;
       }
 
-      .service h3,
-      .adv h3,
-      .step h3,
-      .about-main h3,
-      .measure-info h3{
-        font-size:24px;
+      .btn{
+        width:100%;
+        border-radius:18px;
+        padding:14px 18px;
+        transition:transform .38s var(--mobile-ease), box-shadow .38s var(--mobile-ease), opacity .38s var(--mobile-ease), border-color .38s var(--mobile-ease), background .38s var(--mobile-ease);
+        position:relative;
+        overflow:hidden;
       }
 
-      .service-icon,
-      .trust-mark,
-      .adv-badge,
-      .contact-item .icon,
-      .about-line .i,
-      .step-num{
-        width:46px;
-        height:46px;
-        border-radius:14px;
-        font-size:20px;
+      .btn:active{
+        transform:scale(.98);
       }
 
-      .about-photo{
-        min-height:260px;
-        border-radius:24px;
+      .btn:focus-visible{
+        outline:none;
+        box-shadow:
+          0 0 0 1px rgba(255,255,255,.22),
+          0 0 0 4px rgba(79,134,255,.18),
+          0 12px 32px rgba(79,134,255,.24);
       }
 
-      .about-list,
-      .measure-list,
-      .contact-list{
+      .btn-primary,
+      .btn-blue,
+      .btn-secondary{
+        background-origin:border-box;
+        border:1px solid transparent;
+      }
+
+      .btn-primary{
+        box-shadow:
+          0 18px 34px rgba(255,82,97,.28),
+          inset 0 1px 0 rgba(255,255,255,.18);
+      }
+
+      .btn-blue{
+        box-shadow:
+          0 18px 34px rgba(79,134,255,.26),
+          inset 0 1px 0 rgba(255,255,255,.18);
+      }
+
+      .btn-secondary{
+        background:linear-gradient(rgba(255,255,255,.10), rgba(255,255,255,.08)) padding-box,
+                   linear-gradient(135deg, rgba(255,255,255,.15), rgba(79,134,255,.45), rgba(255,212,71,.35)) border-box;
+      }
+
+      .topline{
+        display:none;
+      }
+
+      .header{
+        padding-top:10px;
+        background:linear-gradient(to bottom, rgba(8,17,39,.92), rgba(8,17,39,.28));
+      }
+
+      .header-shell{
+        min-height:76px;
+        padding:0 0 8px;
+        grid-template-columns:auto 1fr auto;
+        gap:14px;
+      }
+
+      .brand{
+        align-items:center;
+      }
+
+      .brand img{
+        width:146px;
+        height:88px;
+        object-fit:contain;
+      }
+
+      .header-actions{
+        gap:10px;
+      }
+
+      .header-phone,
+      .nav-wrap{
+        display:none !important;
+      }
+
+      .burger{
+        display:grid !important;
+        place-items:center;
+        width:52px;
+        height:52px;
+        border-radius:18px;
+        background:rgba(255,255,255,.08);
+        border:1px solid rgba(255,255,255,.14);
+        box-shadow:0 16px 30px rgba(0,0,0,.22);
+        backdrop-filter:blur(12px);
+        transition:transform .35s var(--mobile-ease), background .35s var(--mobile-ease), opacity .35s var(--mobile-ease);
+      }
+
+      .burger:active{
+        transform:scale(.96);
+      }
+
+      .mobile-menu{
+        display:block;
+        opacity:0;
+        pointer-events:none;
+        background:rgba(5,10,20,.42);
+        transition:opacity .42s var(--mobile-ease);
+        padding:0;
+      }
+
+      .mobile-menu.active{
+        opacity:1;
+        pointer-events:auto;
+      }
+
+      .mobile-menu-panel{
+        position:absolute;
+        right:0;
+        top:0;
+        bottom:0;
+        width:min(80vw, 360px);
+        max-width:100%;
+        height:100dvh;
+        border-radius:28px 0 0 28px;
+        padding:22px 18px max(22px, env(safe-area-inset-bottom));
+        transform:translateX(100%);
+        opacity:.4;
+        transition:transform .45s var(--mobile-ease), opacity .35s var(--mobile-ease);
+        backdrop-filter:blur(22px);
+        box-shadow:-24px 0 60px rgba(0,0,0,.34);
+        overflow:auto;
+      }
+
+      .mobile-menu.active .mobile-menu-panel{
+        transform:translateX(0);
+        opacity:1;
+      }
+
+      .mobile-top{
+        position:sticky;
+        top:0;
+        z-index:2;
+        padding-bottom:12px;
+        background:linear-gradient(180deg, rgba(14,25,49,.95), rgba(14,25,49,.72), rgba(14,25,49,0));
+        backdrop-filter:blur(12px);
+      }
+
+      .mobile-top img{
+        width:120px;
+        height:76px;
+      }
+
+      .mobile-close{
+        width:48px;
+        height:48px;
+        border-radius:16px;
+        background:rgba(255,255,255,.08);
+        transition:transform .35s var(--mobile-ease), background .35s var(--mobile-ease);
+      }
+
+      .mobile-close:active{
+        transform:scale(.96);
+      }
+
+      .mobile-links{
         gap:12px;
       }
 
-      .about-item,
-      .measure-line,
-      .contact-item,
-      .footer-box{
-        border-radius:16px;
+      .mobile-links a{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        padding:16px 16px;
+        border-radius:18px;
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.10);
+        box-shadow:0 12px 28px rgba(0,0,0,.16);
+        transition:transform .35s var(--mobile-ease), background .35s var(--mobile-ease), border-color .35s var(--mobile-ease);
+      }
+
+      .mobile-links a:active{
+        transform:scale(.985);
+      }
+
+      .mobile-actions{
+        gap:12px;
+      }
+
+      .hero{
+        padding:14px 0 62px;
+        min-height:calc(100dvh - 84px);
+      }
+
+      .hero::before{
+        background:
+          linear-gradient(180deg, rgba(7,14,28,.30) 0%, rgba(7,14,28,.58) 24%, rgba(7,14,28,.76) 60%, rgba(7,14,28,.92) 100%),
+          linear-gradient(120deg, rgba(10,18,38,.66) 0%, rgba(10,18,38,.20) 42%, rgba(10,18,38,.60) 100%),
+          url("hero-photo.jpg") center/cover no-repeat;
+        transform-origin:center top;
+        will-change:transform;
+      }
+
+      .hero-wrap{
+        min-height:calc(100dvh - 120px);
+        grid-template-columns:1fr;
+        gap:20px;
+        align-items:end;
+      }
+
+      .hero-main{
+        padding:32px 0 0;
+        text-align:center;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+      }
+
+      .hero-main h1{
+        font-size:clamp(38px, 11vw, 54px);
+        line-height:.94;
+        max-width:12ch;
+        margin:18px auto 18px;
+        text-wrap:balance;
+      }
+
+      .hero-main .split-char{
+        display:inline-block;
+        will-change:transform, opacity;
+      }
+
+      .hero-lead{
+        font-size:16px;
+        max-width:620px;
+        color:#f0f5ff;
+      }
+
+      .hero-actions{
+        width:100%;
+        display:grid;
+        grid-template-columns:1fr;
+        gap:12px;
+        margin-top:26px;
+      }
+
+      .hero-points{
+        width:100%;
+        margin-top:22px;
+        grid-template-columns:1fr;
+        gap:12px;
+      }
+
+      .point{
+        padding:18px 18px 17px;
+        border-radius:22px;
+        background:linear-gradient(180deg, rgba(255,255,255,.15), rgba(255,255,255,.06));
+        box-shadow:0 20px 34px rgba(0,0,0,.22);
+        transform-origin:center;
+        transition:transform .35s var(--mobile-ease), box-shadow .35s var(--mobile-ease), background .35s var(--mobile-ease);
+      }
+
+      .point:active{
+        transform:scale(.985);
+      }
+
+      .point strong{
+        font-size:24px;
+        margin-bottom:4px;
+      }
+
+      .hero-side{
+        display:none;
+      }
+
+      .trust{
+        margin-top:-18px;
+        padding-bottom:0;
+      }
+
+      .trust-grid,
+      .advantages-grid,
+      .about-list,
+      .footer-grid,
+      .contact-grid,
+      .measure-grid,
+      .about-wrap,
+      .process-grid,
+      .services-grid{
+        grid-template-columns:1fr;
+        gap:14px;
+      }
+
+      .trust-grid.mobile-swiper-ready,
+      .services-grid.mobile-swiper-ready,
+      .advantages-grid.mobile-swiper-ready{
+        display:flex;
+        gap:0;
+      }
+
+      .trust-grid.swiper,
+      .services-grid.swiper,
+      .advantages-grid.swiper{
+        overflow:visible;
+      }
+
+      .swiper.mobile-swiper{
+        overflow:visible;
+        padding-bottom:26px;
+      }
+
+      .swiper.mobile-swiper .swiper-pagination{
+        bottom:0 !important;
+      }
+
+      .swiper.mobile-swiper .swiper-pagination-bullet{
+        width:8px;
+        height:8px;
+        background:rgba(255,255,255,.35);
+        opacity:1;
+      }
+
+      .swiper.mobile-swiper .swiper-pagination-bullet-active{
+        width:22px;
+        border-radius:999px;
+        background:linear-gradient(90deg, var(--yellow), var(--red));
+      }
+
+      .trust-card,
+      .service,
+      .step,
+      .adv,
+      .about-main,
+      .about-info,
+      .measure-info,
+      .measure-form-wrap,
+      .contact-card,
+      .map-card,
+      .footer-shell{
+        padding:20px;
+        border-radius:24px;
+        box-shadow:0 24px 46px rgba(0,0,0,.24);
+      }
+
+      .trust-card,
+      .service,
+      .adv{
+        min-height:auto;
+        transition:transform .35s var(--mobile-ease), box-shadow .35s var(--mobile-ease), opacity .35s var(--mobile-ease);
+      }
+
+      .trust-card:active,
+      .service:active,
+      .adv:active,
+      .footer-box:active,
+      .measure-line:active,
+      .about-item:active,
+      .contact-item:active{
+        transform:scale(.985);
+      }
+
+      .trust-card h3,
+      .service h3,
+      .adv h3,
+      .step h3{
+        letter-spacing:-.03em;
+      }
+
+      .service{
+        padding-bottom:24px;
+      }
+
+      .service h3{
+        font-size:24px;
+      }
+
+      .service p{
+        font-size:15px;
+        margin-bottom:16px;
+      }
+
+      .service ul{
+        gap:9px;
+      }
+
+      .service-icon,
+      .adv-badge,
+      .step-num,
+      .trust-mark,
+      .about-line .i,
+      .measure-line .i,
+      .contact-item .icon{
+        transition:transform .4s var(--mobile-ease), box-shadow .4s var(--mobile-ease), opacity .4s var(--mobile-ease);
+        will-change:transform;
+      }
+
+      .service:active .service-icon,
+      .adv:active .adv-badge,
+      .step:active .step-num,
+      .trust-card:active .trust-mark,
+      .contact-item:active .icon{
+        transform:scale(.94);
+      }
+
+      .about-main p{
+        font-size:16px;
+      }
+
+      .about-list{
+        margin-top:20px;
+      }
+
+      .about-item{
+        padding:16px;
+        border-radius:18px;
+        box-shadow:0 14px 28px rgba(0,0,0,.14);
+      }
+
+      .about-photo{
+        min-height:280px;
+        border-radius:24px;
+        order:-1;
+      }
+
+      .about-info{
+        gap:14px;
+      }
+
+      .process-grid{
+        display:flex;
+        gap:14px;
+        overflow-x:auto;
+        scroll-snap-type:x mandatory;
+        padding-bottom:8px;
+        -webkit-overflow-scrolling:touch;
+      }
+
+      .process-grid::-webkit-scrollbar{
+        height:6px;
+      }
+
+      .process-grid::-webkit-scrollbar-thumb{
+        background:rgba(255,255,255,.22);
+        border-radius:999px;
+      }
+
+      .step{
+        min-width:82%;
+        scroll-snap-align:start;
+        flex:0 0 auto;
+      }
+
+      .measure-grid{
+        gap:14px;
+      }
+
+      .measure-form{
+        gap:14px;
+      }
+
+      .field{
+        gap:8px;
       }
 
       .field input,
       .field textarea{
-        padding:15px 16px;
+        font-size:16px;
+        min-height:58px;
+        border-radius:18px;
+        transition:border-color .3s var(--mobile-ease), box-shadow .3s var(--mobile-ease), background .3s var(--mobile-ease), transform .3s var(--mobile-ease);
+      }
+
+      .field textarea{
+        min-height:140px;
+      }
+
+      .field input:focus,
+      .field textarea:focus{
+        border-color:rgba(79,134,255,.58);
+        box-shadow:0 0 0 4px rgba(79,134,255,.12);
+        background:rgba(255,255,255,.08);
+      }
+
+      .field.is-error input,
+      .field.is-error textarea{
+        border-color:rgba(255,82,97,.8);
+        box-shadow:0 0 0 4px rgba(255,82,97,.12);
+        animation:shakeX .35s ease;
+      }
+
+      .form-status{
+        font-size:14px;
+        min-height:20px;
+      }
+
+      .mobile-success-modal{
+        position:fixed;
+        inset:0;
+        z-index:1600;
+        display:flex;
+        align-items:flex-end;
+        justify-content:center;
+        padding:16px 16px max(16px, env(safe-area-inset-bottom));
+        background:rgba(5,10,20,.5);
+        opacity:0;
+        pointer-events:none;
+        transition:opacity .35s var(--mobile-ease);
+      }
+
+      .mobile-success-modal.active{
+        opacity:1;
+        pointer-events:auto;
+      }
+
+      .mobile-success-modal .modal-card{
+        width:100%;
+        border-radius:26px;
+        padding:24px 20px;
+        background:linear-gradient(180deg, rgba(20,35,69,.96), rgba(8,16,30,.98));
+        border:1px solid rgba(255,255,255,.12);
+        box-shadow:0 26px 60px rgba(0,0,0,.36);
+        transform:translateY(32px);
+        transition:transform .38s var(--mobile-ease);
+      }
+
+      .mobile-success-modal.active .modal-card{
+        transform:translateY(0);
+      }
+
+      .mobile-success-modal .modal-icon{
+        width:58px;
+        height:58px;
+        border-radius:18px;
+        display:grid;
+        place-items:center;
+        margin-bottom:16px;
+        background:linear-gradient(135deg, rgba(255,212,71,.22), rgba(79,134,255,.22));
+        font-size:28px;
+      }
+
+      .mobile-success-modal h3{
+        font-size:26px;
+        line-height:1;
+        margin-bottom:10px;
+      }
+
+      .mobile-success-modal p{
+        color:var(--muted);
+        margin-bottom:18px;
+      }
+
+      .mobile-only-gallery{
+        display:block;
+      }
+
+      .works-grid{
+        display:grid;
+        grid-template-columns:repeat(2, 1fr);
+        gap:12px;
+      }
+
+      .work-card{
+        position:relative;
+        min-height:142px;
+        border-radius:22px;
+        overflow:hidden;
+        border:1px solid rgba(255,255,255,.10);
+        box-shadow:0 20px 34px rgba(0,0,0,.22);
+        background:rgba(255,255,255,.06);
+        cursor:pointer;
+        transition:transform .35s var(--mobile-ease), box-shadow .35s var(--mobile-ease), opacity .35s var(--mobile-ease);
+      }
+
+      .work-card:active{
+        transform:scale(.985);
+      }
+
+      .work-card img{
+        width:100%;
+        height:100%;
+        min-height:142px;
+        object-fit:cover;
+      }
+
+      .work-card::after{
+        content:attr(data-title);
+        position:absolute;
+        left:12px;
+        right:12px;
+        bottom:12px;
+        padding:10px 12px;
         border-radius:16px;
+        background:rgba(8,16,30,.58);
+        backdrop-filter:blur(10px);
+        color:#fff;
+        font-size:13px;
+        font-weight:700;
+        line-height:1.3;
+      }
+
+      .mobile-lightbox{
+        position:fixed;
+        inset:0;
+        z-index:1700;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:16px;
+        background:rgba(4,8,18,.92);
+        opacity:0;
+        pointer-events:none;
+        transition:opacity .35s var(--mobile-ease);
+      }
+
+      .mobile-lightbox.active{
+        opacity:1;
+        pointer-events:auto;
+      }
+
+      .mobile-lightbox-content{
+        width:100%;
+        height:100%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        position:relative;
+      }
+
+      .mobile-lightbox img{
+        width:100%;
+        max-height:84dvh;
+        object-fit:contain;
+        border-radius:24px;
+        box-shadow:0 30px 60px rgba(0,0,0,.45);
+      }
+
+      .lightbox-close{
+        position:absolute;
+        top:max(8px, env(safe-area-inset-top));
+        right:0;
+        width:48px;
+        height:48px;
+        border:none;
+        border-radius:16px;
+        background:rgba(255,255,255,.08);
+        color:#fff;
+        font-size:24px;
+        backdrop-filter:blur(12px);
+      }
+
+      .contact-grid{
+        gap:14px;
+      }
+
+      .contact-list{
+        gap:12px;
+      }
+
+      .contact-item{
+        padding:16px;
+        border-radius:20px;
+        transition:transform .35s var(--mobile-ease), box-shadow .35s var(--mobile-ease), background .35s var(--mobile-ease);
+      }
+
+      .contact-item a{
+        text-decoration:none;
       }
 
       .map-frame{
-        border-radius:22px;
+        min-height:300px;
+        border-radius:24px;
+        position:relative;
+        overflow:hidden;
       }
 
       .map-frame iframe{
-        min-height:320px;
+        min-height:300px;
+        height:300px;
+      }
+
+      .map-expand{
+        position:absolute;
+        left:14px;
+        right:14px;
+        bottom:14px;
+        z-index:2;
+        min-height:48px;
+        border-radius:16px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        background:rgba(8,16,30,.58);
+        border:1px solid rgba(255,255,255,.12);
+        backdrop-filter:blur(12px);
+        color:#fff;
+        font-weight:700;
+      }
+
+      .footer{
+        padding:18px 0 104px;
+      }
+
+      .footer-shell{
+        padding:22px 18px 18px;
+        border-radius:28px;
+      }
+
+      .footer-top,
+      .footer-brand,
+      .footer-actions{
+        grid-template-columns:1fr;
+      }
+
+      .footer-top{
+        gap:16px;
       }
 
       .footer-brand{
-        align-items:flex-start;
+        display:grid;
+        gap:10px;
       }
 
       .footer-brand img{
-        width:72px;
+        width:112px;
         height:72px;
       }
 
@@ -1492,23 +2153,88 @@
         font-size:24px;
       }
 
+      .footer-grid{
+        margin-bottom:18px;
+      }
+
+      .footer-box{
+        padding:18px;
+        border-radius:20px;
+        transition:transform .35s var(--mobile-ease), box-shadow .35s var(--mobile-ease);
+      }
+
       .footer-bottom{
+        padding-bottom:max(2px, env(safe-area-inset-bottom));
         font-size:13px;
       }
 
       .sticky-call{
         display:block;
-        left:10px;
-        right:10px;
-        bottom:10px;
+        left:12px;
+        right:12px;
+        bottom:max(12px, env(safe-area-inset-bottom));
+        opacity:0;
+        transform:translateY(22px);
+        pointer-events:none;
+        transition:opacity .35s var(--mobile-ease), transform .35s var(--mobile-ease);
+      }
+
+      .sticky-call.show{
+        opacity:1;
+        transform:translateY(0);
+        pointer-events:auto;
+      }
+
+      .sticky-call-inner{
+        display:grid;
+        grid-template-columns:1fr 1.2fr;
+        gap:10px;
+        padding:10px;
+        border-radius:22px;
+        background:rgba(11,23,54,.56);
+        border:1px solid rgba(255,255,255,.12);
+        backdrop-filter:blur(18px);
+        box-shadow:0 22px 50px rgba(0,0,0,.28);
       }
 
       .sticky-call a{
-        min-height:56px;
+        min-height:52px;
         border-radius:16px;
-        font-size:15px;
+        font-size:14px;
+        font-weight:900;
+        box-shadow:none;
+      }
+
+      .sticky-call .sticky-phone{
+        background:linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.08)) padding-box,
+                   linear-gradient(135deg, rgba(255,255,255,.28), rgba(79,134,255,.42)) border-box;
+        border:1px solid transparent;
+      }
+
+      .sticky-call .sticky-measure{
+        background:var(--grad-red);
+      }
+
+      .reveal{
+        opacity:1;
+        transform:none;
       }
     }
+
+    @media (max-width: 420px){
+      .hero-main h1{
+        font-size:34px;
+      }
+
+      .brand img{
+        width:126px;
+      }
+
+      .step{
+        min-width:88%;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2027,6 +2753,36 @@
       </div>
     </section>
 
+
+    <section class="section mobile-only-gallery" id="works" aria-label="Наши работы">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Наши работы</span>
+            <h2>Реальные решения для дома и бизнеса</h2>
+          </div>
+          <p>
+            Несколько направлений, с которыми к нам обращаются чаще всего: производство, фасадное остекление, установка окон и готовые ПВХ-конструкции.
+          </p>
+        </div>
+
+        <div class="works-grid">
+          <button class="work-card" type="button" data-title="Производство ПВХ-конструкций" data-full="hero-photo.jpg">
+            <img src="hero-photo.jpg" alt="Производство ПВХ-конструкций">
+          </button>
+          <button class="work-card" type="button" data-title="Фасадное остекление" data-full="fon.jpg">
+            <img src="fon.jpg" alt="Фасадное остекление">
+          </button>
+          <button class="work-card" type="button" data-title="Монтаж окон" data-full="about-photo.jpg">
+            <img src="about-photo.jpg" alt="Монтаж окон">
+          </button>
+          <button class="work-card" type="button" data-title="Фирменные решения" data-full="logo.png">
+            <img src="logo.png" alt="Фирменный знак Фабрики Окон">
+          </button>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="contacts">
       <div class="container">
         <div class="section-head reveal">
@@ -2087,6 +2843,7 @@
               loading="lazy"
               style="border:0;">
             </iframe>
+            <a class="map-expand ripple-host" href="https://yandex.ru/maps/?pt=36.788733,46.759149&z=17&l=map" target="_blank" rel="noopener">Открыть карту</a>
           </div>
         </div>
       </div>
@@ -2141,89 +2898,430 @@
     </div>
   </footer>
 
-  <div class="sticky-call">
-    <a href="#measure">Оставить заявку на замер</a>
+  <div class="sticky-call" id="stickyCall">
+    <div class="sticky-call-inner">
+      <a class="sticky-phone ripple-host" href="tel:+79900160318">Позвонить</a>
+      <a class="sticky-measure ripple-host" href="#measure">Заявка на замер</a>
+    </div>
   </div>
 
+  <div class="mobile-success-modal" id="successModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-icon">✓</div>
+      <h3>Заявка отправлена</h3>
+      <p>Спасибо. Мы получили ваш запрос и свяжемся с вами в ближайшее время.</p>
+      <button class="btn btn-primary ripple-host" type="button" id="successModalClose">Отлично</button>
+    </div>
+  </div>
+
+  <div class="mobile-lightbox" id="mobileLightbox" aria-hidden="true">
+    <div class="mobile-lightbox-content">
+      <button class="lightbox-close" type="button" id="lightboxClose" aria-label="Закрыть просмотр">×</button>
+      <img src="" alt="" id="lightboxImage">
+    </div>
+  </div>
+
+  
   <script>
-    const burgerBtn = document.getElementById('burgerBtn');
-    const closeMenu = document.getElementById('closeMenu');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
+    (() => {
+      const MOBILE_WIDTH = 768;
+      const body = document.body;
+      const burgerBtn = document.getElementById('burgerBtn');
+      const closeMenu = document.getElementById('closeMenu');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuPanel = mobileMenu ? mobileMenu.querySelector('.mobile-menu-panel') : null;
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+      const form = document.getElementById('measureForm');
+      const status = document.getElementById('formStatus');
+      const stickyCall = document.getElementById('stickyCall');
+      const successModal = document.getElementById('successModal');
+      const successModalClose = document.getElementById('successModalClose');
+      const lightbox = document.getElementById('mobileLightbox');
+      const lightboxImage = document.getElementById('lightboxImage');
+      const lightboxClose = document.getElementById('lightboxClose');
+      const workCards = document.querySelectorAll('.work-card');
+      const hero = document.querySelector('.hero');
+      const heroBeforeTarget = hero;
+      const servicesGrid = document.querySelector('.services-grid');
+      const trustGrid = document.querySelector('.trust-grid');
+      const advantagesGrid = document.querySelector('.advantages-grid');
 
-    if (burgerBtn) {
-      burgerBtn.addEventListener('click', () => {
+      let servicesSwiper = null;
+      let trustSwiper = null;
+      let advantagesSwiper = null;
+      let touchStartX = 0;
+      let lightboxTouchStartY = 0;
+
+      const isMobile = () => window.innerWidth <= MOBILE_WIDTH;
+
+      const setBodyLock = (locked, className) => {
+        body.classList.toggle(className, locked);
+      };
+
+      const openMenu = () => {
+        if (!mobileMenu || !isMobile()) return;
         mobileMenu.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
-    }
+        setBodyLock(true, 'mobile-menu-open');
+      };
 
-    if (closeMenu) {
-      closeMenu.addEventListener('click', () => {
+      const closeMobileMenu = () => {
+        if (!mobileMenu) return;
         mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
+        setBodyLock(false, 'mobile-menu-open');
+      };
+
+      burgerBtn && burgerBtn.addEventListener('click', openMenu);
+      closeMenu && closeMenu.addEventListener('click', closeMobileMenu);
+
+      mobileMenu && mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) closeMobileMenu();
       });
-    }
 
-    if (mobileMenu) {
-      mobileMenu.addEventListener('click', (e) => {
-        if (e.target === mobileMenu) {
-          mobileMenu.classList.remove('active');
-          document.body.style.overflow = '';
-        }
+      mobileLinks.forEach(link => {
+        link.innerHTML = `${link.dataset.icon || ''}${link.textContent}`;
+        link.addEventListener('click', closeMobileMenu);
       });
-    }
 
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
+      const menuIcons = ['🪟', '🏭', '⚙️', '📏', '⭐', '📍'];
+      mobileLinks.forEach((link, index) => {
+        const text = link.textContent.trim();
+        link.innerHTML = `<span aria-hidden="true">${menuIcons[index] || '•'}</span><span>${text}</span>`;
       });
-    });
 
-    const reveals = document.querySelectorAll('.reveal');
+      if (mobileMenuPanel) {
+        mobileMenuPanel.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].clientX;
+        }, { passive: true });
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, {
-      threshold: 0.12
-    });
+        mobileMenuPanel.addEventListener('touchend', (e) => {
+          const deltaX = e.changedTouches[0].clientX - touchStartX;
+          if (deltaX < -60) {
+            closeMobileMenu();
+          }
+        }, { passive: true });
+      }
 
-    reveals.forEach(el => observer.observe(el));
+      const addRipple = (event) => {
+        const host = event.currentTarget;
+        if (!host || !isMobile()) return;
+        const circle = document.createElement('span');
+        const rect = host.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height) * 1.2;
+        const x = (event.touches ? event.touches[0].clientX : event.clientX) - rect.left;
+        const y = (event.touches ? event.touches[0].clientY : event.clientY) - rect.top;
 
-    const form = document.getElementById('measureForm');
-    const status = document.getElementById('formStatus');
+        circle.className = 'ripple';
+        circle.style.width = `${size}px`;
+        circle.style.height = `${size}px`;
+        circle.style.left = `${x}px`;
+        circle.style.top = `${y}px`;
+        host.appendChild(circle);
 
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
+        circle.addEventListener('animationend', () => circle.remove());
+      };
 
-      status.textContent = 'Отправка...';
+      const attachRipple = () => {
+        const rippleHosts = document.querySelectorAll('.btn, .service, .adv, .trust-card, .work-card, .footer-box, .contact-item, .about-item, .measure-line, .burger, .mobile-close, .mobile-links a, .map-expand, .sticky-call a');
+        rippleHosts.forEach(el => {
+          if (!el.classList.contains('ripple-host')) el.classList.add('ripple-host');
+          if (el.dataset.rippleBound) return;
+          el.dataset.rippleBound = 'true';
+          el.addEventListener('pointerdown', addRipple, { passive: true });
+        });
+      };
 
-      const formData = new FormData(form);
+      attachRipple();
 
-      try {
-        const response = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: formData
+      const revealElements = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            entry.target.style.transitionDelay = `${Math.min(index * 0.03, 0.18)}s`;
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16, rootMargin: '0px 0px -10% 0px' });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+
+      const splitHeroTitle = () => {
+        const title = document.querySelector('.hero-main h1');
+        if (!title || title.dataset.splitReady) return;
+        const original = title.textContent.trim();
+        title.dataset.text = original;
+        title.innerHTML = original.split('').map(char => {
+          if (char === ' ') return '<span class="split-char">&nbsp;</span>';
+          return `<span class="split-char">${char}</span>`;
+        }).join('');
+        title.dataset.splitReady = 'true';
+      };
+
+      const runHeroAnimations = () => {
+        if (!window.gsap || !isMobile()) return;
+        splitHeroTitle();
+        gsap.registerPlugin(ScrollTrigger);
+
+        const chars = document.querySelectorAll('.hero-main .split-char');
+        const lead = document.querySelectorAll('.hero-lead');
+        const heroButtons = document.querySelectorAll('.hero-actions .btn');
+        const heroPoints = document.querySelectorAll('.hero-points .point');
+
+        gsap.set(chars, { opacity: 0, y: 26, rotateX: -70 });
+        gsap.set([lead, heroButtons, heroPoints], { opacity: 0, y: 26 });
+
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        tl.to(chars, { opacity: 1, y: 0, rotateX: 0, duration: 0.62, stagger: 0.018 })
+          .to(lead, { opacity: 1, y: 0, duration: 0.56, stagger: 0.1 }, '-=0.28')
+          .to(heroButtons, { opacity: 1, y: 0, duration: 0.52, stagger: 0.08 }, '-=0.24')
+          .to(heroPoints, { opacity: 1, y: 0, duration: 0.52, stagger: 0.07 }, '-=0.18');
+
+        ScrollTrigger.create({
+          trigger: hero,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 0.7,
+          onUpdate: (self) => {
+            const progress = self.progress;
+            hero.style.setProperty('--hero-progress', progress.toFixed(3));
+            hero.style.transform = 'translateZ(0)';
+            heroBeforeTarget.style.setProperty('--hero-scale', (1 + progress * 0.08).toFixed(3));
+            heroBeforeTarget.style.setProperty('--hero-shift', `${progress * 48}px`);
+            hero.style.setProperty('--hero-overlay', `${0.72 + progress * 0.12}`);
+            hero.style.setProperty('--hero-opacity', `${1 - progress * 0.08}`);
+            hero.style.setProperty('--hero-translate', `${progress * -14}px`);
+            hero.style.setProperty('--hero-point-opacity', `${1 - progress * 0.25}`);
+          }
         });
 
-        const result = await response.json();
+        ScrollTrigger.create({
+          trigger: '.hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+          onUpdate: (self) => {
+            const progress = self.progress;
+            hero.style.setProperty('--hero-bg-y', `${progress * 40}px`);
+            hero.style.setProperty('--hero-content-y', `${progress * -10}px`);
+            hero.style.setProperty('--hero-content-scale', `${1 - progress * 0.02}`);
+            hero.style.setProperty('--hero-content-opacity', `${1 - progress * 0.08}`);
+            hero.style.transform = `translateY(${progress * -10}px)`;
+          }
+        });
+      };
 
-        if (result.success) {
-          status.textContent = 'Заявка отправлена.';
-          form.reset();
-        } else {
-          status.textContent = 'Ошибка отправки. Проверьте access_key.';
+      const setupMobileHeroCSSVars = () => {
+        if (!hero) return;
+        hero.style.setProperty('--hero-bg-y', '0px');
+        hero.style.setProperty('--hero-content-y', '0px');
+        hero.style.setProperty('--hero-content-scale', '1');
+        hero.style.setProperty('--hero-content-opacity', '1');
+      };
+      setupMobileHeroCSSVars();
+
+      const makeSwiper = (container, options = {}) => {
+        if (!container || !isMobile() || typeof Swiper === 'undefined') return null;
+        if (container.classList.contains('swiper-initialized')) return container.swiper || null;
+        if (!container.dataset.originalHtml) {
+          container.dataset.originalHtml = container.innerHTML;
         }
-      } catch (error) {
-        status.textContent = 'Не удалось отправить форму.';
+        const wrapper = document.createElement('div');
+        wrapper.className = 'swiper-wrapper';
+        const children = Array.from(container.children);
+
+        container.classList.add('swiper', 'mobile-swiper', 'mobile-swiper-ready');
+        children.forEach(child => {
+          child.classList.add('swiper-slide');
+          wrapper.appendChild(child);
+        });
+        container.innerHTML = '';
+        container.appendChild(wrapper);
+
+        const pagination = document.createElement('div');
+        pagination.className = 'swiper-pagination';
+        container.appendChild(pagination);
+
+        return new Swiper(container, {
+          slidesPerView: 1.08,
+          spaceBetween: 14,
+          speed: 520,
+          grabCursor: true,
+          resistanceRatio: 0.82,
+          pagination: {
+            el: pagination,
+            clickable: true
+          },
+          ...options
+        });
+      };
+
+      const destroySwiper = (instance, container) => {
+        if (!container) return;
+        if (instance) {
+          instance.destroy(true, true);
+        }
+        if (container.dataset.originalHtml) {
+          container.innerHTML = container.dataset.originalHtml;
+          container.classList.remove('swiper', 'mobile-swiper', 'mobile-swiper-ready');
+        }
+      };
+
+      const initMobileSliders = () => {
+        if (isMobile()) {
+          servicesSwiper = servicesSwiper || makeSwiper(servicesGrid, {});
+          trustSwiper = trustSwiper || makeSwiper(trustGrid, { slidesPerView: 1.06 });
+          advantagesSwiper = advantagesSwiper || makeSwiper(advantagesGrid, {});
+        } else {
+          destroySwiper(servicesSwiper, servicesGrid);
+          destroySwiper(trustSwiper, trustGrid);
+          destroySwiper(advantagesSwiper, advantagesGrid);
+          servicesSwiper = null;
+          trustSwiper = null;
+          advantagesSwiper = null;
+        }
+      };
+
+      const toggleStickyBar = () => {
+        if (!stickyCall) return;
+        if (isMobile() && window.scrollY > 300) stickyCall.classList.add('show');
+        else stickyCall.classList.remove('show');
+      };
+
+      window.addEventListener('scroll', toggleStickyBar, { passive: true });
+      window.addEventListener('resize', () => {
+        initMobileSliders();
+        toggleStickyBar();
+        if (!isMobile()) {
+          closeMobileMenu();
+          closeSuccessModal();
+          closeLightbox();
+        }
+      });
+
+      toggleStickyBar();
+      initMobileSliders();
+
+      const validateField = (field) => {
+        if (!field) return true;
+        const input = field.querySelector('input, textarea');
+        if (!input) return true;
+        const valid = input.checkValidity() && input.value.trim() !== '';
+        field.classList.toggle('is-error', !valid);
+        return valid;
+      };
+
+      const clearFieldErrorOnInput = () => {
+        document.querySelectorAll('.field input, .field textarea').forEach(input => {
+          input.addEventListener('input', () => {
+            input.parentElement.classList.remove('is-error');
+          });
+        });
+      };
+      clearFieldErrorOnInput();
+
+      const openSuccessModal = () => {
+        if (!successModal || !isMobile()) return;
+        successModal.classList.add('active');
+        successModal.setAttribute('aria-hidden', 'false');
+        setBodyLock(true, 'modal-open');
+      };
+
+      const closeSuccessModal = () => {
+        if (!successModal) return;
+        successModal.classList.remove('active');
+        successModal.setAttribute('aria-hidden', 'true');
+        setBodyLock(false, 'modal-open');
+      };
+
+      successModalClose && successModalClose.addEventListener('click', closeSuccessModal);
+      successModal && successModal.addEventListener('click', (e) => {
+        if (e.target === successModal) closeSuccessModal();
+      });
+
+      const openLightbox = (src, alt) => {
+        if (!lightbox || !lightboxImage || !isMobile()) return;
+        lightboxImage.src = src;
+        lightboxImage.alt = alt || '';
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        setBodyLock(true, 'modal-open');
+      };
+
+      const closeLightbox = () => {
+        if (!lightbox) return;
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImage.src = '';
+        setBodyLock(false, 'modal-open');
+      };
+
+      workCards.forEach(card => {
+        card.addEventListener('click', () => {
+          openLightbox(card.dataset.full || card.querySelector('img')?.src || '', card.dataset.title || card.querySelector('img')?.alt || '');
+        });
+      });
+
+      lightboxClose && lightboxClose.addEventListener('click', closeLightbox);
+      lightbox && lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      lightbox && lightbox.addEventListener('touchstart', (e) => {
+        lightboxTouchStartY = e.changedTouches[0].clientY;
+      }, { passive: true });
+
+      lightbox && lightbox.addEventListener('touchend', (e) => {
+        const deltaY = e.changedTouches[0].clientY - lightboxTouchStartY;
+        if (Math.abs(deltaY) > 80) closeLightbox();
+      }, { passive: true });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeMobileMenu();
+          closeSuccessModal();
+          closeLightbox();
+        }
+      });
+
+      if (form) {
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+
+          const fields = Array.from(form.querySelectorAll('.field'));
+          const isValid = fields.map(validateField).every(Boolean);
+
+          if (!isValid) {
+            status.textContent = 'Пожалуйста, заполните обязательные поля.';
+            return;
+          }
+
+          status.textContent = 'Отправка...';
+          const formData = new FormData(form);
+
+          try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+              status.textContent = 'Заявка отправлена.';
+              form.reset();
+              openSuccessModal();
+            } else {
+              status.textContent = 'Ошибка отправки. Проверьте access_key.';
+            }
+          } catch (error) {
+            status.textContent = 'Не удалось отправить форму.';
+          }
+        });
       }
-    });
+
+      runHeroAnimations();
+    })();
   </script>
+
 </body>
 </html>
-
