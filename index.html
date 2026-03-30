@@ -7,9 +7,9 @@
   <meta name="description" content="Фабрика Окон в Бердянске. Окна ПВХ, двери ПВХ, балконы, лоджии, роллеты, жалюзи. Замер, изготовление и установка." />
   <meta name="theme-color" content="#214fc6" />
 <link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1162,441 +1162,6 @@
       transform:translateY(0);
     }
 
-
-    .theme-toggle{
-      width:54px;
-      height:54px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.08);
-      color:#fff;
-      cursor:pointer;
-      font-size:20px;
-      display:grid;
-      place-items:center;
-      transition:.28s ease;
-      box-shadow:0 10px 24px rgba(0,0,0,.12);
-    }
-
-    .theme-toggle:hover{
-      transform:translateY(-3px) rotate(6deg);
-      background:rgba(255,255,255,.12);
-    }
-
-    body[data-theme="day"]{
-      --bg:#eff5ff;
-      --bg-2:#dbe8ff;
-      --text:#243453;
-      --title:#0f2248;
-      --muted:#516888;
-      --line:rgba(21,46,99,.10);
-
-      --card:linear-gradient(180deg, rgba(255,255,255,.92), rgba(246,250,255,.84));
-      --card-soft:linear-gradient(180deg, rgba(255,255,255,.90), rgba(242,247,255,.80));
-      --shadow:0 18px 40px rgba(28,56,110,.12);
-      background:
-        radial-gradient(circle at top left, rgba(106,161,255,.16), transparent 30%),
-        radial-gradient(circle at right center, rgba(255,82,97,.08), transparent 28%),
-        linear-gradient(180deg, rgba(245,249,255,.98), rgba(232,241,255,.98));
-      color:var(--text);
-    }
-
-    body[data-theme="day"] .topline{
-      background:rgba(255,255,255,.72);
-      border-bottom:1px solid rgba(20,44,92,.08);
-    }
-
-    body[data-theme="day"] .topline-wrap{
-      color:#2b4268;
-    }
-
-    body[data-theme="day"] .header{
-      background:linear-gradient(to bottom, rgba(239,245,255,.92), rgba(239,245,255,0));
-    }
-
-    body[data-theme="day"] .nav a,
-    body[data-theme="day"] .contact-item span,
-    body[data-theme="day"] .contact-item a,
-    body[data-theme="day"] .footer-box p,
-    body[data-theme="day"] .footer-box a{
-      color:#395276;
-    }
-
-    body[data-theme="day"] .nav a:hover{
-      background:rgba(79,134,255,.10);
-      color:#17315f;
-    }
-
-    body[data-theme="day"] .hero::before{
-      background:
-        linear-gradient(90deg, rgba(241,246,255,.92) 0%, rgba(241,246,255,.78) 38%, rgba(241,246,255,.48) 100%),
-        url("hero-bg.jpg") center/cover no-repeat;
-    }
-
-    body[data-theme="day"] .hero-main h1,
-    body[data-theme="day"] .section-head h2{
-      text-shadow:none;
-    }
-
-    body[data-theme="day"] .hero-lead{
-      color:#40597c;
-    }
-
-    body[data-theme="day"] .eyebrow{
-      background:rgba(255,255,255,.72);
-      color:#1b3b71;
-      border-color:rgba(20,44,92,.10);
-    }
-
-    body[data-theme="day"] .point,
-    body[data-theme="day"] .hero-mini,
-    body[data-theme="day"] .about-item,
-    body[data-theme="day"] .measure-line,
-    body[data-theme="day"] .contact-item,
-    body[data-theme="day"] .footer-box{
-      background:var(--card-soft);
-      border-color:rgba(20,44,92,.08);
-      box-shadow:none;
-    }
-
-    body[data-theme="day"] .field input,
-    body[data-theme="day"] .field textarea,
-    body[data-theme="day"] .calc-input,
-    body[data-theme="day"] .calc-select{
-      background:rgba(255,255,255,.88);
-      color:#17315f;
-      border-color:rgba(20,44,92,.10);
-    }
-
-    body[data-theme="day"] .field input::placeholder,
-    body[data-theme="day"] .field textarea::placeholder,
-    body[data-theme="day"] .calc-input::placeholder{
-      color:#7d91b2;
-    }
-
-    body[data-theme="day"] .mobile-menu-panel{
-      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(237,244,255,.98));
-    }
-
-    body[data-theme="day"] .mobile-links a{
-      background:rgba(79,134,255,.08);
-      color:#17315f;
-      border-color:rgba(20,44,92,.08);
-    }
-
-    body[data-theme="day"] .mobile-close,
-    body[data-theme="day"] .theme-toggle,
-    body[data-theme="day"] .burger{
-      background:rgba(79,134,255,.08);
-      color:#17315f;
-      border-color:rgba(20,44,92,.08);
-    }
-
-    .hero-main h1 .accent{
-      display:block;
-      background:linear-gradient(135deg,#6aa1ff 0%, #4f86ff 36%, #ff5261 100%);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-
-    .hero-note{
-      margin-top:18px;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 16px;
-      border-radius:16px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      color:#edf3ff;
-      font-weight:600;
-      backdrop-filter:blur(12px);
-    }
-
-    body[data-theme="day"] .hero-note{
-      background:rgba(255,255,255,.82);
-      color:#28466e;
-      border-color:rgba(20,44,92,.08);
-    }
-
-    .hero-actions .btn{
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero-actions .btn::after,
-    .btn-primary::after,
-    .btn-blue::after{
-      content:"";
-      position:absolute;
-      inset:auto -40% -120% auto;
-      width:140px;
-      height:140px;
-      background:radial-gradient(circle, rgba(255,255,255,.34), transparent 70%);
-      transform:translate(0,0);
-      transition:transform .45s ease;
-      pointer-events:none;
-    }
-
-    .hero-actions .btn:hover::after,
-    .btn-primary:hover::after,
-    .btn-blue:hover::after{
-      transform:translate(-28px,-40px);
-    }
-
-    .card,
-    .service,
-    .adv,
-    .trust-card,
-    .step,
-    .about-item,
-    .contact-item{
-      transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease, background .28s ease;
-    }
-
-    .card:hover,
-    .service:hover,
-    .adv:hover,
-    .trust-card:hover,
-    .step:hover{
-      box-shadow:0 26px 60px rgba(0,0,0,.22);
-      border-color:rgba(255,255,255,.18);
-    }
-
-    body[data-theme="day"] .card:hover,
-    body[data-theme="day"] .service:hover,
-    body[data-theme="day"] .adv:hover,
-    body[data-theme="day"] .trust-card:hover,
-    body[data-theme="day"] .step:hover{
-      box-shadow:0 24px 50px rgba(28,56,110,.12);
-      border-color:rgba(79,134,255,.18);
-    }
-
-    .pulse-dot{
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      background:#4dff92;
-      box-shadow:0 0 0 rgba(77,255,146,.55);
-      animation:pulse 1.8s infinite;
-      flex-shrink:0;
-    }
-
-    @keyframes pulse{
-      0%{ box-shadow:0 0 0 0 rgba(77,255,146,.55); }
-      70%{ box-shadow:0 0 0 14px rgba(77,255,146,0); }
-      100%{ box-shadow:0 0 0 0 rgba(77,255,146,0); }
-    }
-
-    .hero-photo::after,
-    .about-photo::after{
-      content:"";
-      position:absolute;
-      inset:auto -20% -20% auto;
-      width:220px;
-      height:220px;
-      background:radial-gradient(circle, rgba(255,212,71,.24), transparent 70%);
-      filter:blur(10px);
-      pointer-events:none;
-    }
-
-    .service-icon,
-    .adv-badge,
-    .trust-mark,
-    .step-num,
-    .about-line .i,
-    .measure-line .i,
-    .contact-item .icon{
-      transition:transform .25s ease, box-shadow .25s ease;
-    }
-
-    .service:hover .service-icon,
-    .adv:hover .adv-badge,
-    .trust-card:hover .trust-mark,
-    .step:hover .step-num,
-    .about-item:hover .about-tick,
-    .contact-item:hover .icon{
-      transform:translateY(-3px) scale(1.04);
-    }
-
-    .mosquito-section{
-      position:relative;
-      overflow:hidden;
-    }
-
-    .mosquito-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:20px;
-      align-items:stretch;
-    }
-
-    .calc-card,
-    .calc-info{
-      padding:30px;
-    }
-
-    .calc-form{
-      display:grid;
-      gap:18px;
-    }
-
-    .calc-row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-    }
-
-    .calc-field{
-      display:grid;
-      gap:8px;
-    }
-
-    .calc-field label{
-      font-size:14px;
-      font-weight:700;
-      color:#e5edff;
-    }
-
-    body[data-theme="day"] .calc-field label{
-      color:#28466e;
-    }
-
-    .calc-input,
-    .calc-select{
-      width:100%;
-      min-height:56px;
-      padding:0 16px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.11);
-      background:rgba(255,255,255,.07);
-      color:#fff;
-      outline:none;
-    }
-
-    .calc-select option{
-      color:#172038;
-    }
-
-    .calc-output{
-      display:grid;
-      gap:12px;
-      padding:20px;
-      border-radius:24px;
-      background:rgba(255,255,255,.07);
-      border:1px solid rgba(255,255,255,.10);
-    }
-
-    body[data-theme="day"] .calc-output{
-      background:rgba(79,134,255,.06);
-      border-color:rgba(20,44,92,.08);
-    }
-
-    .calc-total{
-      font-size:40px;
-      line-height:1;
-      font-weight:900;
-      color:#fff;
-      letter-spacing:-.04em;
-    }
-
-    body[data-theme="day"] .calc-total{
-      color:#17315f;
-    }
-
-    .calc-sub{
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    .calc-bullets{
-      display:grid;
-      gap:14px;
-      margin-top:20px;
-    }
-
-    .calc-bullet{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      padding:16px;
-      border-radius:18px;
-      background:var(--card-soft);
-      border:1px solid rgba(255,255,255,.10);
-    }
-
-    .calc-bullet strong{
-      display:block;
-      color:#fff;
-      margin-bottom:5px;
-    }
-
-    body[data-theme="day"] .calc-bullet strong{
-      color:#17315f;
-    }
-
-    .theme-switch-note{
-      font-size:13px;
-      color:var(--muted);
-      margin-top:8px;
-    }
-
-    .scroll-top{
-      position:fixed;
-      right:18px;
-      bottom:92px;
-      z-index:910;
-      width:54px;
-      height:54px;
-      border:none;
-      border-radius:18px;
-      display:grid;
-      place-items:center;
-      cursor:pointer;
-      background:var(--grad-blue);
-      color:#fff;
-      box-shadow:0 18px 36px rgba(79,134,255,.28);
-      opacity:0;
-      transform:translateY(16px);
-      pointer-events:none;
-      transition:.28s ease;
-    }
-
-    .scroll-top.show{
-      opacity:1;
-      transform:translateY(0);
-      pointer-events:auto;
-    }
-
-    .mobile-theme{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:16px 18px;
-      border-radius:16px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
-      color:#fff;
-    }
-
-    body[data-theme="day"] .mobile-theme{
-      background:rgba(79,134,255,.08);
-      color:#17315f;
-      border-color:rgba(20,44,92,.08);
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior:auto; }
-      *,
-      *::before,
-      *::after{
-        animation:none !important;
-        transition:none !important;
-      }
-    }
-
     @media (max-width:1280px){
       .header-shell{
         grid-template-columns:auto auto auto;
@@ -1725,9 +1290,688 @@
         display:block;
       }
     }
+      html{
+      overflow-x:hidden;
+      scroll-padding-top:110px;
+    }
+
+    body.menu-open{
+      overflow:hidden;
+      touch-action:none;
+    }
+
+    a,
+    button,
+    input,
+    textarea,
+    .card,
+    .trust-mark,
+    .service-icon,
+    .adv-badge,
+    .about-line .i,
+    .contact-item .icon,
+    .step-num,
+    .point,
+    .hero-mini,
+    .mobile-menu-panel{
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .header,
+    .topline,
+    .card,
+    .btn,
+    .point,
+    .hero-mini,
+    .service,
+    .adv,
+    .trust-card,
+    .step,
+    .about-item,
+    .contact-item,
+    .footer-box,
+    .service-icon,
+    .trust-mark,
+    .adv-badge,
+    .about-line .i,
+    .contact-item .icon,
+    .step-num,
+    .hero-photo,
+    .about-photo,
+    .mobile-menu-panel{
+      will-change:transform, opacity;
+    }
+
+    .btn,
+    .nav a,
+    .mobile-links a,
+    .service,
+    .adv,
+    .trust-card,
+    .step,
+    .about-item,
+    .contact-item,
+    .footer-box,
+    .point,
+    .hero-mini,
+    .service-icon,
+    .trust-mark,
+    .adv-badge,
+    .about-line .i,
+    .contact-item .icon,
+    .step-num,
+    .field input,
+    .field textarea,
+    .brand img{
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background-color .25s ease,
+        border-color .25s ease,
+        color .25s ease,
+        opacity .25s ease,
+        filter .25s ease;
+    }
+
+    .btn{
+      position:relative;
+      isolation:isolate;
+    }
+
+    .btn::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0));
+      opacity:0;
+      transition:opacity .25s ease;
+      pointer-events:none;
+    }
+
+    .btn:hover::after,
+    .btn:focus-visible::after{
+      opacity:1;
+    }
+
+    .hero-actions .btn-primary,
+    .sticky-call a{
+      animation:pulse-soft 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-soft{
+      0%, 100%{
+        transform:translateY(0) scale(1);
+        box-shadow:0 20px 35px rgba(255,82,97,.28);
+      }
+      50%{
+        transform:translateY(-2px) scale(1.01);
+        box-shadow:0 24px 42px rgba(255,82,97,.34);
+      }
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translate3d(0,26px,0);
+      transition:
+        opacity .75s cubic-bezier(.22,1,.36,1),
+        transform .75s cubic-bezier(.22,1,.36,1);
+      transition-delay:var(--reveal-delay, 0s);
+    }
+
+    .reveal.show{
+      opacity:1;
+      transform:translate3d(0,0,0);
+    }
+
+    .mobile-menu{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:opacity .28s ease, visibility .28s ease;
+    }
+
+    .mobile-menu.active{
+      display:block;
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+    }
+
+    .mobile-menu-panel{
+      transform:translate3d(32px,0,0);
+      opacity:.98;
+      transition:transform .32s cubic-bezier(.22,1,.36,1), opacity .32s ease;
+    }
+
+    .mobile-menu.active .mobile-menu-panel{
+      transform:translate3d(0,0,0);
+      opacity:1;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field input:focus-visible,
+    .field textarea:focus-visible{
+      border-color:rgba(79,134,255,.6);
+      box-shadow:0 0 0 4px rgba(79,134,255,.14), 0 14px 28px rgba(0,0,0,.16);
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.09);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible{
+      outline:none;
+      box-shadow:0 0 0 4px rgba(79,134,255,.16);
+    }
+
+    .hero::before,
+    .hero-photo,
+    .about-photo{
+      transform:translateZ(0);
+      backface-visibility:hidden;
+    }
+
+    .hero::before{
+      background:
+        linear-gradient(90deg, rgba(8,16,36,.76) 0%, rgba(8,16,36,.56) 38%, rgba(8,16,36,.30) 100%),
+        url("fon.jpg") center/cover no-repeat;
+    }
+
+    @media (hover:hover) and (pointer:fine){
+      .btn:hover{
+        transform:translateY(-3px) scale(1.01);
+        box-shadow:0 18px 36px rgba(0,0,0,.2);
+      }
+
+      .nav a:hover,
+      .mobile-links a:hover{
+        transform:translateY(-2px);
+      }
+
+      .card:hover,
+      .service:hover,
+      .adv:hover,
+      .trust-card:hover,
+      .step:hover,
+      .about-item:hover,
+      .contact-item:hover,
+      .footer-box:hover,
+      .point:hover,
+      .hero-mini:hover{
+        transform:translateY(-4px) scale(1.02);
+        box-shadow:0 24px 56px rgba(0,0,0,.32);
+      }
+
+      .service:hover .service-icon,
+      .adv:hover .adv-badge,
+      .trust-card:hover .trust-mark,
+      .about-line:hover .i,
+      .contact-item:hover .icon,
+      .step:hover .step-num{
+        transform:scale(1.08) rotate(4deg);
+        box-shadow:0 14px 32px rgba(0,0,0,.2);
+      }
+
+      .brand:hover img{
+        transform:translateY(-2px) scale(1.02);
+        filter:
+          drop-shadow(0 0 2px rgba(255,255,255,.45))
+          drop-shadow(0 14px 28px rgba(0,0,0,.34));
+      }
+    }
+
+    @media (hover:none), (pointer:coarse){
+      .btn:hover,
+      .nav a:hover,
+      .service:hover,
+      .adv:hover,
+      .trust-card:hover{
+        transform:none;
+      }
+
+      .hero-actions .btn-primary,
+      .sticky-call a{
+        animation:none;
+      }
+    }
+
+    @media (max-width:1180px){
+      .header{
+        padding-top:6px;
+      }
+
+      .brand img{
+        width:240px;
+        height:140px;
+      }
+
+      .hero{
+        padding:28px 0 92px;
+      }
+
+      .hero-photo{
+        min-height:500px;
+      }
+    }
+
+    @media (max-width:900px){
+      html{
+        scroll-padding-top:90px;
+      }
+
+      .hero-main,
+      .hero-side{
+        gap:14px;
+      }
+
+      .hero-actions .btn,
+      .contact-actions .btn,
+      .footer-actions .btn{
+        min-height:52px;
+      }
+
+      .point span,
+      .hero-mini p,
+      .service p,
+      .service li,
+      .trust-card p,
+      .about-line p,
+      .measure-line p,
+      .adv p,
+      .contact-item span,
+      .contact-item a,
+      .footer-box p,
+      .footer-box a{
+        font-size:15px;
+      }
+    }
+
+    @media (max-width:768px){
+      body{
+        background-attachment:scroll;
+      }
+
+      .container{
+        width:min(calc(100% - 24px), var(--max));
+      }
+
+      .section{
+        padding:74px 0;
+      }
+
+      .section-head{
+        gap:18px;
+        margin-bottom:28px;
+      }
+
+      .section-head h2{
+        font-size:clamp(28px, 9vw, 40px);
+      }
+
+      .section-head p,
+      .about-main p,
+      .measure-info p{
+        font-size:16px;
+      }
+
+      .header{
+        background:linear-gradient(to bottom, rgba(11,23,54,.92), rgba(11,23,54,.50));
+      }
+
+      .header-shell{
+        gap:16px;
+        min-height:72px;
+        padding:6px 0;
+      }
+
+      .brand img{
+        width:180px;
+        height:88px;
+      }
+
+      .burger{
+        width:48px;
+        height:48px;
+      }
+
+      .hero{
+        padding:18px 0 78px;
+      }
+
+      .hero-wrap{
+        gap:18px;
+      }
+
+      .hero-main{
+        padding-top:18px;
+      }
+
+      .hero-main h1{
+        margin:18px 0 18px;
+        font-size:clamp(34px, 11vw, 52px);
+      }
+
+      .hero-lead{
+        font-size:16px;
+      }
+
+      .hero-actions{
+        gap:12px;
+        margin-top:26px;
+      }
+
+      .hero-actions .btn,
+      .contact-actions .btn,
+      .footer-actions .btn,
+      .mobile-actions .btn,
+      .sticky-call a{
+        min-height:48px;
+        padding-left:20px;
+        padding-right:20px;
+      }
+
+      .hero-points{
+        gap:12px;
+        margin-top:26px;
+      }
+
+      .point{
+        padding:18px;
+      }
+
+      .point strong{
+        font-size:24px;
+      }
+
+      .hero-photo{
+        min-height:320px;
+      }
+
+      .hero-glass{
+        left:14px;
+        right:14px;
+        bottom:14px;
+        gap:10px;
+      }
+
+      .hero-mini{
+        padding:14px;
+      }
+
+      .mobile-menu{
+        padding:14px;
+      }
+
+      .mobile-menu-panel{
+        width:100%;
+        border-radius:22px;
+        padding:18px;
+      }
+
+      .about-main,
+      .about-info,
+      .measure-info,
+      .measure-form-wrap,
+      .contact-card,
+      .map-card,
+      .footer-shell,
+      .service,
+      .trust-card,
+      .adv,
+      .step{
+        padding:20px;
+      }
+
+      .about-photo{
+        min-height:280px;
+      }
+
+      .field input,
+      .field textarea{
+        padding:15px 16px;
+        font-size:16px;
+      }
+
+      .footer-top{
+        gap:18px;
+      }
+
+      .footer-brand{
+        align-items:center;
+      }
+
+      .footer-brand img{
+        width:72px;
+        height:72px;
+      }
+
+      .footer-brand strong{
+        font-size:22px;
+      }
+
+      .footer-bottom{
+        font-size:13px;
+      }
+
+      .map-frame iframe{
+        min-height:340px;
+      }
+    }
+
+    @media (max-width:640px){
+      .container{
+        width:min(calc(100% - 20px), var(--max));
+      }
+
+      .section{
+        padding:64px 0;
+      }
+
+      .header-shell,
+      .trust-card,
+      .service,
+      .about-main,
+      .about-info,
+      .step,
+      .adv,
+      .measure-info,
+      .measure-form-wrap,
+      .contact-card,
+      .map-card,
+      .footer-shell{
+        padding:18px;
+      }
+
+      .brand img{
+        width:156px;
+        height:76px;
+      }
+
+      .hero-main h1{
+        font-size:clamp(30px, 10.5vw, 42px);
+      }
+
+      .hero-lead,
+      .section-head p,
+      .about-main p,
+      .measure-info p,
+      .trust-card p,
+      .service p,
+      .service li,
+      .adv p,
+      .contact-item span,
+      .contact-item a,
+      .footer-box p,
+      .footer-box a{
+        font-size:15px;
+      }
+
+      .mobile-links a{
+        min-height:48px;
+        display:flex;
+        align-items:center;
+      }
+
+      .hero-photo{
+        min-height:280px;
+      }
+
+      .hero-glass{
+        position:static;
+        padding:14px;
+      }
+
+      .hero-mini{
+        background:rgba(9,16,31,.6);
+      }
+
+      .sticky-call{
+        display:block;
+      }
+    }
+
+    @media (max-width:480px){
+      html{
+        scroll-padding-top:82px;
+      }
+
+      .container{
+        width:min(calc(100% - 16px), var(--max));
+      }
+
+      .section{
+        padding:56px 0;
+      }
+
+      .eyebrow{
+        font-size:11px;
+        padding:8px 12px;
+        gap:8px;
+      }
+
+      .hero-main h1{
+        font-size:clamp(28px, 10vw, 36px);
+        line-height:1;
+      }
+
+      .hero-lead,
+      .section-head p,
+      .about-main p,
+      .measure-info p,
+      .point span,
+      .hero-mini p,
+      .service p,
+      .service li,
+      .trust-card p,
+      .about-line p,
+      .measure-line p,
+      .adv p,
+      .contact-item span,
+      .contact-item a,
+      .footer-box p,
+      .footer-box a{
+        font-size:15px;
+      }
+
+      .hero-actions,
+      .contact-actions,
+      .footer-actions{
+        gap:10px;
+      }
+
+      .btn{
+        width:100%;
+        min-height:48px;
+        padding-left:20px;
+        padding-right:20px;
+      }
+
+      .hero-points,
+      .trust-grid,
+      .advantages-grid,
+      .services-grid,
+      .process-grid,
+      .footer-grid,
+      .about-list{
+        gap:12px;
+      }
+
+      .point strong,
+      .service h3,
+      .adv h3,
+      .step h3,
+      .about-main h3{
+        font-size:22px;
+      }
+
+      .contact-item,
+      .measure-line,
+      .about-item{
+        padding:14px;
+      }
+
+      .map-frame iframe{
+        min-height:300px;
+      }
+
+      .sticky-call{
+        left:10px;
+        right:10px;
+        bottom:10px;
+      }
+
+      .sticky-call a{
+        min-height:52px;
+      }
+    }
+
+    @media (max-width:360px){
+      .brand img{
+        width:142px;
+        height:72px;
+      }
+
+      .mobile-menu{
+        padding:10px;
+      }
+
+      .mobile-menu-panel{
+        padding:14px;
+      }
+
+      .hero-main h1{
+        font-size:28px;
+      }
+
+      .section-head h2{
+        font-size:26px;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      html{
+        scroll-behavior:auto;
+      }
+
+      *,
+      *::before,
+      *::after{
+        animation:none !important;
+        transition:none !important;
+      }
+
+      .reveal{
+        opacity:1;
+        transform:none;
+      }
+    }
+
   </style>
 </head>
-<body data-theme="day">
+<body>
 
   <div class="topline">
     <div class="container topline-wrap">
@@ -1755,23 +1999,21 @@
             <a href="#about">О компании</a>
             <a href="#process">Как работаем</a>
             <a href="#measure">Замер</a>
-            <a href="#mosquito-calc">Сетки</a>
             <a href="#advantages">Преимущества</a>
             <a href="#contacts">Контакты</a>
           </nav>
         </div>
 
         <div class="header-actions">
-          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить тему">☀️</button>
           <a class="btn header-phone" href="tel:+79900160318">+7 990 016-03-18</a>
-          <button class="burger" id="burgerBtn" aria-label="Открыть меню">☰</button>
+          <button class="burger" id="burgerBtn" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">☰</button>
         </div>
       </div>
     </div>
   </header>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-panel">
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Мобильное меню">
       <div class="mobile-top">
         <img src="logo.png" alt="Фабрика Окон">
         <button class="mobile-close" id="closeMenu" aria-label="Закрыть меню">×</button>
@@ -1782,14 +2024,8 @@
         <a href="#about" class="mobile-link">О компании</a>
         <a href="#process" class="mobile-link">Как работаем</a>
         <a href="#measure" class="mobile-link">Замер</a>
-        <a href="#mosquito-calc" class="mobile-link">Сетки</a>
         <a href="#advantages" class="mobile-link">Преимущества</a>
         <a href="#contacts" class="mobile-link">Контакты</a>
-      </div>
-
-      <div class="mobile-theme">
-        <span>Режим отображения</span>
-        <button class="theme-toggle" id="mobileThemeToggle" type="button" aria-label="Переключить тему">☀️</button>
       </div>
 
       <div class="mobile-actions">
@@ -1805,20 +2041,15 @@
         <div class="hero-main reveal">
           <span class="eyebrow">Бердянск • ПВХ конструкции и солнцезащита</span>
 
-          <h1>Окна, двери, балконы и <span class="accent">солнцезащитные решения</span> под ваш заказ</h1>
+          <h1>Окна, двери, балконы, роллеты и жалюзи под ваш заказ</h1>
 
           <p class="hero-lead">
             «Фабрика Окон» — практичные и аккуратные решения для квартир, домов, офисов и коммерческих помещений. Изготавливаем, подбираем и устанавливаем конструкции под конкретные задачи клиента.
           </p>
 
           <p class="hero-lead">
-            Окна ПВХ, двери, остекление балконов и лоджий, роллеты, жалюзи и москитные сетки — с замером, консультацией и монтажом.
+            Окна ПВХ, двери, остекление балконов и лоджий, роллеты и жалюзи — с замером, консультацией и монтажом.
           </p>
-
-          <div class="hero-note">
-            <span class="pulse-dot"></span>
-            <span>Бесплатно проконсультируем и поможем подобрать оптимальный вариант под ваш объект.</span>
-          </div>
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#measure">Оставить заявку на замер</a>
@@ -2158,10 +2389,7 @@
           </div>
 
           <div class="measure-form-wrap card reveal">
-            <form class="measure-form" id="measureForm">
-              <input type="hidden" name="access_key" value="d04d8ee8-eb0a-402a-8975-e7c3b3660748">
-              <input type="hidden" name="subject" value="Новая заявка на замер — Фабрика Окон">
-              <input type="hidden" name="from_name" value="Сайт Фабрика Окон">
+            <form class="measure-form" id="measureForm" method="POST" action="send.php">
 
               <div class="field">
                 <label for="name">Ваше имя</label>
@@ -2181,98 +2409,6 @@
               <button class="btn btn-primary" type="submit">Отправить заявку</button>
               <div class="form-status" id="formStatus"></div>
             </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="section mosquito-section" id="mosquito-calc">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="eyebrow">Калькулятор</span>
-            <h2>Предварительный расчёт москитной сетки</h2>
-          </div>
-          <p>
-            Укажите размеры, тип сетки и количество — калькулятор сразу покажет ориентировочную стоимость. Это удобно для быстрой оценки перед замером.
-          </p>
-        </div>
-
-        <div class="mosquito-grid">
-          <div class="calc-card card reveal">
-            <form class="calc-form" id="mosquitoCalc">
-              <div class="calc-row">
-                <div class="calc-field">
-                  <label for="mosquitoWidth">Ширина, м</label>
-                  <input class="calc-input" id="mosquitoWidth" type="number" min="0.2" max="5" step="0.01" value="1.2" placeholder="Например: 1.2">
-                </div>
-
-                <div class="calc-field">
-                  <label for="mosquitoHeight">Высота, м</label>
-                  <input class="calc-input" id="mosquitoHeight" type="number" min="0.2" max="5" step="0.01" value="1.4" placeholder="Например: 1.4">
-                </div>
-              </div>
-
-              <div class="calc-row">
-                <div class="calc-field">
-                  <label for="mosquitoType">Тип сетки</label>
-                  <select class="calc-select" id="mosquitoType">
-                    <option value="inside">Внутренняя</option>
-                    <option value="outside">Наружная</option>
-                  </select>
-                </div>
-
-                <div class="calc-field">
-                  <label for="mosquitoCount">Количество</label>
-                  <input class="calc-input" id="mosquitoCount" type="number" min="1" max="20" step="1" value="1">
-                </div>
-              </div>
-
-              <div class="calc-output">
-                <div class="calc-sub">Ориентировочная стоимость</div>
-                <div class="calc-total" id="mosquitoTotal">2 520 ₽</div>
-                <div class="calc-sub" id="mosquitoDetails">Площадь: 1.68 м² • 1 шт.</div>
-              </div>
-
-              <a class="btn btn-primary" href="#measure">Заказать замер по этому расчёту</a>
-            </form>
-          </div>
-
-          <div class="calc-info card reveal">
-            <span class="eyebrow">Как пользоваться</span>
-            <h3 style="font-size:30px; margin:18px 0 14px; line-height:1.05;">Быстрый расчёт за несколько секунд</h3>
-            <p style="color:var(--muted); font-size:16px;">
-              Калькулятор помогает понять ориентировочную сумму заранее. Точный итог зависит от особенностей проёма, типа крепления и выбранной комплектации после замера.
-            </p>
-
-            <div class="calc-bullets">
-              <div class="calc-bullet">
-                <div class="i">📐</div>
-                <div>
-                  <strong>Введите размеры</strong>
-                  <p style="color:var(--muted);">Укажите ширину и высоту в метрах — например 1.2 × 1.4.</p>
-                </div>
-              </div>
-
-              <div class="calc-bullet">
-                <div class="i">🧩</div>
-                <div>
-                  <strong>Выберите тип сетки</strong>
-                  <p style="color:var(--muted);">Можно быстро сравнить внутренний и наружный вариант по стоимости.</p>
-                </div>
-              </div>
-
-              <div class="calc-bullet">
-                <div class="i">📞</div>
-                <div>
-                  <strong>Оставьте заявку</strong>
-                  <p style="color:var(--muted);">После расчёта можно сразу перейти к заявке на замер и консультацию.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="theme-switch-note">По умолчанию сайт открыт в светлом дневном режиме для лучшей читаемости. При желании можно переключиться на тёмный.</div>
           </div>
         </div>
       </div>
@@ -2466,172 +2602,226 @@
     <a href="#measure">Оставить заявку на замер</a>
   </div>
 
-  <button class="scroll-top" id="scrollTopBtn" type="button" aria-label="Наверх">↑</button>
-
-
   <script>
-    const body = document.body;
     const burgerBtn = document.getElementById('burgerBtn');
     const closeMenu = document.getElementById('closeMenu');
     const mobileMenu = document.getElementById('mobileMenu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    const themeToggle = document.getElementById('themeToggle');
-    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    const mobileMenuPanel = mobileMenu ? mobileMenu.querySelector('.mobile-menu-panel') : null;
+    const mobileLinks = document.querySelectorAll('.mobile-menu a[href^="#"]');
+    const reveals = document.querySelectorAll('.reveal');
+    const form = document.getElementById('measureForm');
+    const status = document.getElementById('formStatus');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let lastFocusedElement = null;
 
-    const savedTheme = localStorage.getItem('site-theme') || 'day';
-    body.setAttribute('data-theme', savedTheme);
-
-    function syncThemeButtons() {
-      const isDay = body.getAttribute('data-theme') === 'day';
-      const icon = isDay ? '☀️' : '🌙';
-      const label = isDay ? 'Включён дневной режим' : 'Включён ночной режим';
-      if (themeToggle) {
-        themeToggle.textContent = icon;
-        themeToggle.setAttribute('aria-label', label);
-        themeToggle.setAttribute('title', label);
-      }
-      if (mobileThemeToggle) {
-        mobileThemeToggle.textContent = icon;
-        mobileThemeToggle.setAttribute('aria-label', label);
-        mobileThemeToggle.setAttribute('title', label);
-      }
+    function setRevealDelays() {
+      reveals.forEach((el, index) => {
+        const groupIndex = index % 6;
+        el.style.setProperty('--reveal-delay', `${groupIndex * 0.08}s`);
+      });
     }
 
-    function toggleTheme() {
-      const nextTheme = body.getAttribute('data-theme') === 'day' ? 'night' : 'day';
-      body.setAttribute('data-theme', nextTheme);
-      localStorage.setItem('site-theme', nextTheme);
-      syncThemeButtons();
+    setRevealDelays();
+
+    function openMenu() {
+      if (!mobileMenu) return;
+      lastFocusedElement = document.activeElement;
+      mobileMenu.classList.add('active');
+      document.body.classList.add('menu-open');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      if (burgerBtn) burgerBtn.setAttribute('aria-expanded', 'true');
+      window.setTimeout(() => {
+        if (closeMenu) closeMenu.focus();
+      }, 50);
     }
 
-    syncThemeButtons();
-    themeToggle?.addEventListener('click', toggleTheme);
-    mobileThemeToggle?.addEventListener('click', toggleTheme);
+    function closeMobileMenu() {
+      if (!mobileMenu) return;
+      mobileMenu.classList.remove('active');
+      document.body.classList.remove('menu-open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      if (burgerBtn) burgerBtn.setAttribute('aria-expanded', 'false');
+      if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+        lastFocusedElement.focus();
+      }
+    }
 
     if (burgerBtn) {
       burgerBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
-    }
-
-    if (closeMenu) {
-      closeMenu.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    }
-
-    if (mobileMenu) {
-      mobileMenu.addEventListener('click', (e) => {
-        if (e.target === mobileMenu) {
-          mobileMenu.classList.remove('active');
-          document.body.style.overflow = '';
+        if (mobileMenu.classList.contains('active')) {
+          closeMobileMenu();
+        } else {
+          openMenu();
         }
       });
     }
 
-    mobileLinks.forEach(link => {
+    if (closeMenu) {
+      closeMenu.addEventListener('click', closeMobileMenu);
+    }
+
+    if (mobileMenu) {
+      mobileMenu.addEventListener('click', (e) => {
+        if (!mobileMenuPanel || !mobileMenuPanel.contains(e.target)) {
+          closeMobileMenu();
+        }
+      });
+    }
+
+    mobileLinks.forEach((link) => {
       link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
+        closeMobileMenu();
       });
     });
 
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
+        closeMobileMenu();
+      }
+    });
+
+    const focusableSelectors = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || !mobileMenu || !mobileMenu.classList.contains('active')) return;
+      const focusable = [...mobileMenu.querySelectorAll(focusableSelectors)].filter((el) => !el.hasAttribute('disabled'));
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+
+    if (!prefersReducedMotion) {
+      const heroRevealTargets = document.querySelectorAll('.hero .reveal, .trust .reveal');
+      heroRevealTargets.forEach((el, index) => {
+        window.setTimeout(() => {
+          el.classList.add('show');
+        }, 120 + index * 140);
+      });
+    } else {
+      reveals.forEach((el) => el.classList.add('show'));
+    }
+
+    const observer = !prefersReducedMotion ? new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, {
+      threshold: 0.14,
+      rootMargin: '0px 0px -8% 0px'
+    }) : null;
 
-    reveals.forEach(el => observer.observe(el));
-
-    const form = document.getElementById('measureForm');
-    const status = document.getElementById('formStatus');
-
-    form?.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      status.textContent = 'Отправка...';
-      const formData = new FormData(form);
-
-      try {
-        const response = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: formData
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-          status.textContent = 'Заявка отправлена.';
-          form.reset();
+    reveals.forEach((el) => {
+      if (!el.classList.contains('show')) {
+        if (observer) {
+          observer.observe(el);
         } else {
-          status.textContent = 'Ошибка отправки. Проверьте access_key.';
+          el.classList.add('show');
         }
-      } catch (error) {
-        status.textContent = 'Не удалось отправить форму.';
       }
     });
 
-    const mosquitoWidth = document.getElementById('mosquitoWidth');
-    const mosquitoHeight = document.getElementById('mosquitoHeight');
-    const mosquitoType = document.getElementById('mosquitoType');
-    const mosquitoCount = document.getElementById('mosquitoCount');
-    const mosquitoTotal = document.getElementById('mosquitoTotal');
-    const mosquitoDetails = document.getElementById('mosquitoDetails');
-
-    const PRICES = {
-      inside: 1500,
-      outside: 1100
-    };
-
-    function formatMoney(value) {
-      return new Intl.NumberFormat('ru-RU').format(Math.round(value)) + ' ₽';
-    }
-
-    function calculateMosquito() {
-      if (!mosquitoWidth || !mosquitoHeight || !mosquitoType || !mosquitoCount) return;
-
-      const width = Math.max(parseFloat(mosquitoWidth.value) || 0, 0);
-      const height = Math.max(parseFloat(mosquitoHeight.value) || 0, 0);
-      const count = Math.max(parseInt(mosquitoCount.value) || 1, 1);
-      const type = mosquitoType.value;
-      const area = width * height;
-      const total = area * PRICES[type] * count;
-
-      mosquitoTotal.textContent = total > 0 ? formatMoney(total) : '0 ₽';
-      mosquitoDetails.textContent = `Площадь: ${area.toFixed(2)} м² • ${count} шт.`;
-    }
-
-    [mosquitoWidth, mosquitoHeight, mosquitoType, mosquitoCount].forEach(el => {
-      el?.addEventListener('input', calculateMosquito);
-      el?.addEventListener('change', calculateMosquito);
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e) => {
+        const href = anchor.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+        const header = document.querySelector('.header');
+        const headerHeight = header ? header.offsetHeight + 12 : 0;
+        const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+        window.scrollTo({
+          top: targetTop,
+          behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+      });
     });
 
-    calculateMosquito();
+    if (!prefersReducedMotion) {
+      const parallaxItems = document.querySelectorAll('.hero-photo, .about-photo');
+      let ticking = false;
 
-    function toggleScrollTop() {
-      if (!scrollTopBtn) return;
-      if (window.scrollY > 500) {
-        scrollTopBtn.classList.add('show');
-      } else {
-        scrollTopBtn.classList.remove('show');
-      }
+      const updateParallax = () => {
+        if (window.innerWidth > 768) {
+          parallaxItems.forEach((item, index) => {
+            const speed = index === 0 ? 0.06 : 0.04;
+            const rect = item.getBoundingClientRect();
+            const inView = rect.bottom > 0 && rect.top < window.innerHeight;
+            if (inView) {
+              const move = (window.innerHeight - rect.top) * speed;
+              item.style.transform = `translate3d(0, ${Math.max(-10, Math.min(move, 18))}px, 0)`;
+            }
+          });
+        } else {
+          parallaxItems.forEach((item) => {
+            item.style.transform = '';
+          });
+        }
+
+        ticking = false;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', updateParallax);
+      updateParallax();
     }
 
-    toggleScrollTop();
-    window.addEventListener('scroll', toggleScrollTop, { passive: true });
+    if (form && status) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
 
-    scrollTopBtn?.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+        status.textContent = 'Отправка...';
+        status.style.opacity = '1';
+
+        const submitButton = form.querySelector('button[type="submit"]');
+        const formData = new FormData(form);
+
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.style.opacity = '.8';
+        }
+
+        try {
+          const response = await fetch('send.php', {
+            method: 'POST',
+            body: formData
+          });
+
+          const result = await response.text();
+
+          if (response.ok && result.trim() === 'OK') {
+            status.textContent = 'Заявка отправлена.';
+            form.reset();
+          } else {
+            status.textContent = 'Ошибка отправки.';
+          }
+        } catch (error) {
+          status.textContent = 'Не удалось отправить форму.';
+        } finally {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.style.opacity = '';
+          }
+        }
+      });
+    }
   </script>
-
 </body>
 </html>
-
